@@ -1,0 +1,11 @@
+<h1>This is <%= @user.full_name %>'s show page</h1>
+
+<hr>
+<p>User id: <%= @user.id %></p>
+<p>User slug: <%= @user.slug %></p>
+<p>User email: <%= @user.email %></p>
+<p>User first_name: <%= @user.first_name %></p>
+<p>User last_name: <%= @user.last_name %></p>
+<p>User full_name: <%= @user.full_name %></p>
+<p>User photo: <%= @user.photo == nil ? "(none)" : @user.photo %></p>
+<hr>
