@@ -1,4 +1,4 @@
-class CreateUsersCourses < ActiveRecord::Migration[5.2]
+class CreateUserCourses < ActiveRecord::Migration[5.2]
   def change
     create_table :user_courses do |t|
       t.float :course_tracker
