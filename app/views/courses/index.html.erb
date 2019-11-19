@@ -4,6 +4,9 @@
 <div class="container">
 <% @courses.each do |course| %>
   <h4><%= link_to course.title, course_path(course) %></h4>
-  <%= button_to "Add to your library", user_course_path(@course)%>
+
 <% end %>
 </div>
+
+
+<!-- To do button_to "Add to your library", user_course_path(@course) -->
