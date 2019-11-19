@@ -9,3 +9,5 @@
 <p>User full_name: <%= @user.full_name %></p>
 <p>User photo: <%= @user.photo == nil ? "(none)" : @user.photo %></p>
 <hr>
+<%= link_to 'new course', new_user_user_course_path(@user) %>
+<%= link_to 'my courses', user_user_courses_path(@user) %>
