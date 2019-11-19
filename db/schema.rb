@@ -10,9 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 2019_11_19_104518) do
-
+ActiveRecord::Schema.define(version: 2019_11_19_115204) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,7 +43,6 @@ ActiveRecord::Schema.define(version: 2019_11_19_104518) do
     t.datetime "updated_at", null: false
   end
 
-
   create_table "user_courses", force: :cascade do |t|
     t.float "course_tracker"
     t.bigint "user_id"
@@ -55,7 +52,6 @@ ActiveRecord::Schema.define(version: 2019_11_19_104518) do
     t.index ["course_id"], name: "index_user_courses_on_course_id"
     t.index ["user_id"], name: "index_user_courses_on_user_id"
   end
-
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -74,6 +70,18 @@ ActiveRecord::Schema.define(version: 2019_11_19_104518) do
     t.index ["slug"], name: "index_users_on_slug", unique: true
   end
 
+  create_table "users_courses_paths", force: :cascade do |t|
+    t.string "course_position"
+    t.bigint "user_course_id"
+    t.bigint "path_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["path_id"], name: "index_users_courses_paths_on_path_id"
+    t.index ["user_course_id"], name: "index_users_courses_paths_on_user_course_id"
+  end
+
   add_foreign_key "user_courses", "courses"
   add_foreign_key "user_courses", "users"
+  add_foreign_key "users_courses_paths", "paths"
+  add_foreign_key "users_courses_paths", "user_courses"
 end
