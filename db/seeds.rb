@@ -135,4 +135,17 @@ paths_array = [
 ]
 Path.create!(paths_array)
 puts 'Finished creating paths.'
+
+puts 'Creating UserCourses'
+UserCourse.create([{
+  user: User.first,
+  course: Course.first,
+  course_tracker: 0.0
+                  },
+                  {
+  user: User.second,
+  course: Course.second,
+  course_tracker: 0.93
+                  }])
+puts 'finished creating UsersCourses'
 puts 'Finished!'

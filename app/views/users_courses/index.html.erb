@@ -1,0 +1,7 @@
+<h1>UsersCourses#index</h1>
+<p>Find me in app/views/users_courses/index.html.erb</p>
+<% @userscourses.each do |usercourse| %>
+<p><%= usercourse.user.first_name + ' ' + usercourse.user.last_name %></p>
+<p><%= usercourse.course.title %></p>
+<p><%= usercourse.course_tracker%></p>
+<% end %>
