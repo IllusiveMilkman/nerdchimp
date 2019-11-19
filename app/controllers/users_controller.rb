@@ -3,6 +3,7 @@ class UsersController < ApplicationController
 
   def show
     # authorize @user
+    @usercourse = UserCourse.new
   end
 
   def edit
