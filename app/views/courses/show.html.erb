@@ -1,2 +1,13 @@
 <h1>Courses#show</h1>
 <p>Find me in app/views/courses/show.html.erb</p>
+
+<hr>
+<p>Id: <%= @course.id %></p>
+<p>Title: <%= @course.title %></p>
+<p>Url: <%= @course.url %></p>
+<p>Provider: <%= @course.provider %></p>
+<p>Category: <%= @course.category %></p>
+<p>Duration: <%= @course.duration %></p>
+<hr>
+
+<%= button_to "Remove Course", course_path(@course), method: :delete %>
