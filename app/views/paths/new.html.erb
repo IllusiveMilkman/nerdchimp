@@ -1,2 +1,9 @@
+<div class="container">
 <h1>Paths#new</h1>
 <p>Find me in app/views/paths/new.html.erb</p>
+  <%= simple_form_for [@user, @path] do |f| %>
+    <%= f.input :title %>
+    <%= f.submit "Create path", class: "btn btn-primary" %>
+  <% end %>
+
+</div>

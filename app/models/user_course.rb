@@ -1,5 +1,5 @@
 class UserCourse < ApplicationRecord
   belongs_to :user
   belongs_to :course
-  has_many :users_courses_paths
+  has_many :paths, through: :users_courses_paths
 end

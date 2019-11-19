@@ -1,13 +1,21 @@
-<h1>This is <%= @user.full_name %>'s show page</h1>
+<div class="container">
+  <h1>This is <%= @user.full_name %>'s show page</h1>
 
-<hr>
-<p>User id: <%= @user.id %></p>
-<p>User slug: <%= @user.slug %></p>
-<p>User email: <%= @user.email %></p>
-<p>User first_name: <%= @user.first_name %></p>
-<p>User last_name: <%= @user.last_name %></p>
-<p>User full_name: <%= @user.full_name %></p>
-<p>User photo: <%= @user.photo == nil ? "(none)" : @user.photo %></p>
-<hr>
-<%= link_to 'new course', new_user_user_course_path(@user) %>
-<%= link_to 'my courses', user_user_courses_path(@user) %>
+  <hr>
+  <p>User id: <%= @user.id %></p>
+  <p>User slug: <%= @user.slug %></p>
+  <p>User email: <%= @user.email %></p>
+  <p>User first_name: <%= @user.first_name %></p>
+  <p>User last_name: <%= @user.last_name %></p>
+  <p>User full_name: <%= @user.full_name %></p>
+  <p>User photo: <%= @user.photo == nil ? "(none)" : @user.photo %></p>
+  <hr>
+  <%= link_to 'new course', new_user_user_course_path(@user) %>
+  <%= link_to 'my courses', user_user_courses_path(@user) %>
+  <%= link_to 'new path', new_user_path_path(@user) %>
+  <div>
+    <%= @paths.each do |path| %>
+      <p><%= path %></p>
+    <% end %>
+  </div>
+</div>

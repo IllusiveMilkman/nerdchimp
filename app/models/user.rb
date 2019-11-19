@@ -1,4 +1,12 @@
 class User < ApplicationRecord
+  # has_many :user_courses
+  # has_many :users_courses_paths, through: :user_courses, source: :user
+  # has_many :paths, through: :users_courses_paths, source: :user_course
+
+  has_many :user_courses, class_name: 'UserCourse'
+  has_many :users_courses_paths, through: :user_courses, source: :user, class_name: 'UsersCoursesPath'
+  has_many :paths, through: :users_courses_paths, class_name: 'Path'
+
   extend FriendlyId
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable

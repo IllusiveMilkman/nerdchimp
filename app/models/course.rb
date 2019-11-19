@@ -5,4 +5,5 @@ class Course < ApplicationRecord
   validates :provider, presence: true
   validates :category, presence: true
   validates :duration, presence: true
+  has_many :users, through: :user_courses
 end
