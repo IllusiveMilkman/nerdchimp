@@ -17,13 +17,24 @@ document.addEventListener("DOMContentLoaded", function() {
 
     console.log(`${groupName} - ${listType} - ${userPathNo}`);
 
-
-    Sortable.create(element, {
+    if (listType == 'library') {
+      Sortable.create(element, {
         group: {
             name: groupName,
-            pull: 'clone' // To clone: set pull to 'clone'
+            pull: 'clone',
+            put: false // Do not allow items to be put into this list
         },
         animation: 150
-    });
+      });
+    } else {
+      Sortable.create(element, {
+          group: {
+              name: groupName,
+              pull: 'clone'
+          },
+          animation: 150
+      });
+    };
+
   })
 });
