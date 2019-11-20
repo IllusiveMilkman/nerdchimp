@@ -1,2 +1,6 @@
 <h1>Courses#create</h1>
 <p>Find me in app/views/courses/create.html.erb</p>
+
+<% if policy(Course).create? %>
+  <%= link_to "Add to library", user_courses_path %>
+<% end %>

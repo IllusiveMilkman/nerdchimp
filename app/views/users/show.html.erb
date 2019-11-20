@@ -1,3 +1,4 @@
+
 <h1>This is <%= @user.full_name %>'s show page</h1>
 
 <hr>
@@ -8,6 +9,16 @@
 <p>User last_name: <%= @user.last_name %></p>
 <p>User full_name: <%= @user.full_name %></p>
 <p>User photo: <%= @user.photo == nil ? "(none)" : @user.photo %></p>
+
+<body>
+  <div>
+  <button id="url-button" class="btn btn-primary btn-sm"><i class="far fa-copy"></i></button>
+  <span><small id="url-message"></small></span>
 <hr>
-<%= link_to 'new course', new_user_user_course_path(@user) %>
-<%= link_to 'my courses', user_user_courses_path(@user) %>
+
+<%= link_to "Edit profile", edit_user_path(@user), class: "a-dark-underlined"%> <br>
+<%= link_to "Edit account", edit_user_registration_path(@user), class: "a-dark-underlined"%> <br>
+
+
+<%= link_to 'new course', new_user_user_course_path(@user) %> <br>
+<%= link_to 'my courses', user_user_courses_path(@user) %> <br>
