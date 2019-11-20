@@ -65,6 +65,7 @@ ActiveRecord::Schema.define(version: 2019_11_19_163639) do
     t.string "last_name"
     t.string "photo"
     t.string "slug"
+    t.json "badge", default: "{}", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["slug"], name: "index_users_on_slug", unique: true
