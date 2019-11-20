@@ -7,16 +7,17 @@
 <p>User first_name: <%= @user.first_name %></p>
 <p>User last_name: <%= @user.last_name %></p>
 <p>User full_name: <%= @user.full_name %></p>
-<p>User photo: <%= @user.photo == nil ? "(none)" : @user.photo %></p>
-
-<div>
-  <button id="url-button" class="btn btn-primary btn-sm">
-    <i class="far fa-copy"></i>
-  </button>
-  <span>
-    <small id="url-message"></small>
-  </span>
-</div>
+<p>User photo:
+  <% unless @user.photo == nil %>
+  <%= cl_image_tag @user.photo, height: 150, width: 150,crop: :fill %>
+  <% else %>
+    "(none)"
+  <% end %>
+</p>
+<body>
+  <div>
+  <button id="url-button" class="btn btn-primary btn-sm"><i class="far fa-copy"></i></button>
+  <span><small id="url-message"></small></span>
 <hr>
 
 <%= link_to "Edit profile", edit_user_path(@user), class: "a-dark-underlined"%> <br>
