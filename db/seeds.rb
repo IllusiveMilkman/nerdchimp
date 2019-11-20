@@ -124,19 +124,33 @@ Path.destroy_all
 
 paths_array = [
   {
-    title: 'My Data Science Track'
+    title: 'My Data Science Track',
+    user: User.first
   },
   {
-    title: 'Programming 101'
+    title: 'Programming 101',
+    user: User.first
   },
   {
-    title: 'Courses for Customer Data'
+    title: 'My Empty Path',
+    user: User.first
+  },
+
+  {
+    title: 'Courses for Customer Data',
+    user: User.second
+  },
+  {
+    title: 'Courses for Customer Data',
+    user: User.second
   }
 ]
 Path.create!(paths_array)
 puts 'Finished creating paths.'
 
 puts 'Creating UserCourses'
+UserCourse.destroy_all
+
 UserCourse.create([{
   user: User.first,
   course: Course.first,
@@ -148,4 +162,23 @@ UserCourse.create([{
   course_tracker: 0.93
                   }])
 puts 'finished creating UsersCourses'
+
+puts 'Creating UserCoursesPaths...'
+UsersCoursesPath.destroy_all
+
+users_courses = [
+  {
+    course_position: 0,
+    user_course: UserCourse.first,
+    path: Path.first
+  },
+  {
+    course_position: 1,
+    user_course: UserCourse.second,
+    path: Path.second
+  }
+]
+
+UsersCoursesPath.create!(users_courses)
+puts 'Finished creating UsersCoursesPaths.'
 puts 'Finished!'

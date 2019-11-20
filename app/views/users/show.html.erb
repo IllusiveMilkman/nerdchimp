@@ -14,8 +14,24 @@
   <%= link_to 'my courses', user_user_courses_path(@user) %>
   <%= link_to 'new path', new_user_path_path(@user) %>
   <div>
-    <%= @paths.each do |path| %>
-      <p><%= path %></p>
+    <% @paths.each do |path| %>
+      <div class="card p-3" style="width: 18rem">
+      <h5><%= path.title %></h5>
+      <h6>Courses: <%= path.user_courses.count %></h6>
+      <div class="card-item">
+      <% unless path.users_courses_paths[0].nil? %>
+        <% path.users_courses_paths.each do |course| %>
+          <ul>
+            <li>Position: <%= course.course_position %></li>
+            <li>Title: <%= course.user_course.course.title %></li>
+            <li>Provider: <%= course.user_course.course.provider %></li>
+            <li>Progress: <%= course.user_course.course_tracker * 100 %>%</li>
+          </ul>
+        <% end %>
+        </div>
+      <% end %>
+      <%= link_to "Delete", user_path_path(@user, path), method: :delete %>
+      </div>
     <% end %>
   </div>
 </div>

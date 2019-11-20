@@ -7,7 +7,9 @@ class PathsController < ApplicationController
   end
 
   def create
-    @path = Path.create!(path_param)
+    @path = Path.new(path_param)
+    @path.user_id = @user.id
+    @path.save!
     redirect_to user_path(@user)
   end
 
@@ -23,13 +25,15 @@ class PathsController < ApplicationController
   end
 
   def destroy
+    @path.user_id = current_user.id
     @path.destroy
+    redirect_to user_path(@user)
   end
 
   private
 
   def path_param
-    params.require(:path).permit(:title)
+    params.require(:path).permit(:title, :user_id)
   end
 
   def find_user
@@ -37,6 +41,6 @@ class PathsController < ApplicationController
   end
 
   def find_path
-    @path = Path.find(params[:path_id])
+    @path = Path.find(params[:id])
   end
 end
