@@ -8,9 +8,11 @@ class UserCoursesController < ApplicationController
     @user = User.friendly.find(params[:user_id])
     @usercourse = UserCourse.new
     authorize @usercourse
+    @render_form_for_manual_input = false
   end
 
   def create
+
     @user = current_user
     @usercourse = UserCourse.new
     authorize @usercourse
@@ -44,7 +46,8 @@ class UserCoursesController < ApplicationController
           redirect_to user_path(@user) # user show
         end
       rescue # rescues us from errors
-        render_form_for_manual_input = true # the 'open' creates a 403 with udemy or no website input form needs to be displayed
+        @render_form_for_manual_input = true # the 'open' creates a 403 with udemy or no website input form needs to be displayed
+        render :new
       end
     end
   end

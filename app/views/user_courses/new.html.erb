@@ -1,35 +1,10 @@
-<h2>Add your Url</h2>
-<%= simple_form_for [@user, @usercourse] do |f| %>
-<%= f.input :user_url %>
-<%= f.submit 'Check in courses', class: 'btn btn-primary' %>
+<% if !@render_form_for_manual_input %>
+  <h2>Add your Url</h2>
+  <%= simple_form_for [@user, @usercourse] do |f| %>
+  <%= f.input :user_url %>
+  <%= f.submit 'Check in courses', class: 'btn btn-primary' %>
+  <% end %>
 <% end %>
+<%= render 'manual_input_form', user: @user, usercourse: @usercourse if @render_form_for_manual_input %>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- <p>
-<%#= simple_form_for [@user, @usercourse] do |f| %>
-<%#= f.association :course %>
-<%#= f.submit 'Add course', class: 'btn btn-primary' %>
-<%# end %>
-</p>
- -->
