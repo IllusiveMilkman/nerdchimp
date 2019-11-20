@@ -1,17 +1,19 @@
 class UserCoursesController < ApplicationController
   def index
-    @userscourses = UserCourse.all
-    UserCourse.new
+    @userscourses = policy_scope(UserCourse.all)
+
   end
 
   def new
     @user = User.friendly.find(params[:user_id])
     @usercourse = UserCourse.new
+    authorize @usercourse
   end
 
   def create
     @user = current_user
     @usercourse = UserCourse.new
+    authorize @usercourse
     if Course.where(url: params[:user_course][:user_url]) != [] # if statement to check if url already exists in db
       # the course already exists and we find the instance of that course
       @course = Course.find_by(url: params[:user_course][:user_url])
