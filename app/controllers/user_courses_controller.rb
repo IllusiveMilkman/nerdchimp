@@ -45,6 +45,7 @@ class UserCoursesController < ApplicationController
         end
       rescue # rescues us from errors
         render_form_for_manual_input = true # the 'open' creates a 403 with udemy or no website input form needs to be displayed
+      raise
       end
     end
   end

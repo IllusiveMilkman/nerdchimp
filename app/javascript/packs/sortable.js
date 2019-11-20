@@ -12,6 +12,11 @@ document.addEventListener("DOMContentLoaded", function() {
   sortableList.forEach((list) => {
     const element = list;
     const groupName = element.dataset.groupname;
+    const listType = element.dataset.ltype;
+    const userPathNo = element.dataset.userpathno;
+
+    console.log(`${groupName} - ${listType} - ${userPathNo}`);
+
 
     Sortable.create(element, {
         group: {
