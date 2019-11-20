@@ -25,40 +25,47 @@ users_array = [
   first_name: 'John',
   last_name: 'Ember',
   email: 'john@nerdchimp.io',
-  password: '123123'
+  password: '123123',
+  remote_photo_url: "https://res.cloudinary.com/drdm61dhy/image/upload/v1574251221/nerdchimp/john-ember.jpg"
   },
   {
   # testing what happens if same names are appended to database
   first_name: 'John',
   last_name: 'Ember',
   email: 'john2@nerdchimp.io',  # Must be unique email address
-  password: '123123'
+  password: '123123',
+  remote_photo_url: "https://res.cloudinary.com/drdm61dhy/image/upload/v1574257753/nerdchimp/Charles_wvep0m.jpg"
   },
   {
   first_name: 'Sam',
   last_name: 'Jones',
   email: 'sam@nerdchimp.io',
-  password: '123123'
+  password: '123123',
+  remote_photo_url: "https://res.cloudinary.com/drdm61dhy/image/upload/v1574257752/nerdchimp/Spongebob_z1tcyp.png"
   },
   {
-  first_name: 'Alex',
-  last_name: 'Davis',
+  first_name: 'James',
+  last_name: 'Bond',
   email: 'alex@nerdchimp.io',
-  password: '123123'
+  password: '123123',
+  remote_photo_url: "https://res.cloudinary.com/drdm61dhy/image/upload/v1574257896/nerdchimp/James_Bond_i5l5og.jpg"
   },
   {
   first_name: 'Haley',
   last_name: 'Summers',
   email: 'haley@nerdchimp.io',
-  password: '123123'
+  password: '123123',
+  remote_photo_url: "https://res.cloudinary.com/drdm61dhy/image/upload/v1574257896/nerdchimp/Octocat_itmdrk.png"
   },
   {
   first_name: 'Lara',
   last_name: 'Croft',
   email: 'lara@nerdchimp.io',
-  password: '123123'
+  password: '123123',
+  remote_photo_url: "https://res.cloudinary.com/drdm61dhy/image/upload/v1574258088/nerdchimp/Lara_Croft_knq7v7.jpg"
   }
 ]
+
 User.create!(users_array)
 puts 'Finished creating users'
 
