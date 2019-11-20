@@ -4,15 +4,20 @@
 
 
 <div class="container w-50">
-<h3 style="font-size: 20px; margin-bottom: 0; margin-top: 10px;"><%= @courses.count %> total results for <strong><em>"<%= params[:query] %>"</em></strong></h3>
-      <%= form_tag courses_path, method: :get, class: 'd-flex align-items-center justify-content-center mt-3' do %>
-        <%= text_field_tag :query,
-          params[:query],
-          class: "form-control mr-3", style: 'height: 45px;',
-          placeholder: "What would you like to learn?"
-        %>
-        <%= submit_tag "Find a course", class: "btn btn-primary", style: 'font-size: 1.1rem;' %>
-      <% end %>
+<h3 style="font-size: 20px; margin-bottom: 0; margin-top: 10px;">
+  <%if params[:query].present?%>
+    <%= @courses.count %> total results for <strong><em>"<%= params[:query] %>"</em></strong></h3>
+  <%else%>
+    <%= @courses.count %> available Courses</h3>
+  <%end%>
+  <%= form_tag courses_path, method: :get, class: 'd-flex align-items-center justify-content-center mt-3' do %>
+    <%= text_field_tag :query,
+      params[:query],
+      class: "form-control mr-3", style: 'height: 45px;',
+      placeholder: "What would you like to learn?"
+    %>
+    <%= submit_tag "Find a course", class: "btn btn-primary", style: 'font-size: 1.1rem;' %>
+  <% end %>
 
 <% @courses.each do |course| %>
   <h4><%= link_to course.title, course_path(course) %></h4>
