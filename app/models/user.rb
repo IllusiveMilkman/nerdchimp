@@ -1,18 +1,23 @@
 class User < ApplicationRecord
-  # has_many :user_courses
-  # has_many :users_courses_paths, through: :user_courses, source: :user
-  # has_many :paths, through: :users_courses_paths, source: :user_course
 
   has_many :library, class_name: 'UserCourse', dependent: :destroy
   has_many :users_courses_paths, through: :user_courses, source: :user, class_name: 'UsersCoursesPath'
   has_many :paths, dependent: :destroy
 
   extend FriendlyId
+
+  # has_many :userCourses, dependent: :destroy
+  # has_many :UsersCoursesPaths, through: :userCourses, dependent: :destroy
+  # has_many :Paths, through: :UsersCoursesPaths
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  mount_uploader :photo, PhotoUploader
+
+  extend FriendlyId
   # before_validation :generate_slug
 
   validates :first_name, presence: true

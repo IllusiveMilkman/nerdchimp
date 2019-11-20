@@ -2,13 +2,13 @@ class UsersController < ApplicationController
   before_action :find_user
 
   def show
-    # authorize @user
+    authorize @user
     @usercourse = UserCourse.new
     @paths = @user.paths
   end
 
   def edit
-    # authorize @user
+    authorize @user
   end
 
   def update

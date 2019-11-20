@@ -2,17 +2,33 @@
   <h1>This is <%= @user.full_name %>'s show page</h1>
 
   <hr>
-  <p>User id: <%= @user.id %></p>
-  <p>User slug: <%= @user.slug %></p>
-  <p>User email: <%= @user.email %></p>
-  <p>User first_name: <%= @user.first_name %></p>
-  <p>User last_name: <%= @user.last_name %></p>
-  <p>User full_name: <%= @user.full_name %></p>
-  <p>User photo: <%= @user.photo == nil ? "(none)" : @user.photo %></p>
-  <hr>
-  <%= link_to 'new course', new_user_user_course_path(@user) %>
-  <%= link_to 'my courses', user_user_courses_path(@user) %>
-  <%= link_to 'new path', new_user_path_path(@user) %>
+<p>User id: <%= @user.id %></p>
+<p>User slug: <%= @user.slug %></p>
+<p>User email: <%= @user.email %></p>
+<p>User first_name: <%= @user.first_name %></p>
+<p>User last_name: <%= @user.last_name %></p>
+<p>User full_name: <%= @user.full_name %></p>
+<p>User photo:
+  <% unless @user.photo == nil %>
+  <%= cl_image_tag @user.photo, height: 150, width: 150,crop: :fill %>
+  <% else %>
+    "(none)"
+  <% end %>
+</p>
+<body>
+  <div>
+  <button id="url-button" class="btn btn-primary btn-sm"><i class="far fa-copy"></i></button>
+  <span><small id="url-message"></small></span>
+<hr>
+
+<%= link_to "Edit profile", edit_user_path(@user), class: "a-dark-underlined"%> <br>
+<%= link_to "Edit account", edit_user_registration_path(@user), class: "a-dark-underlined"%> <br>
+
+
+<%= link_to 'new course', new_user_user_course_path(@user) %> <br>
+<%= link_to 'my courses', user_user_courses_path(@user) %> <br>
+
+<%= link_to 'new path', new_user_path_path(@user) %>
   <div>
     <% @paths.each do |path| %>
       <div class="card p-3" style="width: 18rem">
@@ -35,3 +51,23 @@
     <% end %>
   </div>
 </div>
+
+<hr>
+
+<!-- Simple List -->
+<ul id="simpleList" class="sortable-list list-group" data-groupname="userlists">
+  <li class="list-group-item">This is <a href="http://SortableJS.github.io/Sortable/">Sortable</a></li>
+  <li class="list-group-item">It works with Bootstrap...</li>
+  <li class="list-group-item">...out of the box.</li>
+  <li class="list-group-item">It has support for touch devices.</li>
+  <li class="list-group-item">Just drag some elements around.</li>
+</ul>
+<hr><hr>
+
+<ul id="simpleList" class="sortable list-group" data-groupname="userlists">
+  <li class="list-group-item">This is <a href="http://SortableJS.github.io/Sortable/">Sortable</a></li>
+  <li class="list-group-item">It works with Bootstrap...</li>
+  <li class="list-group-item">...out of the box.</li>
+  <li class="list-group-item">It has support for touch devices.</li>
+  <li class="list-group-item">Just drag some elements around.</li>
+</ul>
