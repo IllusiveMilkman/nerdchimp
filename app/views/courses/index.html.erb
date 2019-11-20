@@ -1,7 +1,10 @@
 <h1>Courses#index</h1>
 <p>Find me in app/views/courses/index.html.erb</p>
 
+
+
 <div class="container w-50">
+<h3 style="font-size: 20px; margin-bottom: 0; margin-top: 10px;"><%= @courses.count %> total results for <strong><em>"<%= params[:query] %>"</em></strong></h3>
       <%= form_tag courses_path, method: :get, class: 'd-flex align-items-center justify-content-center mt-3' do %>
         <%= text_field_tag :query,
           params[:query],
@@ -19,5 +22,4 @@
 <% end %>
 </div>
 
-<!-- To do button_to "Add to your library", user_course_path(@course) -->
 
