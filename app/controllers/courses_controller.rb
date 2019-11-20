@@ -1,7 +1,12 @@
 class CoursesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
+
   def index
-    @courses = policy_scope(Course.order(created_at: :desc))
+    if params[:query].present?
+      @courses = policy_scope(Course.global_search(params[:query]))
+    else
+      @courses = policy_scope(Course.order(created_at: :desc))
+    end
   end
 
   def show
