@@ -1,3 +1,6 @@
+require 'nokogiri'
+require 'open-uri'
+
 puts 'Cleaning database...'
 
 # ============================================================
@@ -117,6 +120,26 @@ courses_array = [
 ]
 
 Course.create!(courses_array)
+
+#########################
+puts "Started edX RSS Course seeding..."
+for n in (2..4) do
+  document = Nokogiri::XML(open("https://www.edx.org/api/v2/report/course-feed/rss?page=#{n}"))
+
+  edx_array = document.root.xpath('channel/item').map do |course|
+    {
+      title: course.xpath('title').text,
+      description: course.xpath('description').text,
+      url: course.xpath('link').text,
+      provider: 'edX',
+      category: course.xpath('course:subject').text,
+      duration: course.xpath('course:length').text[0].to_i
+    }
+  end
+  Course.create!(edx_array)
+end
+##########################
+
 puts 'Finished creating courses.'
 
 puts 'Creating paths...'
