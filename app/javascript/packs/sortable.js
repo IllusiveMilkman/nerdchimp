@@ -12,13 +12,29 @@ document.addEventListener("DOMContentLoaded", function() {
   sortableList.forEach((list) => {
     const element = list;
     const groupName = element.dataset.groupname;
+    const listType = element.dataset.ltype;
+    const userPathNo = element.dataset.userpathno;
 
-    Sortable.create(element, {
+    console.log(`${groupName} - ${listType} - ${userPathNo}`);
+
+    if (listType == 'library') {
+      Sortable.create(element, {
         group: {
             name: groupName,
-            pull: 'clone' // To clone: set pull to 'clone'
+            pull: 'clone',
+            put: false // Do not allow items to be put into this list
         },
         animation: 150
-    });
+      });
+    } else {
+      Sortable.create(element, {
+          group: {
+              name: groupName,
+              pull: 'clone'
+          },
+          animation: 150
+      });
+    };
+
   })
 });
