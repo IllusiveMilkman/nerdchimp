@@ -53,6 +53,17 @@
 </div>
 
 <hr>
+<!-- mo start -->
+<h1>Library</h1>
+<% @usercourses.each do |usercourse| %>
+<p><%= usercourse.user.first_name + ' ' + usercourse.user.last_name %></p>
+<p><%= usercourse.course.title %></p>
+<p><%= usercourse.course_tracker%></p>
+<p><%= usercourse.course.description%></p>
+<hr>
+<% end %>
+<!-- mo end -->
+<hr>
 
 <div class="conatiner" style="display: flex; justify-content: space-between;">
     <!-- Simple List -->
@@ -65,8 +76,6 @@
       <li class="list-group-item">Just drag some elements around.</li>
     </ul>
 
-    <br>
-
     <ul class="sortable-list list-group" data-groupname="userLists" data-ltype="path" data-userpathno="1">
       <h4>Path 1</h4>
       <li class="list-group-item">This is <a href="http://SortableJS.github.io/Sortable/">Sortable</a></li>
@@ -75,8 +84,6 @@
       <li class="list-group-item">It has support for touch devices.</li>
       <li class="list-group-item">Just drag some elements around.</li>
     </ul>
-
-    <br>
 
     <ul class="sortable-list list-group" data-groupname="userLists" data-ltype="path" data-userpathno="2">
       <h4>Path 2</h4>

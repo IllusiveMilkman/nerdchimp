@@ -3,8 +3,8 @@ class UsersController < ApplicationController
 
   def show
     authorize @user
-    @usercourse = UserCourse.new
     @paths = @user.paths
+    @usercourses = UserCourse.where(user: current_user)
   end
 
   def edit
