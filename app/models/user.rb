@@ -1,7 +1,14 @@
 class User < ApplicationRecord
-  has_many :userCourses, dependent: :destroy
-  has_many :UsersCoursesPaths, through: :userCourses, dependent: :destroy
-  has_many :Paths, through: :UsersCoursesPaths
+
+  has_many :library, class_name: 'UserCourse', dependent: :destroy
+  has_many :users_courses_paths, through: :user_courses, source: :user, class_name: 'UsersCoursesPath'
+  has_many :paths, dependent: :destroy
+
+  extend FriendlyId
+
+  # has_many :userCourses, dependent: :destroy
+  # has_many :UsersCoursesPaths, through: :userCourses, dependent: :destroy
+  # has_many :Paths, through: :UsersCoursesPaths
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable

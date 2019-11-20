@@ -1,7 +1,9 @@
 class UserCourse < ApplicationRecord
   belongs_to :user
   belongs_to :course
-  has_many :users_courses_paths
+
+  has_many :paths, through: :users_courses_paths
+  
   # ------------------------------------
   attr_accessor :user_url
   validate :user_url_error
@@ -15,4 +17,5 @@ class UserCourse < ApplicationRecord
   # -----------------
   validates :user_id, presence: true, uniqueness: { scope: :course_id }
   validates :course_id, presence: true, uniqueness: { scope: :user_id }
+
 end

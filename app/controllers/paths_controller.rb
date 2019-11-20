@@ -1,8 +1,16 @@
 class PathsController < ApplicationController
-  before_action :find_param, except: [:create, :new]
+  before_action :find_user
+  before_action :find_path, except: [:create, :new]
+
+  def index
+    @path = Path.all
+  end
 
   def create
-    @path = Path.create!(path_param)
+    @path = Path.new(path_param)
+    @path.user_id = @user.id
+    @path.save!
+    redirect_to user_path(@user)
   end
 
   def new
@@ -17,16 +25,22 @@ class PathsController < ApplicationController
   end
 
   def destroy
+    @path.user_id = current_user.id
     @path.destroy
+    redirect_to user_path(@user)
   end
 
   private
 
   def path_param
-    params.require(:path_id).permit(:title)
+    params.require(:path).permit(:title, :user_id)
   end
 
-  def find_param
-    @path = Path.find(params[:path_id])
+  def find_user
+    @user = User.friendly.find(params[:user_id])
+  end
+
+  def find_path
+    @path = Path.find(params[:id])
   end
 end

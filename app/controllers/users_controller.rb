@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   def show
     authorize @user
     @usercourse = UserCourse.new
+    @paths = @user.paths
   end
 
   def edit
