@@ -181,25 +181,64 @@ puts 'Finished creating paths.'
 puts 'Creating UserCourses'
 UserCourse.destroy_all
 
-UserCourse.create([{
+courses_array = Course.all
+
+UserCourse.create([
+  {
   user: User.first,
-  course: Course.first,
+  course: courses_array[0],
   course_tracker: 0.0
-                  },
-                  {
+  },
+  {
+  user: User.first,
+  course: courses_array[1],
+  course_tracker: 0.0
+  },
+  {
+  user: User.first,
+  course: courses_array[2],
+  course_tracker: 0.0
+  },
+  {
+  user: User.first,
+  course: courses_array[3],
+  course_tracker: 0.0
+  },
+  {
+  user: User.first,
+  course: courses_array[4],
+  course_tracker: 0.0
+  },
+  {
+  user: User.first,
+  course: courses_array[5],
+  course_tracker: 0.0
+  },
+  {
   user: User.second,
   course: Course.second,
   course_tracker: 0.93
-                  }])
+  }
+])
 puts 'finished creating UsersCourses'
 
 puts 'Creating UserCoursesPaths...'
 UsersCoursesPath.destroy_all
 
-users_courses = [
+users_paths = [
   {
     course_position: 0,
     user_course: UserCourse.first,
+    path: Path.first
+  },
+  {
+    course_position: 2,
+    user_course: UserCourse.third,
+    path: Path.first
+  },
+  {
+    course_position: 1,
+    user_course: UserCourse.second,
     path: Path.first
   },
   {
@@ -209,6 +248,6 @@ users_courses = [
   }
 ]
 
-UsersCoursesPath.create!(users_courses)
+UsersCoursesPath.create!(users_paths)
 puts 'Finished creating UsersCoursesPaths.'
 puts 'Finished!'
