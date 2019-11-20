@@ -1,10 +1,14 @@
 class User < ApplicationRecord
-  extend FriendlyId
+  has_many :userCourses, dependent: :destroy
+  has_many :UsersCoursesPaths, through: :userCourses, dependent: :destroy
+  has_many :Paths, through: :UsersCoursesPaths
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  extend FriendlyId
   # before_validation :generate_slug
 
   validates :first_name, presence: true
