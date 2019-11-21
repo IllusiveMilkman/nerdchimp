@@ -37,57 +37,77 @@ document.addEventListener("DOMContentLoaded", function() {
       });
     } else {
       Sortable.create(element, {
-          group: {
-              name: groupName,
-              pull: 'clone'
-          },
-          animation: 150,
-          // Callback to the event of dropping a card into a list
-          onAdd: function (evt) {
-            // same properties as onEnd
-            let pathElement = evt.to;
+        group: {
+            name: groupName,
+            pull: 'clone'
+        },
+        animation: 150,
 
-            let ListItems = pathElement.querySelectorAll("li");;
+        // Callback to the event of dropping a card into a list
+        onAdd: function (evt) {
+          let pathElement = evt.to;
 
-            // create an array of all list items
-            let idArray = [];
-            ListItems.forEach ( (item) => {
-              idArray.push(item.dataset.courseid)
+          let ListItems = pathElement.querySelectorAll("li");;
+
+          // create an array of all list items
+          let idArray = [];
+          ListItems.forEach ( (item) => {
+            idArray.push(item.dataset.courseid)
+          });
+
+          // Extract only duplicates from array
+          let duplicateArray = getNotUnique(idArray);
+
+          // Remove duplicates from duplicates array
+          // E.g. [42, 42] ==> [42]
+          let uniqueDuplicates = duplicateArray.filter((v, i, a) => a.indexOf(v) === i);
+
+          // We can now iterate over each duplicate (there should always only be one either way)
+          uniqueDuplicates.forEach ( (duplicateId) => {
+              let toDelete = pathElement.querySelector(`li[data-courseid="${duplicateId}"]`);
+              toDelete.remove();
+              document.querySelector('.modal-body').innerHTML = "<p>You already have this course in your path. We've remove it for you.</p>";
+              $("#ModalCenter").modal();
             });
+        },
 
-            // Extract only duplicates from array
-            let duplicateArray = getNotUnique(idArray);
+        // Callback event on moving any card
+        // Here we will create an array of the element id's within the ul
+        onEnd: function (evt) {
+          // console.log('onEnd called')
 
-            // Remove duplicates from duplicates array
-            // E.g. [42, 42] ==> [42]
-            let uniqueDuplicates = duplicateArray.filter((v, i, a) => a.indexOf(v) === i);
+          let pathElement = evt.to;
+          // console.log(pathElement);
 
-            // We can now iterate over each duplicate (there should always only be one either way)
-            uniqueDuplicates.forEach ( (duplicateId) => {
-                let toDelete = pathElement.querySelector(`li[data-courseid="${duplicateId}"]`);
-                toDelete.remove();
-                document.querySelector('.modal-body').innerHTML = "<p>You already have this course in your path. We've remove it for you.</p>";
-                $("#ModalCenter").modal();
-              });
-          },
-          // Changed sorting within list
-          // onUpdate: function (evt) {
-          //   // same properties as onEnd
-          //   console.log('You have changed the order of the list')
-          // },
-          onEnd: function (/**Event*/evt) {
-            console.log('onEnd called')
-            console.log(evt.to)    // target list
-            // var itemEl = evt.item;  // dragged HTMLElement
-            // evt.to;
-            // evt.from;  // previous list
-            // evt.oldIndex;  // element's old index within old parent
-            // evt.newIndex;  // element's new index within new parent
-            // evt.oldDraggableIndex; // element's old index within old parent, only counting draggable elements
-            // evt.newDraggableIndex; // element's new index within new parent, only counting draggable elements
-            // evt.clone // the clone element
-            // evt.pullMode;  // when item is in another sortable: `"clone"` if cloning, `true` if moving
-          }
+          let ListItems = pathElement.querySelectorAll("li");;
+          // console.log(ListItems);
+
+          let idArray = [];
+          ListItems.forEach ( (item) => {
+            idArray.push(parseInt(item.dataset.courseid, 10));
+          });
+          console.log(idArray);
+
+          // Don't use Rails.ajax as it doesn't support JSON.  Instead use fetch(url...)
+          // Rails.ajax({
+          //   type: "POST",
+          //   url: "/persist_position",  // Security will be done via pundit
+          //   data: { "mydata",
+          //   success: function(repsonse){...},
+          //   error: function(repsonse){...}
+          // });
+
+          // AJAX with fecth() and sending JSON to the controller via /persist_position path
+          // url = '/persist_position';
+          // fetch(url, {
+          //   method: "POST",
+          //   body: JSON.stringify ({
+          //     "path_id":
+          //   })
+
+          // });
+
+        }
       });
     };
 

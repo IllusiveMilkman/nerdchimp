@@ -17,6 +17,10 @@ class UsersController < ApplicationController
     authorize @user
   end
 
+  def persist_position
+    raise
+  end
+
   private
 
   def find_user

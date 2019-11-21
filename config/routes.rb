@@ -11,4 +11,6 @@ Rails.application.routes.draw do
     resources :users_courses_paths, except: [:create, :new]
   end
   resources :courses
+
+  post 'persist_position', to: 'users#persist_position'
 end
