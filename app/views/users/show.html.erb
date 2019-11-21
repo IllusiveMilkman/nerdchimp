@@ -37,7 +37,7 @@
 <!-- mo end -->
 
 <hr>
-<p>WTF?</p>
+
 <%= link_to 'new course', new_user_user_course_path(@user) %> <br>
 <%= link_to 'my courses', user_user_courses_path(@user) %> <br>
 
@@ -71,35 +71,28 @@
 
 <hr>
 
-<div class="conatiner" style="display: flex; justify-content: space-between;">
+<div class="conatiner mb-4" style="display: flex; justify-content: space-between;">
   <div>
     <!-- Simple List -->
     <ul class="sortable-list list-group" data-groupname="userLists" data-ltype="library">
-      <h4>Library</h4>
-      <li class="m-1 list-group-item">This is <a href="http://SortableJS.github.io/Sortable/">Sortable</a></li>
-      <li class="m-1 list-group-item">It works with Bootstrap...</li>
-      <li class="m-1 list-group-item">...out of the box.</li>
-      <li class="m-1 list-group-item">It has support for touch devices.</li>
-      <li class="m-1 list-group-item">Just drag some elements around.</li>
+      <h5>Library</h5>
+      <% @usercourses.each do |usercourse| %>
+        <li class="m-1 list-group-item"><%= usercourse.course.title %></li>
+      <% end %>
     </ul>
   </div>
 
-  <div>
-    <ul style="background-color: grey;" class="sortable-list list-group" data-groupname="userLists" data-ltype="path" data-userpathno="1">
-      <h4>Path 1</h4>
-      <li class="m-1 list-group-item">This is <a href="http://SortableJS.github.io/Sortable/">Sortable</a></li>
-      <li class="m-1 list-group-item">It works with Bootstrap...</li>
-      <li class="m-1 list-group-item">...out of the box.</li>
-      <li class="m-1 list-group-item">It has support for touch devices.</li>
-      <li class="m-1 list-group-item">Just drag some elements around.</li>
-    </ul>
-  </div>
-
-  <div>
-    <ul style="background-color: lightgrey;" class="sortable-list list-group" data-groupname="userLists" data-ltype="path" data-userpathno="2">
-      <h4>Path 2</h4>
-
-    </ul>
-  </div>
+  <% @paths.each do |path| %>
+    <div>
+      <ul style="background-color: grey;" class="sortable-list list-group" data-groupname="userLists" data-ltype="path" data-pathid="<%= path.id %>">
+        <h5><%= path.title %></h5>
+        <% unless path.users_courses_paths[0].nil? %>
+          <% path.users_courses_paths.order(:course_position).each do |course| %>
+            <li data-position="<%= course.course_position %>" class="m-1 list-group-item"><%= course.user_course.course.title %></li>
+          <% end %>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
 
 </div>
