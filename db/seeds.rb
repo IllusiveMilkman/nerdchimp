@@ -227,22 +227,23 @@ UsersCoursesPath.destroy_all
 
 users_paths = [
   {
-    course_position: 0,
+    position: 0,
     user_course: UserCourse.first,
     path: Path.first
   },
   {
-    course_position: 2,
+
+    position: 2,
     user_course: UserCourse.third,
     path: Path.first
   },
   {
-    course_position: 1,
+    position: 1,
     user_course: UserCourse.second,
     path: Path.first
   },
   {
-    course_position: 1,
+    position: 1,
     user_course: UserCourse.second,
     path: Path.second
   }
