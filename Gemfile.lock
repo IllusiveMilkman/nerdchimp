@@ -42,6 +42,8 @@ GEM
       i18n (>= 0.7, < 2)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
+    acts_as_list (1.0.0)
+      activerecord (>= 4.2)
     arel (9.0.0)
     autoprefixer-rails (9.7.2)
       execjs
@@ -115,6 +117,9 @@ GEM
       mini_portile2 (~> 2.4.0)
     orm_adapter (0.5.0)
     pg (0.21.0)
+    pg_search (2.3.0)
+      activerecord (>= 4.2)
+      activesupport (>= 4.2)
     pry (0.12.2)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
@@ -215,11 +220,13 @@ GEM
     websocket-driver (0.7.1)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.4)
+    will_paginate (3.0.12)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  acts_as_list
   autoprefixer-rails
   bootsnap
   carrierwave (~> 1.2)
@@ -231,6 +238,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   listen (~> 3.0.5)
   pg (~> 0.21)
+  pg_search (~> 2.3.0)
   pry-byebug
   pry-rails
   puma
@@ -244,6 +252,7 @@ DEPENDENCIES
   uglifier
   web-console (>= 3.3.0)
   webpacker
+  will_paginate (~> 3.0.5)
 
 RUBY VERSION
    ruby 2.6.3p62

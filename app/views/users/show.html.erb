@@ -19,14 +19,31 @@
   <div>
   <button id="url-button" class="btn btn-primary btn-sm"><i class="far fa-copy"></i></button>
   <span><small id="url-message"></small></span>
-<hr>
 
+<br>
 <%= link_to "Edit profile", edit_user_path(@user), class: "a-dark-underlined"%> <br>
 <%= link_to "Edit account", edit_user_registration_path(@user), class: "a-dark-underlined"%> <br>
+<hr>
 
+<!-- mo start -->
+<h1>My Library</h1>
+<% @usercourses.each do |usercourse| %>
+<p><%= usercourse.user.first_name + ' ' + usercourse.user.last_name %></p>
+<p><%= usercourse.course.title %></p>
+<p><%= usercourse.course_tracker%></p>
+<p><%= usercourse.course.description%></p>
+<hr>
+<% end %>
+<!-- mo end -->
+
+<hr>
 
 <%= link_to 'new course', new_user_user_course_path(@user) %> <br>
 <%= link_to 'my courses', user_user_courses_path(@user) %> <br>
+
+<hr>
+
+<h1>My Paths</h1>
 
 <%= link_to 'new path', new_user_path_path(@user) %>
   <div>
@@ -38,7 +55,7 @@
       <% unless path.users_courses_paths[0].nil? %>
         <% path.users_courses_paths.each do |course| %>
           <ul>
-            <li>Position: <%= course.course_position %></li>
+            <li>Position: <%= course.position %></li>
             <li>Title: <%= course.user_course.course.title %></li>
             <li>Provider: <%= course.user_course.course.provider %></li>
             <li>Progress: <%= course.user_course.course_tracker * 100 %>%</li>
@@ -54,37 +71,57 @@
 
 <hr>
 
-<!-- mo start -->
-<h1>Library</h1>
-<% @usercourses.each do |usercourse| %>
-<p><%= usercourse.user.first_name + ' ' + usercourse.user.last_name %></p>
-<p><%= usercourse.course.title %></p>
-<p><%= usercourse.course_tracker%></p>
-<p><%= usercourse.course.description%></p>
-<hr>
-<% end %>
+  <!-- Library -->
+  <div class="conatiner mb-4" style="display: flex; justify-content: space-between;">
+    <div>
+      <ul id="library" class="sortable-list list-group" data-groupname="userLists" data-ltype="library">
+        <h5>Library</h5>
+        <% @usercourses.each do |usercourse| %>
+          <li data-courseid="<%= usercourse.course_id %>" class="m-1 list-group-item"><%= usercourse.course.title %></li>
+        <% end %>
+      </ul>
+    </div>
 
+    <% @paths.each do |path| %>
+      <div>
+        <ul style="background-color: grey;" class="sortable-list list-group" data-groupname="userLists" data-ltype="path" data-pathid="<%= path.id %>">
+          <h5><%= path.title %></h5>
+          <% unless path.users_courses_paths[0].nil? %>
+            <% path.users_courses_paths.order(:position).each do |course| %>
+              <li data-courseid="<%= course.user_course.course_id %>" data-position="<%= course.position %>" class="m-1 list-group-item"><%= course.user_course.course.title %></li>
+            <% end %>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
 
+</div>
 
+<div id="modal-window" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
 
+        </div>
 
+      </div>
+    </div>
 
-<!-- mo end -->
-
-<!-- Simple List -->
-<ul id="simpleList" class="sortable-list list-group" data-groupname="userlists">
-  <li class="list-group-item">This is <a href="http://SortableJS.github.io/Sortable/">Sortable</a></li>
-  <li class="list-group-item">It works with Bootstrap...</li>
-  <li class="list-group-item">...out of the box.</li>
-  <li class="list-group-item">It has support for touch devices.</li>
-  <li class="list-group-item">Just drag some elements around.</li>
-</ul>
-<hr><hr>
-
-<ul id="simpleList" class="sortable list-group" data-groupname="userlists">
-  <li class="list-group-item">This is <a href="http://SortableJS.github.io/Sortable/">Sortable</a></li>
-  <li class="list-group-item">It works with Bootstrap...</li>
-  <li class="list-group-item">...out of the box.</li>
-  <li class="list-group-item">It has support for touch devices.</li>
-  <li class="list-group-item">Just drag some elements around.</li>
-</ul>
+<!-- Modal -->
+<div class="modal fade" id="ModalCenter" tabindex="-1" role="dialog" aria-labelledby="ModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ModalLongTitle">Oops...</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>test modal body content</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

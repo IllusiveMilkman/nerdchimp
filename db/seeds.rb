@@ -1,3 +1,6 @@
+require 'nokogiri'
+require 'open-uri'
+
 puts 'Cleaning database...'
 
 # ============================================================
@@ -124,6 +127,26 @@ courses_array = [
 ]
 
 Course.create!(courses_array)
+
+#########################
+puts "Started edX RSS Course seeding..."
+for n in (2..4) do
+  document = Nokogiri::XML(open("https://www.edx.org/api/v2/report/course-feed/rss?page=#{n}"))
+
+  edx_array = document.root.xpath('channel/item').map do |course|
+    {
+      title: course.xpath('title').text,
+      description: course.xpath('description').text,
+      url: course.xpath('link').text,
+      provider: 'edX',
+      category: course.xpath('course:subject').text,
+      duration: course.xpath('course:length').text[0].to_i
+    }
+  end
+  Course.create!(edx_array)
+end
+##########################
+
 puts 'Finished creating courses.'
 
 puts 'Creating paths...'
@@ -158,34 +181,74 @@ puts 'Finished creating paths.'
 puts 'Creating UserCourses'
 UserCourse.destroy_all
 
-UserCourse.create([{
+courses_array = Course.all
+
+UserCourse.create([
+  {
   user: User.first,
-  course: Course.first,
+  course: courses_array[0],
   course_tracker: 0.0
-                  },
-                  {
+  },
+  {
+  user: User.first,
+  course: courses_array[1],
+  course_tracker: 0.0
+  },
+  {
+  user: User.first,
+  course: courses_array[2],
+  course_tracker: 0.0
+  },
+  {
+  user: User.first,
+  course: courses_array[3],
+  course_tracker: 0.0
+  },
+  {
+  user: User.first,
+  course: courses_array[4],
+  course_tracker: 0.0
+  },
+  {
+  user: User.first,
+  course: courses_array[5],
+  course_tracker: 0.0
+  },
+  {
   user: User.second,
   course: Course.second,
   course_tracker: 0.93
-                  }])
+  }
+])
 puts 'finished creating UsersCourses'
 
 puts 'Creating UserCoursesPaths...'
 UsersCoursesPath.destroy_all
 
-users_courses = [
+users_paths = [
   {
-    course_position: 0,
+    position: 0,
     user_course: UserCourse.first,
     path: Path.first
   },
   {
-    course_position: 1,
+
+    position: 2,
+    user_course: UserCourse.third,
+    path: Path.first
+  },
+  {
+    position: 1,
+    user_course: UserCourse.second,
+    path: Path.first
+  },
+  {
+    position: 1,
     user_course: UserCourse.second,
     path: Path.second
   }
 ]
 
-UsersCoursesPath.create!(users_courses)
+UsersCoursesPath.create!(users_paths)
 puts 'Finished creating UsersCoursesPaths.'
 puts 'Finished!'
