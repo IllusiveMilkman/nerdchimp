@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :find_user
+  before_action :find_user, except: :persist
 
   def show
     authorize @user
@@ -17,8 +17,8 @@ class UsersController < ApplicationController
     authorize @user
   end
 
-  def persist_position
-    raise
+  def persist
+    p "im here..................................................."
   end
 
   private

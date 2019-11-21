@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   end
   resources :courses
 
-  post 'persist_position', to: 'users#persist_position'
+  get 'persist', to: 'users#persist'
 
 
   # api routes ----------------

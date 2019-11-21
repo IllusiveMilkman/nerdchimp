@@ -98,14 +98,11 @@ document.addEventListener("DOMContentLoaded", function() {
           // });
 
           // AJAX with fecth() and sending JSON to the controller via /persist_position path
-          // url = '/persist_position';
-          // fetch(url, {
-          //   method: "POST",
-          //   body: JSON.stringify ({
-          //     "path_id":
-          //   })
+          let persist_url = `${window.location.origin}/persist?id_array=${idArray}&path_id=${42}`;
+          console.log(persist_url);
 
-          // });
+          fetch(persist_url);
+
 
         }
       });
