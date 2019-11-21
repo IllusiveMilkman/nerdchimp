@@ -13,6 +13,7 @@ gem 'pundit'
 gem 'cloudinary', '~> 1.9.1'
 gem 'carrierwave', '~> 1.2'
 gem 'pg_search', '~> 2.3.0'
+gem 'acts_as_list'
 
 gem 'autoprefixer-rails'
 gem 'font-awesome-sass', '~> 5.6.1'

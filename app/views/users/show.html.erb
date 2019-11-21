@@ -55,7 +55,7 @@
       <% unless path.users_courses_paths[0].nil? %>
         <% path.users_courses_paths.each do |course| %>
           <ul>
-            <li>Position: <%= course.course_position %></li>
+            <li>Position: <%= course.position %></li>
             <li>Title: <%= course.user_course.course.title %></li>
             <li>Provider: <%= course.user_course.course.provider %></li>
             <li>Progress: <%= course.user_course.course_tracker * 100 %>%</li>
