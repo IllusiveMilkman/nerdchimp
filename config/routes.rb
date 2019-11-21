@@ -11,4 +11,11 @@ Rails.application.routes.draw do
     resources :users_courses_paths, except: [:create, :new]
   end
   resources :courses
+  # api routes ----------------
+  namespace :api, defaults: { format: :json } do
+    namespace :v1 do
+      resources :scraper, only: [ :index ]
+    end
+  end
+  # ---------------------------
 end
