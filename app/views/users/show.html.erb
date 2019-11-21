@@ -87,8 +87,8 @@
       <ul style="background-color: grey;" class="sortable-list list-group" data-groupname="userLists" data-ltype="path" data-pathid="<%= path.id %>">
         <h5><%= path.title %></h5>
         <% unless path.users_courses_paths[0].nil? %>
-          <% path.users_courses_paths.order(:course_position).each do |course| %>
-            <li data-position="<%= course.course_position %>" class="m-1 list-group-item"><%= course.user_course.course.title %></li>
+          <% path.users_courses_paths.order(:position).each do |course| %>
+            <li data-position="<%= course.position %>" class="m-1 list-group-item"><%= course.user_course.course.title %></li>
           <% end %>
         <% end %>
       </ul>
