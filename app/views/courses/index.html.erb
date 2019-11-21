@@ -3,13 +3,15 @@
 
 
 
-<div class="container w-50">
-<h3 style="font-size: 20px; margin-bottom: 0; margin-top: 10px;">
-  <%if params[:query].present?%>
-    <%= @courses.count %> total results for <strong><em>"<%= params[:query] %>"</em></strong></h3>
-  <%else%>
-    <%= @courses.count %> available Courses</h3>
-  <%end%>
+<div class="container">
+  <!-- search bar for courses according to user input -->
+  <div class="searchcontainer">
+  <h3 style="font-size: 20px; margin-bottom: 0; margin-top: 10px;">
+    <%if params[:query].present?%>
+      <%= @courses.count %> total results for <strong><em>"<%= params[:query] %>"</em></strong></h3>
+    <%else%>
+      <%= @courses.count %> available Courses</h3>
+    <%end%>
   <%= form_tag courses_path, method: :get, class: 'd-flex align-items-center justify-content-center mt-3' do %>
     <%= text_field_tag :query,
       params[:query],
@@ -17,14 +19,21 @@
       placeholder: "What would you like to learn?"
     %>
     <%= submit_tag "Find a course", class: "btn btn-primary", style: 'font-size: 1.1rem;' %>
-  <% end %>
-
-<% @courses.each do |course| %>
-  <h4><%= link_to course.title, course_path(course) %></h4>
-  <% if user_signed_in? %>
-  <h4><%= button_to "Add to my library", user_user_courses_path(current_user) %></h4>
-  <% end %>
-<% end %>
+    <% end %>
+   </div>
+<!-- Display of of overall course list -->
+    <div class="scrolling-box">
+    <div class="cards">
+      <% @courses.each do |course| %>
+      <div class="card-category">
+        <h4><%= link_to course.title, course_path(course) %></h4>
+        <% if user_signed_in? %>
+        <h4><%= button_to "Add to my library", user_user_courses_path(current_user) %></h4>
+        <% end %>
+      </div>
+      <% end %>
+    </div>
+  </div>
 </div>
 
 
