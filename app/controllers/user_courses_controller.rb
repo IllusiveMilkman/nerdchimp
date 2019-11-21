@@ -1,7 +1,6 @@
 class UserCoursesController < ApplicationController
   def index
     @userscourses = policy_scope(UserCourse.all)
-
   end
 
   def new
@@ -12,7 +11,6 @@ class UserCoursesController < ApplicationController
   end
 
   def create
-
     @user = current_user
     @usercourse = UserCourse.new
     authorize @usercourse
@@ -49,6 +47,15 @@ class UserCoursesController < ApplicationController
         @render_form_for_manual_input = true # the 'open' creates a 403 with udemy or no website input form needs to be displayed
         render :new
       end
+    end
+  end
+
+  # method to add existing course from catalog to user library
+  def add_course
+    @course = Course.find(params[:course_id])
+    current_user.courses << @course
+    respond_to do |format|
+      format.js { flash[:notice] = "Course successfully added!" }
     end
   end
 

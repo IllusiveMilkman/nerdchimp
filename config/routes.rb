@@ -11,4 +11,7 @@ Rails.application.routes.draw do
     resources :users_courses_paths, except: [:create, :new]
   end
   resources :courses
+
+  post "/add_course", to:'user_courses#add_course'
 end
+
