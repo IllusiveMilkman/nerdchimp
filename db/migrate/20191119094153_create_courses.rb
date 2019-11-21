@@ -5,7 +5,7 @@ class CreateCourses < ActiveRecord::Migration[5.2]
       t.text :description
       t.string :url
       t.string :provider
-      t.json :category
+      t.string :category
       t.integer :duration
 
       t.timestamps

@@ -13,4 +13,16 @@ Rails.application.routes.draw do
   resources :courses
 
   post 'persist_position', to: 'users#persist_position'
+
+
+  # api routes ----------------
+  namespace :api, defaults: { format: :json } do
+    namespace :v1 do
+      resources :scraper, only: [ :index ]
+    end
+  end
+  # ---------------------------
+
+
+
 end
