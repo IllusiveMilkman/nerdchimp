@@ -20,7 +20,7 @@ picker.forEach(i => {
           console.log(data)
           const progress = document.querySelectorAll(`#progress-${data.id}`)
           progress.forEach(i => {
-            i.innerHTML = `Progress: ${parseInt(data.course_tracker / data.course.duration * 100)}%`
+            i.innerHTML = `Progress: <strong>${parseInt(data.course_tracker / data.course.duration * 100)}% - ${parseInt(data.course.duration - data.course_tracker)} hour(s) left</strong>`
           })
       })
     }, error => {
