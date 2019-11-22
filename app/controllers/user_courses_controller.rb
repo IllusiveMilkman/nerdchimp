@@ -26,15 +26,17 @@ class UserCoursesController < ApplicationController
   end
 
   def update
-    byebug
     if @usercourse.update(usercourse_params)
-      render json: @usercourse, status: :ok
+      render json: @usercourse.as_json(include: :course), status: :ok
     else
       render json: @usercourse.errors, status: :unprocessable_entity
     end
   end
 
   def destroy
+    if usercourse.destroy
+      redirect_to user_path(current_user)
+    end
   end
 
   private

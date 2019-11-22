@@ -58,10 +58,9 @@
             <li>Position: <%= ucp.position %></li>
             <li>Title: <%= ucp.c_item.title %></li>
             <li>Provider: <%= ucp.c_item.provider %></li>
-            <li>Progress: <%= (ucp.c_progress / ucp.c_duration * 100).to_i %>%</li>
+            <li id="progress">Progress: <%= (ucp.c_progress / ucp.c_duration * 100).to_i %>%</li> <!-- Progress: <%= (ucp.c_progress / ucp.c_duration * 100).to_i %>% -->
           </ul>
           <div>
-            <span>0</span>
             <input type="range" class="custom-range" id="slider" min="0" max="<%= ucp.user_course.course.duration %>" step="1" value="<%= ucp.user_course.course_tracker %>" data-course="<%= ucp.c_item.id %>" data-user="<%= ucp.user_course.user_id %>">
             <span><%= ucp.c_duration %></span>
           </div>
