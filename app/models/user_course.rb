@@ -6,7 +6,7 @@ class UserCourse < ApplicationRecord
 
   # ------------------------------------
   attr_accessor :user_url, :title, :url, :description, :duration, :provider, :category
-  validate :user_url_error
+  validate :user_url_error, on: :create
   def user_url_error
     if UserCourse.exists?(user_id: user_id, course_id: course_id)
       errors.add(:user_url, 'you already have this course in your library')

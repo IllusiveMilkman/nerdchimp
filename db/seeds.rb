@@ -140,7 +140,7 @@ for n in (2..4) do
       url: course.xpath('link').text,
       provider: 'edX',
       category: course.xpath('course:subject').text,
-      duration: course.xpath('course:length').text[0].to_i
+      duration: course.xpath('course:length').text.split.first.to_i * course.xpath('course:effort').text.gsub('-', ' ').split.select {|i| i[/\d/]}.max.to_i # Duration in Hours
     }
   end
   Course.create!(edx_array)
