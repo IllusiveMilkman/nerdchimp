@@ -45,58 +45,72 @@ document.addEventListener("DOMContentLoaded", function() {
 
         // Callback to the event of dropping a card into a list
         onAdd: function (evt) {
-          let pathElement = evt.to;
-
-          let ListItems = pathElement.querySelectorAll("li");;
-
-          // create an array of all list items
-          let idArray = [];
-          ListItems.forEach ( (item) => {
-            idArray.push(item.dataset.courseid)
-          });
-
-          // Extract only duplicates from array
-          let duplicateArray = getNotUnique(idArray);
-
-          // Remove duplicates from duplicates array
-          // E.g. [42, 42] ==> [42]
-          let uniqueDuplicates = duplicateArray.filter((v, i, a) => a.indexOf(v) === i);
-
-          // We can now iterate over each duplicate (there should always only be one either way)
-          uniqueDuplicates.forEach ( (duplicateId) => {
-              let toDelete = pathElement.querySelector(`li[data-courseid="${duplicateId}"]`);
-              toDelete.remove();
-              document.querySelector('.modal-body').innerHTML = "<p>You already have this course in your path. We've remove it for you.</p>";
-              $("#ModalCenter").modal();
-            });
+          checkIfDuplicateCourse(evt);
+          // Add course to path if not yet present
+          updateOrderOfCourses(evt);
         },
 
-        // Callback event on moving any card
-        // Here we will create an array of the element id's within the ul
+        // Callback to the event of changing the position of a course within a path
         onEnd: function (evt) {
           // console.log('onEnd called')
+          updateOrderOfCourses(evt);
+        },
 
-          let pathElement = evt.to;
-          console.log(pathElement);
-          console.log(pathElement.dataset.pathid);
-
-          let ListItems = pathElement.querySelectorAll("li");;
-          // console.log(ListItems);
-
-          let idArray = [];
-          ListItems.forEach ( (item) => {
-            idArray.push(parseInt(item.dataset.courseid, 10));
-          });
-          // console.log(idArray);
-
-          // AJAX with fecth() and sending JSON to the controller via /persist_position path
-          let persist_url = `${window.location.origin}/persist?id_array=${idArray}&path_id=${pathElement.dataset.pathid}`;
-          // console.log(persist_url);
-
-          fetch(persist_url);
+        // Called by any change to the list (add / update / remove)
+        onSort: function (/**Event*/evt) {
+          // same properties as onEnd
+          console.log("onSort callback activated.")
         }
       });
     };
 
   })
 });
+
+function checkIfDuplicateCourse(evt) {
+  let pathElement = evt.to;
+
+  let ListItems = pathElement.querySelectorAll("li");;
+
+  // create an array of all list items
+  let idArray = [];
+  ListItems.forEach ( (item) => {
+    idArray.push(item.dataset.courseid)
+  });
+
+  // Extract only duplicates from array
+  let duplicateArray = getNotUnique(idArray);
+
+  // Remove duplicates from duplicates array
+  // E.g. [42, 42] ==> [42]
+  let uniqueDuplicates = duplicateArray.filter((v, i, a) => a.indexOf(v) === i);
+
+  // We can now iterate over each duplicate (there should always only be one either way)
+  uniqueDuplicates.forEach ( (duplicateId) => {
+      let toDelete = pathElement.querySelector(`li[data-courseid="${duplicateId}"]`);
+      toDelete.remove();
+      document.querySelector('.modal-body').innerHTML = "<p>You already have this course in your path. We've remove it for you.</p>";
+      $("#ModalCenter").modal();
+    });
+};
+
+function updateOrderOfCourses(evt) {
+  let pathElement = evt.to;
+  // console.log(pathElement);
+  // console.log(pathElement.dataset.pathid);
+
+  let ListItems = pathElement.querySelectorAll("li");;
+  // console.log(ListItems);
+
+  let idArray = [];
+  ListItems.forEach ( (item) => {
+    idArray.push(parseInt(item.dataset.courseid, 10));
+  });
+  // console.log(idArray);
+
+  // AJAX with fecth() and sending JSON to the controller via /persist_position path
+  let persist_url = `${window.location.origin}/persist?id_array=${idArray}&path_id=${pathElement.dataset.pathid}`;
+  // console.log(persist_url);
+
+  fetch(persist_url);
+}
