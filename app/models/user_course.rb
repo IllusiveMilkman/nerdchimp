@@ -3,9 +3,9 @@ class UserCourse < ApplicationRecord
   belongs_to :course
 
   has_many :paths, through: :users_courses_paths
-  
+
   # ------------------------------------
-  attr_accessor :user_url
+  attr_accessor :user_url, :title, :url, :description, :duration, :provider, :category
   validate :user_url_error
   def user_url_error
     if UserCourse.exists?(user_id: user_id, course_id: course_id)

@@ -11,7 +11,18 @@ Rails.application.routes.draw do
     resources :users_courses_paths, except: [:create, :new]
   end
   resources :courses
-
+  
   post "/add_course", to:'user_courses#add_course'
+
+  post 'persist_position', to: 'users#persist_position'
+
+
+  # api routes ----------------
+  namespace :api, defaults: { format: :json } do
+    namespace :v1 do
+      resources :scraper, only: [ :index ]
+    end
+  end
+  # ---------------------------
 end
 
