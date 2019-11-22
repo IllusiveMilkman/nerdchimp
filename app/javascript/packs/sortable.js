@@ -77,7 +77,8 @@ document.addEventListener("DOMContentLoaded", function() {
           // console.log('onEnd called')
 
           let pathElement = evt.to;
-          // console.log(pathElement);
+          console.log(pathElement);
+          console.log(pathElement.dataset.pathid);
 
           let ListItems = pathElement.querySelectorAll("li");;
           // console.log(ListItems);
@@ -86,24 +87,13 @@ document.addEventListener("DOMContentLoaded", function() {
           ListItems.forEach ( (item) => {
             idArray.push(parseInt(item.dataset.courseid, 10));
           });
-          console.log(idArray);
-
-          // Don't use Rails.ajax as it doesn't support JSON.  Instead use fetch(url...)
-          // Rails.ajax({
-          //   type: "POST",
-          //   url: "/persist_position",  // Security will be done via pundit
-          //   data: { "mydata",
-          //   success: function(repsonse){...},
-          //   error: function(repsonse){...}
-          // });
+          // console.log(idArray);
 
           // AJAX with fecth() and sending JSON to the controller via /persist_position path
-          let persist_url = `${window.location.origin}/persist?id_array=${idArray}&path_id=${42}`;
-          console.log(persist_url);
+          let persist_url = `${window.location.origin}/persist?id_array=${idArray}&path_id=${pathElement.dataset.pathid}`;
+          // console.log(persist_url);
 
           fetch(persist_url);
-
-
         }
       });
     };
