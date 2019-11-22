@@ -17,8 +17,11 @@ picker.forEach(i => {
     .then(response => {
       response.json()
         .then(data => {
-          const progress = document.querySelector('#progress')
-          progress.innerHTML = `Progress: ${parseInt(data.course_tracker / data.course.duration * 100)}%`
+          console.log(data)
+          const progress = document.querySelectorAll(`#progress-${data.id}`)
+          progress.forEach(i => {
+            i.innerHTML = `Progress: ${parseInt(data.course_tracker / data.course.duration * 100)}%`
+          })
       })
     }, error => {
       console.log(error);
