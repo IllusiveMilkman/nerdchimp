@@ -26,7 +26,13 @@
 <hr>
 
 <!-- mo start -->
-<h1>My Library</h1>
+<div class="d-flex">
+  <h1>My Library</h1>
+  <%= link_to 'new course', new_user_user_course_path(@user), class: 'btn btn-primary' %> <br>
+</div>
+
+<!--  -->
+
 <% @usercourses.each do |usercourse| %>
 <p><%= usercourse.user.first_name + ' ' + usercourse.user.last_name %></p>
 <p><%= usercourse.course.title %></p>
@@ -36,10 +42,6 @@
 <% end %>
 <!-- mo end -->
 
-<hr>
-
-<%= link_to 'new course', new_user_user_course_path(@user) %> <br>
-<%= link_to 'my courses', user_user_courses_path(@user) %> <br>
 
 <hr>
 <!-- z start -->

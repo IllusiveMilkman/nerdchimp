@@ -21,7 +21,6 @@ class UserCoursesController < ApplicationController
     authorize usercourse
     if usercourse.save
       redirect_to user_path(current_user)
-
     end
   end
 

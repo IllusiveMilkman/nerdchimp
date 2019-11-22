@@ -15,7 +15,10 @@ gem 'carrierwave', '~> 1.2'
 gem 'pg_search', '~> 2.3.0'
 gem 'acts_as_list'
 gem 'will_paginate', '~> 3.0.5'
-
+#-------------
+gem 'slack-ruby-bot'
+gem 'async-websocket', '~>0.8.0'
+#-------------
 
 gem 'autoprefixer-rails'
 gem 'font-awesome-sass', '~> 5.6.1'
