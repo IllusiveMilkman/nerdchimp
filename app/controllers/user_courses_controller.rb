@@ -1,4 +1,7 @@
 class UserCoursesController < ApplicationController
+  before_action :set_usercourse, only: [:update, :destroy]
+  skip_before_action :verify_authenticity_token, only: %i[update]
+
   def index
     @userscourses = policy_scope(UserCourse.all)
 
@@ -23,8 +26,24 @@ class UserCoursesController < ApplicationController
   end
 
   def update
+    byebug
+    if @usercourse.update(usercourse_params)
+      render json: @usercourse, status: :ok
+    else
+      render json: @usercourse.errors, status: :unprocessable_entity
+    end
   end
 
   def destroy
+  end
+
+  private
+
+  def set_usercourse
+    @usercourse = UserCourse.find(params[:id])
+  end
+
+  def usercourse_params
+    params.require(:usercourse).permit(:course_tracker)
   end
 end
