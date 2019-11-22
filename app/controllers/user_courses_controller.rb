@@ -55,7 +55,7 @@ class UserCoursesController < ApplicationController
     @course = Course.find(params[:course_id])
     current_user.courses << @course
     respond_to do |format|
-      format.js { flash[:notice] = "Course successfully added!" }
+      format.js
     end
   end
 
