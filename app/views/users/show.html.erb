@@ -1,94 +1,104 @@
 <div class="container">
-  <h1>This is <%= @user.full_name %>'s show page</h1>
+  <h2><%= @user.full_name %>'s Profile</h2>
 
   <hr>
-<p>User id: <%= @user.id %></p>
-<p>User slug: <%= @user.slug %></p>
-<p>User email: <%= @user.email %></p>
-<p>User first_name: <%= @user.first_name %></p>
-<p>User last_name: <%= @user.last_name %></p>
-<p>User full_name: <%= @user.full_name %></p>
-<p>User photo:
   <% unless @user.photo == nil %>
-  <%= cl_image_tag @user.photo, height: 150, width: 150,crop: :fill %>
+  <%= cl_image_tag @user.photo, height: 150, width: 150,crop: :fill, class: "avatar-large" %>
   <% else %>
-    "(none)"
+  "(none)"
   <% end %>
-</p>
-<body>
-  <div>
-  <button id="url-button" class="btn btn-primary btn-sm"><i class="far fa-copy"></i></button>
-  <span><small id="url-message"></small></span>
-
-<br>
-<%= link_to "Edit profile", edit_user_path(@user), class: "a-dark-underlined"%> <br>
-<%= link_to "Edit account", edit_user_registration_path(@user), class: "a-dark-underlined"%> <br>
-<hr>
-
-<!-- mo start -->
-<h1>My Library</h1>
-<% @usercourses.each do |usercourse| %>
-<p><%= usercourse.user.first_name + ' ' + usercourse.user.last_name %></p>
-<p><%= usercourse.course.title %></p>
-<p><%= usercourse.course_tracker%></p>
-<p><%= usercourse.course.description%></p>
-<hr>
-<% end %>
-<!-- mo end -->
-
-<hr>
-
-<%= link_to 'new course', new_user_user_course_path(@user) %> <br>
-<%= link_to 'my courses', user_user_courses_path(@user) %> <br>
-
-<hr>
-<!-- z start -->
-<h1>My Paths</h1>
-
-<%= link_to 'new path', new_user_path_path(@user) %>
-  <div>
-    <% @paths.each do |path| %>
-      <div class="card p-3" style="width: 18rem">
-      <h5><%= path.title %></h5>
-      <h6>Courses: <%= path.user_courses.count %></h6>
-      <div class="card-item">
-      <% unless path.users_courses_paths[0].nil? %>
-        <% path.users_courses_paths.decorate.each do |ucp| %>
-          <ul>
-            <li>Position: <%= ucp.position %></li>
-            <li>Title: <%= ucp.c_item.title %></li>
-            <li>Provider: <%= ucp.c_item.provider %></li>
-            <li id="progress-<%= ucp.user_course.id %>">Progress: <%= (ucp.c_progress / ucp.c_duration * 100).to_i %>%</li> <!-- Progress: <%= (ucp.c_progress / ucp.c_duration * 100).to_i %>% -->
-          </ul>
-          <div>
-            <input type="range" class="custom-range" id="slider" min="0" max="<%= ucp.user_course.course.duration %>" step="1" value="<%= ucp.user_course.course_tracker %>" data-course="<%= ucp.c_item.id %>" data-user="<%= ucp.user_course.user_id %>">
-            <span><%= ucp.c_duration %></span>
-          </div>
-        <% end %>
-            <!-- <input type="range" class="custom-range" id="slider" min="0" max="20" step="1" value="4" data-course="course-1" data-user=""> -->
-        </div>
-      <% end %>
-      <%= link_to "Delete", user_path_path(@user, path), method: :delete %>
-      </div>
-    <% end %>
-  </div>
-</div>
-
-<!-- z end -->
-<hr>
-
-  <!-- Library -->
-  <div class="conatiner mb-4" style="display: flex; justify-content: space-between;">
+  <h3><%= @user.full_name %></h3>
+  <p>Username: <%= @user.slug %></p>
+  <p>Email: <%= @user.email %></p>
+  <body>
     <div>
-      <ul id="library" class="sortable-list list-group" data-groupname="userLists" data-ltype="library">
-        <h5>Library</h5>
-        <% @usercourses.each do |usercourse| %>
-          <li data-courseid="<%= usercourse.course_id %>" class="m-1 list-group-item"><%= usercourse.course.title %></li>
-        <% end %>
+      <button id="url-button" class="btn btn-primary btn-sm"><i class="far fa-copy"></i></button>
+      <span><small id="url-message"></small></span>
+
+      <br>
+      <%= link_to "Edit profile", edit_user_path(@user), class: "a-dark-underlined"%><br>
+      <%= link_to "Edit account", edit_user_registration_path(@user), class: "a-dark-underlined"%><br>
+      <hr>
+
+      <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Your Courses (<%= @usercourses.all.count %>)</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Your Paths (<%= @paths.all.count %>)</a>
+        </li>
       </ul>
+      <div class="tab-content" id="pills-tabContent">
+        <!-- Library Tab -->
+        <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+          <!-- mo start -->
+          <%= link_to 'New Course', new_user_user_course_path(@user), class: "btn btn-success" %>
+          <br>
+          <hr>
+          <% @usercourses.each do |usercourse| %>
+          <div class="card p-3 mb-3">
+          <!-- <p><%= usercourse.user.first_name + ' ' + usercourse.user.last_name %></p> -->
+          <h5><%= usercourse.course.title %></h5>
+          <p><%= usercourse.course_tracker%></p>
+          <p><%= usercourse.course.description%></p>
+          </div>
+          <% end %>
+          <!-- mo end -->
+        </div>
+        <!-- Path Tab -->
+        <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+          <h1>My Paths</h1>
+
+          <%= link_to 'new path', new_user_path_path(@user) %>
+          <div class="row">
+            <div class="col-4">
+              <div class="list-group" id="list-tab" role="tablist">
+                <% @paths.each do |path| %>
+                <a class="list-group-item list-group-item-action" id="list-<%= path.id %>-list" data-toggle="list" href="#list-<%= path.id %>" role="tab" aria-controls="<%= path.id %>"><%= path.title %> (<%= path.user_courses.count %> Courses)</a>
+                <% end %>
+              </div>
+            </div>
+            <div class="col-8">
+              <div class="tab-content" id="nav-tabContent">
+                <% @paths.each do |path| %>
+                <div class="tab-pane fade show active" id="list-<%= path.id %>" role="tabpanel" aria-labelledby="list-<%= path.id %>-list">
+                  <% unless path.users_courses_paths.first.nil? %>
+                  <% path.users_courses_paths.decorate.each do |ucp| %>
+                  <div class="card p-3 mb-3">
+                    <ul class="list-unstyled">
+                      <li><h5><%= ucp.c_item.title %></h5></li>
+                      <li>Via: <%= ucp.c_item.provider %></li>
+                      <li id="progress-<%= ucp.user_course.id %>">Progress: <strong><%= (ucp.c_progress / ucp.c_duration * 100).to_i %>% - <%= (ucp.c_duration - ucp.c_progress).to_i %> hour(s) left</strong></li>
+                    </ul>
+                    <div>
+                      <input type="range" class="custom-range" id="slider" min="0" max="<%= ucp.user_course.course.duration %>" step="1" value="<%= ucp.user_course.course_tracker %>" data-course="<%= ucp.c_item.id %>" data-user="<%= ucp.user_course.user_id %>">
+                    </div>
+                  </div>
+                  <% end %>
+                  <% end %>
+                </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <% @paths.each do |path| %>
+    <hr>
+
+    <!-- Library -->
+    <div class="conatiner mb-4" style="display: flex; justify-content: space-between;">
+      <div>
+        <ul id="library" class="sortable-list list-group" data-groupname="userLists" data-ltype="library">
+          <h5>Library</h5>
+          <% @usercourses.each do |usercourse| %>
+          <li data-courseid="<%= usercourse.course_id %>" class="m-1 list-group-item"><%= usercourse.course.title %></li>
+          <% end %>
+        </ul>
+      </div>
+
+      <% @paths.each do |path| %>
       <div>
         <ul style="background-color: grey;" class="sortable-list list-group" data-groupname="userLists" data-ltype="path" data-pathid="<%= path.id %>">
           <h5><%= path.title %></h5>
@@ -103,11 +113,11 @@
           <% end %>
         </ul>
       </div>
-    <% end %>
+      <% end %>
 
-</div>
+    </div>
 
-<div id="modal-window" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div id="modal-window" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
 
@@ -116,22 +126,22 @@
       </div>
     </div>
 
-<!-- Modal -->
-<div class="modal fade" id="ModalCenter" tabindex="-1" role="dialog" aria-labelledby="ModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="ModalLongTitle">Oops...</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>test modal body content</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+    <!-- Modal -->
+    <div class="modal fade" id="ModalCenter" tabindex="-1" role="dialog" aria-labelledby="ModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="ModalLongTitle">Oops...</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>test modal body content</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
