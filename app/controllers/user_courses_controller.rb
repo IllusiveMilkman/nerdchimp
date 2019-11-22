@@ -4,7 +4,6 @@ class UserCoursesController < ApplicationController
 
   def index
     @userscourses = policy_scope(UserCourse.all)
-
   end
 
   def new
@@ -22,6 +21,16 @@ class UserCoursesController < ApplicationController
     authorize usercourse
     if usercourse.save
       redirect_to user_path(current_user)
+
+    end
+  end
+
+  # method to add existing course from catalog to user library
+  def add_course
+    @course = Course.find(params[:course_id])
+    current_user.courses << @course
+    respond_to do |format|
+      format.js { flash[:notice] = "Course successfully added!" }
     end
   end
 
