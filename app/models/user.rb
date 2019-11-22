@@ -1,6 +1,7 @@
 class User < ApplicationRecord
 
   has_many :library, class_name: 'UserCourse', dependent: :destroy
+  has_many :courses, through: :library
   has_many :users_courses_paths, through: :user_courses, source: :user, class_name: 'UsersCoursesPath'
   has_many :paths, dependent: :destroy
 

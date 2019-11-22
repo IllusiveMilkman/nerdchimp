@@ -11,8 +11,10 @@ Rails.application.routes.draw do
     resources :users_courses_paths, except: [:create, :new]
   end
   resources :courses
+  
+  post "/add_course", to:'user_courses#add_course'
 
-  post 'persist_position', to: 'users#persist_position'
+  get 'persist', to: 'users#persist'
 
 
   # api routes ----------------
@@ -22,7 +24,5 @@ Rails.application.routes.draw do
     end
   end
   # ---------------------------
-
-
-
 end
+
