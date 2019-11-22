@@ -42,7 +42,7 @@
 <%= link_to 'my courses', user_user_courses_path(@user) %> <br>
 
 <hr>
-
+<!-- z start -->
 <h1>My Paths</h1>
 
 <%= link_to 'new path', new_user_path_path(@user) %>
@@ -53,14 +53,19 @@
       <h6>Courses: <%= path.user_courses.count %></h6>
       <div class="card-item">
       <% unless path.users_courses_paths[0].nil? %>
-        <% path.users_courses_paths.each do |course| %>
+        <% path.users_courses_paths.decorate.each do |ucp| %>
           <ul>
-            <li>Position: <%= course.position %></li>
-            <li>Title: <%= course.user_course.course.title %></li>
-            <li>Provider: <%= course.user_course.course.provider %></li>
-            <li>Progress: <%= course.user_course.course_tracker * 100 %>%</li>
+            <li>Position: <%= ucp.position %></li>
+            <li>Title: <%= ucp.c_item.title %></li>
+            <li>Provider: <%= ucp.c_item.provider %></li>
+            <li id="progress-<%= ucp.user_course.id %>">Progress: <%= (ucp.c_progress / ucp.c_duration * 100).to_i %>%</li> <!-- Progress: <%= (ucp.c_progress / ucp.c_duration * 100).to_i %>% -->
           </ul>
+          <div>
+            <input type="range" class="custom-range" id="slider" min="0" max="<%= ucp.user_course.course.duration %>" step="1" value="<%= ucp.user_course.course_tracker %>" data-course="<%= ucp.c_item.id %>" data-user="<%= ucp.user_course.user_id %>">
+            <span><%= ucp.c_duration %></span>
+          </div>
         <% end %>
+            <!-- <input type="range" class="custom-range" id="slider" min="0" max="20" step="1" value="4" data-course="course-1" data-user=""> -->
         </div>
       <% end %>
       <%= link_to "Delete", user_path_path(@user, path), method: :delete %>
@@ -69,6 +74,7 @@
   </div>
 </div>
 
+<!-- z end -->
 <hr>
 
   <!-- Library -->

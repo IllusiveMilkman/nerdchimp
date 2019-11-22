@@ -1,4 +1,7 @@
 class UserCoursesController < ApplicationController
+  before_action :set_usercourse, only: [:update, :destroy]
+  skip_before_action :verify_authenticity_token, only: %i[update]
+
   def index
     @userscourses = policy_scope(UserCourse.all)
   end
@@ -7,46 +10,18 @@ class UserCoursesController < ApplicationController
     @user = User.friendly.find(params[:user_id])
     @usercourse = UserCourse.new
     authorize @usercourse
-    @render_form_for_manual_input = false
+    @course = Course.new
   end
 
   def create
-    @user = current_user
-    @usercourse = UserCourse.new
-    authorize @usercourse
-    if Course.where(url: params[:user_course][:user_url]) != [] # if statement to check if url already exists in db
-      # the course already exists and we find the instance of that course
-      @course = Course.find_by(url: params[:user_course][:user_url])
-      # adding course id  to new user course
-      @usercourse.course_id = @course.id
-      # adding user id to new user course
-      @usercourse.user_id = @user.id
-      if @usercourse.save
-        redirect_to user_path(@user)
-      else
-        @usercourse.user_url = params[:user_course][:user_url]
-        render :new # this happens when @usercourse could not be saved because it already exists
-      end
-    else
-      # scraper
-      require "open-uri" # install gem later ?
-      require "nokogiri"
-      begin
-        html_content = open(params[:user_course][:user_url], 'User-Agent' => 'firefox').read
-        doc = Nokogiri::HTML(html_content)
-        contents = doc.search("meta[property='og:title'], meta[property='og:description']").map { |n| n['content'] } # scraping for title and discription
-        course = Course.create(title: contents[0], description: contents[1], url: params[:user_course][:user_url]) # creating a new course with url title and description
-        if course.save # can that course be saved ? validations... are all parameters given?
-          @course = Course.last # getting the last course out of database so we have an id
-          @usercourse.course_id = @course.id
-          @usercourse.user_id = @user.id
-          @usercourse.save! # finally saving the usercourse in library
-          redirect_to user_path(@user) # user show
-        end
-      rescue # rescues us from errors
-        @render_form_for_manual_input = true # the 'open' creates a 403 with udemy or no website input form needs to be displayed
-        render :new
-      end
+    p = params[:user_course]
+    course = Course.new(title: p[:title], url: p[:url], description: p[:description], duration: p[:duration], provider: p[:provider], category: p[:category])
+    course.save
+    usercourse = UserCourse.new(user: current_user, course: Course.last)
+    authorize usercourse
+    if usercourse.save
+      redirect_to user_path(current_user)
+
     end
   end
 
@@ -60,8 +35,26 @@ class UserCoursesController < ApplicationController
   end
 
   def update
+    if @usercourse.update(usercourse_params)
+      render json: @usercourse.as_json(include: :course), status: :ok
+    else
+      render json: @usercourse.errors, status: :unprocessable_entity
+    end
   end
 
   def destroy
+    if usercourse.destroy
+      redirect_to user_path(current_user)
+    end
+  end
+
+  private
+
+  def set_usercourse
+    @usercourse = UserCourse.find(params[:id])
+  end
+
+  def usercourse_params
+    params.require(:usercourse).permit(:course_tracker)
   end
 end

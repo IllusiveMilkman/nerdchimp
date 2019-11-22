@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 2019_11_21_092011) do
     t.text "description"
     t.string "url"
     t.string "provider"
-    t.json "category"
+    t.string "category"
     t.integer "duration"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -78,7 +78,7 @@ ActiveRecord::Schema.define(version: 2019_11_21_092011) do
     t.bigint "path_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "position"
+    t.integer "position", default: 0
     t.index ["path_id"], name: "index_users_courses_paths_on_path_id"
     t.index ["user_course_id"], name: "index_users_courses_paths_on_user_course_id"
   end
