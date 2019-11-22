@@ -94,7 +94,11 @@
           <h5><%= path.title %></h5>
           <% unless path.users_courses_paths[0].nil? %>
             <% path.users_courses_paths.order(:position).each do |course| %>
-              <li data-courseid="<%= course.user_course.course_id %>" data-position="<%= course.position %>" class="m-1 list-group-item"><%= course.user_course.course.title %></li>
+              <li data-courseid="<%= course.user_course.course_id %>" data-position="<%= course.position %>" class="m-1 list-group-item">
+                <%= course.user_course.course.title %>
+                <!-- params needs to be passed in order of expected route params, then only additional params may follow -->
+                <%= link_to "🗑", user_users_courses_path_path(user_id: @user.id, id: path.id, course_id: "#{course.user_course.course_id}" ), :confirm => 'Are you sure?', method: :delete, remote: true, class: "path-course" %>
+              </li>
             <% end %>
           <% end %>
         </ul>
