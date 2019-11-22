@@ -1,2 +1,5 @@
+<% if !@errormessage %>
 swal("Course successfully added", "You rock!", "success")
-
+<% else %>
+swal("Already in your Library", "Go finish it", "error")
+<% end %>

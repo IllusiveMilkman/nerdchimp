@@ -28,7 +28,7 @@
       <div class="card-category">
         <h4><%= link_to course.title, course_path(course) %></h4>
         <% if user_signed_in? %>
-        <h4><%= button_to "Add to my library", add_course_path(course_id: course) %></h4>
+        <h4><%= button_to "Add to my library", add_course_path(course_id: course), remote: true %></h4>
         <% end %>
       </div>
       <% end %>
