@@ -28,9 +28,14 @@ class UserCoursesController < ApplicationController
   # method to add existing course from catalog to user library
   def add_course
     @course = Course.find(params[:course_id])
-    current_user.courses << @course
+    begin
+      current_user.courses << @course
+    rescue ActiveRecord::RecordInvalid => e
+      p e
+      @errormessage = e
+    end
     respond_to do |format|
-      format.js { flash[:notice] = "Course successfully added!" }
+      format.js
     end
   end
 
