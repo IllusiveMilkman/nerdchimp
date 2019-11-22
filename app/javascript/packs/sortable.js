@@ -14,6 +14,15 @@ function getNotUnique(array) {
 document.addEventListener("DOMContentLoaded", function() {
   // console.log('Your document is ready!');
 
+  // Delete button and event on sortable lists.
+  let pathCourses = document.querySelectorAll('.path-course');
+  pathCourses.forEach( (course) => {
+    course.addEventListener('click', (event) => {
+      console.log(event.currentTarget);
+    });
+  });
+
+  // Sortable Lists from here
   const sortableList = document.querySelectorAll('.sortable-list'); // Select ALL lists on page
 
   if (sortableList.length == 0) return; // Don't run the rest of this function if there are no lists.
@@ -114,3 +123,4 @@ function updateOrderOfCourses(evt) {
 
   fetch(persist_url);
 }
+
