@@ -1,0 +1,25 @@
+  container
+  <div class="profile d-flex align-items-center">
+    <% unless @user.photo == nil %>
+    <%= cl_image_tag @user.photo, height: 150, width: 150,crop: :fill, class: "avatar-large" %>
+    <% else %>
+    <%= image_tag image_url:'https://jbmedicalwellness.com/wp-content/uploads/2018/09/placeholder-male-square.png', height: 150, width: 150,crop: :fill, class: "avatar-large" %>
+    <% end %>
+    <div>
+      <div class="nametag flex-grow-1">
+        <div class=" d-flex align-items-center">
+          <h2 id="user-full-name"><%= @user.full_name %></h2>
+          <%= link_to edit_user_path(@user), class: "a-dark-underlined" do %>
+          <i class="fas fa-pen "></i>
+          <% end %>
+         <i id="url-button" class="far fa-copy"></i>
+          <span><small id="url-message"></small></span>
+        </div>
+        <h3 id="coursebananas"><%= @coursebananas %> 🍌</h3>
+      </div>
+      <div>
+        <h5>Some text </h5>
+        <h5>Some more text </h5>
+      </div>
+    </div>
+  </div>

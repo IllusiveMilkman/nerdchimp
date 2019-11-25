@@ -1,21 +1,26 @@
 <div class="container">
-  <% unless @user.photo == nil %>
-  <%= cl_image_tag @user.photo, height: 150, width: 150,crop: :fill, class: "avatar-large" %>
-  <% else %>
-  "(none)"
-  <% end %>
+<<<<<<< HEAD
+  <!-- profile start -->
+<%= render 'profile', user: @user, coursebananas: @coursebananas %>
+<!-- profile end -->
+<hr>
+<!-- mo start -->
+<div class="d-flex align-items-center">
+  <h1 class='mr-2'>My Library</h1>
+  <%= link_to 'new course', new_user_user_course_path(@user), class: 'btn btn-primary p-1' %> <br>
+</div>
 
-</p>
-<body>
-  <div>
-  <h3><%= @user.full_name %></h3>
-  <p>Username: <%= @user.slug %></p>
-  <p>Email: <%= @user.email %></p>
+<!--  -->
 
-<br>
-<%= link_to "Edit profile", edit_user_path(@user), class: "a-dark-underlined"%> <br>
-<%= link_to "Edit account", edit_user_registration_path(@user), class: "a-dark-underlined"%> <br>
-<h3 id="coursebananas"><%= @coursebananas %> 🍌</h3>
+<% @usercourses.each do |usercourse| %>
+<p><%= usercourse.user.first_name + ' ' + usercourse.user.last_name %></p>
+<p><%= usercourse.course.title %></p>
+<p><%= usercourse.course_tracker%></p>
+<p><%= usercourse.course.description%></p>
+<hr>
+<% end %>
+<!-- mo end -->
+
       <button id="url-button" class="btn btn-primary btn-sm"><i class="far fa-copy"></i></button>
       <span><small id="url-message"></small></span>
 <hr>

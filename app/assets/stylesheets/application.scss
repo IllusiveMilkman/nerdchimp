@@ -11,6 +11,8 @@
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
+@import "pages/profile";
+
 
 body {
   font-family: 'Circular';
@@ -26,3 +28,4 @@ h1, h2, h3, h4, h5, h6,
   position: relative;
   min-height: 90vh;
 }
+
