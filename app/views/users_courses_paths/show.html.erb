@@ -1,23 +1,47 @@
-<h1>UsersCoursesPaths#show</h1>
-<p>Find me in app/views/users_courses_paths/show.html.erb</p>
+<div class="profile-header">
+  <h1>profile header to come here</h1>
+</div>
 
-<hr>
 
-<!-- Library -->
 
-  <div class="conatiner mb-4" style="display: flex; justify-content: center;">
-    <div>
-      <ul id="library" class="sortable-list list-group" data-groupname="userLists" data-ltype="library">
-        <h5>Library</h5>
-        <% @usercourses.each do |usercourse| %>
-        <li data-userid="<%= usercourse.user_id %>" data-courseid="<%= usercourse.course_id %>" class="m-1 list-group-item"><%= usercourse.course.title %></li>
-        <% end %>
-      </ul>
+<div class="path-header">
+  <div class="container">
+    <div class="path-header-container">
+      <div class="path-header-item">
+        <h2 class="mb-0 pt-3 pb-3"><%= @path.first.title %></h2>
+      </div>
+
+      <div class="path-header-item-center">
+        <i class="fas fa-pen fa-xs">
+          &#8197;<a class="" href="#">Rename</a>
+        </i>
+      </div>
+
+      <div class="path-header-item-button">
+        <%= link_to 'Back to profile', user_path(@user), class: "btn btn-primary path-header-item-button" %>
+      </div>
     </div>
+  </div>
+</div>
 
 
-    <!-- Path -->
-    <div>
+<div class="library-path-wrapper mt-4">
+
+  <div class="library">
+    <!-- Library -->
+    <div class="conatiner mb-4" style="display: flex; justify-content: center;">
+        <ul id="library" class="sortable-list list-group" data-groupname="userLists" data-ltype="library">
+          <h5>Drag from Library</h5>
+          <% @usercourses.each do |usercourse| %>
+          <li data-userid="<%= usercourse.user_id %>" data-courseid="<%= usercourse.course_id %>" class="m-1 list-group-item"><%= usercourse.course.title %></li>
+          <% end %>
+        </ul>
+    </div>
+  </div>
+
+  <div class="path">
+
+    <div class="conatiner mb-4" style="display: flex; justify-content: center;">
       <ul style="background-color: grey;" class="sortable-list list-group" data-groupname="userLists" data-ltype="path" data-pathid="<%= @path.first.id %>">
         <h5><%= @path.first.title %></h5>
         <% unless @path.first.users_courses_paths[0].nil? %>
@@ -34,19 +58,9 @@
 
   </div>
 
-
-<hr>
-
-<%= link_to 'Back to profile', user_path(@user) %>
-
-<!-- <div id="modal-window" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-    </div>
-  </div>
 </div>
 
- -->
+
 
 <!-- Modal -->
 <div class="modal fade" id="ModalCenter" tabindex="-1" role="dialog" aria-labelledby="ModalCenterTitle" aria-hidden="true">
