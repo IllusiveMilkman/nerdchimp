@@ -32,7 +32,18 @@
         <!-- Library Tab -->
         <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
           <!-- mo start -->
-          <%= link_to 'New Course', new_user_user_course_path(@user), class: "btn btn-success" %>
+
+        <!-- steph's dropdown button -->
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Add a new Course
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#"><%= link_to 'Via url', new_user_user_course_path(@user) %></a>
+            <a class="dropdown-item" href="#"><%= link_to 'From course catalog', courses_path %></a>
+          </div>
+        </div>
+
           <br>
           <hr>
           <% @usercourses.each do |usercourse| %>
