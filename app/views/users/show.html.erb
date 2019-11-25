@@ -1,31 +1,10 @@
-<div class="container">
-<<<<<<< HEAD
+
   <!-- profile start -->
 <%= render 'profile', user: @user, coursebananas: @coursebananas %>
 <!-- profile end -->
-<hr>
-<!-- mo start -->
-<div class="d-flex align-items-center">
-  <h1 class='mr-2'>My Library</h1>
-  <%= link_to 'new course', new_user_user_course_path(@user), class: 'btn btn-primary p-1' %> <br>
-</div>
-
-<!--  -->
-
-<% @usercourses.each do |usercourse| %>
-<p><%= usercourse.user.first_name + ' ' + usercourse.user.last_name %></p>
-<p><%= usercourse.course.title %></p>
-<p><%= usercourse.course_tracker%></p>
-<p><%= usercourse.course.description%></p>
-<hr>
-<% end %>
-<!-- mo end -->
-
-      <button id="url-button" class="btn btn-primary btn-sm"><i class="far fa-copy"></i></button>
-      <span><small id="url-message"></small></span>
-<hr>
-    <div>
-      <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+  <div class="toggle">
+    <div class="container d-flex">
+      <ul class="nav nav-pills mb-3 flex-grow-1" id="pills-tab" role="tablist">
         <li class="nav-item">
           <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Your Courses (<%= @usercourses.all.count %>)</a>
         </li>
@@ -33,24 +12,28 @@
           <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Your Paths (<%= @paths.all.count %>)</a>
         </li>
       </ul>
+      <div class="dropdown" id="add-course">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Add a new Course
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" href="#"><%= link_to 'Via url', new_user_user_course_path(@user) %></a>
+          <a class="dropdown-item" href="#"><%= link_to 'From course catalog', courses_path %></a>
+        </div>
+      </div>
+    </div>
+  </div>
+<div class="toggle-content">
+  <div class="container">
       <div class="tab-content" id="pills-tabContent">
         <!-- Library Tab -->
         <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-          <!-- mo start -->
+
 
         <!-- steph's dropdown button -->
-        <div class="dropdown">
-          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Add a new Course
-          </button>
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" href="#"><%= link_to 'Via url', new_user_user_course_path(@user) %></a>
-            <a class="dropdown-item" href="#"><%= link_to 'From course catalog', courses_path %></a>
-          </div>
-        </div>
 
           <br>
-          <hr>
+
           <% @usercourses.each do |usercourse| %>
           <div class="card p-3 mb-3">
             <div>
@@ -113,3 +96,70 @@
         </div>
       </div>
     </div>
+  </div>
+</div>
+
+    <hr>
+
+    <!-- Library -->
+    <div class="conatiner mb-4" style="display: flex; justify-content: space-between;">
+      <div>
+        <ul id="library" class="sortable-list list-group" data-groupname="userLists" data-ltype="library">
+          <h5>Library</h5>
+          <% @usercourses.each do |usercourse| %>
+          <li data-userid="<%= usercourse.user_id %>" data-courseid="<%= usercourse.course_id %>" class="m-1 list-group-item"><%= usercourse.course.title %></li>
+          <% end %>
+        </ul>
+      </div>
+
+      <!-- Path -->
+      <% @paths.each do |path| %>
+      <div>
+        <ul style="background-color: grey;" class="sortable-list list-group" data-groupname="userLists" data-ltype="path" data-pathid="<%= path.id %>">
+          <h5><%= path.title %></h5>
+          <%= link_to user_users_courses_path_path(@user, path) do %>
+            <i class="far fa-edit" style="color: white"></i>
+          <% end %>
+          <% unless path.users_courses_paths[0].nil? %>
+          <% path.users_courses_paths.order(:position).each do |course| %>
+          <li data-courseid="<%= course.user_course.course_id %>" data-position="<%= course.position %>" class="m-1 list-group-item">
+            <%= course.user_course.course.title %>
+            <!-- params needs to be passed in order of expected route params, then only additional params may follow -->
+            <%= link_to "🗑", user_users_courses_path_path(user_id: @user.id, id: path.id, course_id: "#{course.user_course.course_id}" ), :confirm => 'Are you sure?', method: :delete, remote: true, class: "path-course" %>
+          </li>
+          <% end %>
+          <% end %>
+        </ul>
+      </div>
+      <% end %>
+
+    </div>
+
+    <div id="modal-window" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="ModalCenter" tabindex="-1" role="dialog" aria-labelledby="ModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="ModalLongTitle">Oops...</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>test modal body content</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+
