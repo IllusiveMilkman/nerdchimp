@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="102px" height="102px" viewBox="0 0 102 102" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 60 (88103) - https://sketch.com -->
+    <title>5</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Wireframes" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Home-page" transform="translate(-670.000000, -167.000000)">
+            <g id="5" transform="translate(670.000000, 167.000000)">
+                <circle id="Oval" fill="#F95456" cx="51" cy="51" r="51"></circle>
+                <text id="$" font-family="CircularStd-Bold, Circular Std" font-size="43" font-weight="bold" letter-spacing="-1.43333333" fill="#F9D233">
+                    <tspan x="38.4026667" y="66">$</tspan>
+                </text>
+            </g>
+        </g>
+    </g>
+</svg>

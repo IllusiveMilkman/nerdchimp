@@ -15,11 +15,13 @@
 body {
   font-family: 'Circular';
   background-color: white;
+  letter-spacing: -0.03rem;
 }
 
 h1, h2, h3, h4, h5, h6,
 .h1, .h2, .h3, .h4, .h5, .h6 {
-  font-family: "Circular-Medium","sans-serif";
+  font-family: "Circular-Bold","sans-serif";
+  letter-spacing: -0.05rem;
 }
 
 #page-container {
