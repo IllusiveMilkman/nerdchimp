@@ -1,25 +1,8 @@
 <div class="container">
-  <h2><%= @user.full_name %>'s Profile</h2>
-
-  <hr>
-  <% unless @user.photo == nil %>
-  <%= cl_image_tag @user.photo, height: 150, width: 150,crop: :fill, class: "avatar-large" %>
-  <% else %>
-  "(none)"
-  <% end %>
-
-</p>
-<body>
-  <div>
-  <button id="url-button" class="btn btn-primary btn-sm"><i class="far fa-copy"></i></button>
-  <span><small id="url-message"></small></span>
-
-<br>
-<%= link_to "Edit profile", edit_user_path(@user), class: "a-dark-underlined"%> <br>
-<%= link_to "Edit account", edit_user_registration_path(@user), class: "a-dark-underlined"%> <br>
-<h3 id="coursebananas"><%= @coursebananas %> 🍌</h3>
+  <!-- profile start -->
+<%= render 'profile', user: @user, coursebananas: @coursebananas %>
+<!-- profile end -->
 <hr>
-
 <!-- mo start -->
 <div class="d-flex align-items-center">
   <h1 class='mr-2'>My Library</h1>
@@ -40,7 +23,7 @@
   <h3><%= @user.full_name %></h3>
   <p>Username: <%= @user.slug %></p>
   <p>Email: <%= @user.email %></p>
-  <body>
+
     <div>
       <button id="url-button" class="btn btn-primary btn-sm"><i class="far fa-copy"></i></button>
       <span><small id="url-message"></small></span>
