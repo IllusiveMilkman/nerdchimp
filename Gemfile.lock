@@ -49,15 +49,6 @@ GEM
     acts_as_list (1.0.0)
       activerecord (>= 4.2)
     arel (9.0.0)
-    async (1.23.0)
-      console (~> 1.0)
-      nio4r (~> 2.3)
-      timers (~> 4.1)
-    async-io (1.27.0)
-      async (~> 1.14)
-    async-websocket (0.8.0)
-      async-io
-      websocket-driver (~> 0.7.0)
     autoprefixer-rails (9.7.2)
       execjs
     aws_cf_signer (0.1.3)
