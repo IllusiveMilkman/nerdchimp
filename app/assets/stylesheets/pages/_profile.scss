@@ -2,7 +2,35 @@
   padding-top: 2.5rem;
   padding-bottom: 2.5rem;
 
-.nametag {
+  .nametag {
   margin-left: 1.9rem;
+    .fa-pen {
+    padding-top: 0.625rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    }
+    .fa-copy {
+      padding-top: 0.7rem;
+    }
+    span {
+    margin-left: 0.5rem;
+     padding-top: 0.5rem;
+    }
+  }
+  img {
+    padding-bottom: 7px;
+    margin-right: 4px;
+  }
 }
+.toggle {
+  background-color: $light-gray;
+  #pills-tab {
+    margin-top: 1rem;
+  }
+  #add-course {
+    margin-top: 1rem;
+  }
+}
+.toggle-content {
+  background-color: $lighter-gray;
 }
