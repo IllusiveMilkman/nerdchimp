@@ -16,7 +16,6 @@ gem 'pg_search', '~> 2.3.0'
 gem 'acts_as_list'
 gem 'will_paginate', '~> 3.0.5'
 
-
 gem 'autoprefixer-rails'
 gem 'font-awesome-sass', '~> 5.6.1'
 gem 'sassc-rails'

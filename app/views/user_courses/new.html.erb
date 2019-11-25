@@ -1,26 +1,35 @@
+<div class="container">
+  <div class="text-center">
+    <h2 >Add a new course to your library</h2>
+  </div>
 
-<span id="warning-message"></span>
-<form action="user-url">
-<label for="">Please enter your course url</label>
-  <input type="text" value="" style="" id="user-url">
-  <input type="submit" class="btn btn-primary" id="scraper-btn">
-  <span id="loading" class="">
+  <span id="warning-message"></span>
+  <form action="">
+    <div class="form-group">
+      <input class="form-control mb-1"type="text" value="" style="" id="user-url" placeholder="Please enter the url of your course page.">
+      <input type="submit" class="btn btn-primary align-item-left" id="scraper-btn">
+      <span id="loading" class="">
 
-  </span>
-</form>
+      </span>
+    </div>
+  </form>
 
-<div id="course-found" class="d-none">
-  Course already exists!
-</div>
+  <div id="course-found" class="d-none">
+    Course was added to your library
+  </div>
 
-<div id="manual-input" style='display: none;'>
-  <%= simple_form_for [current_user, @usercourse] do |f| %>
-  <%= f.input :url %>
-  <%= f.input :title%>
-  <%= f.input :description, class: ' w-70' %>
-  <%= f.input :provider %>
-  <%= f.input :duration %>
-  <%= f.input :category %>
-  <%= f.submit "Submit", class: 'btn-primary', id: 'course-form-btn' %>
-  <% end %>
+  <div id="manual-input" style='display: none;'>
+    <%= simple_form_for [current_user, @usercourse] do |f| %>
+    <%= f.input :url %>
+    <%= f.input :title%>
+    <%= f.input :description, class: ' w-70' %>
+    <%= f.input :provider %>
+    <%= f.input :duration %>
+    <%= f.input :category %>
+    <div class="d-flex align-item-center">
+    <%= f.submit "Submit", class: 'btn-primary', id: 'course-form-btn' %>
+    <p class="align-center">to add this course to your library</p>
+    </div>
+    <% end %>
+  </div>
 </div>

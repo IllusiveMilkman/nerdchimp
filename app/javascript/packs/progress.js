@@ -1,4 +1,4 @@
-
+const courseBananas = document.querySelectorAll('#coursebananas')
 const picker = document.querySelectorAll('#slider');
 picker.forEach(i => {
   i.addEventListener('change', (event) => {
@@ -22,6 +22,13 @@ picker.forEach(i => {
           progress.forEach(i => {
             i.innerHTML = `Progress: <strong>${parseInt(data.course_tracker / data.course.duration * 100)}% - ${parseInt(data.course.duration - data.course_tracker)} hour(s) left</strong>`
           })
+          if (data.course_tracker === data.course.duration ){
+            console.log('100')
+            swal("Course successfully added", "You rock!", "success", {button: "cool", } )
+            var num = parseInt(coursebananas.innerText, 10)
+            num += 1
+            coursebananas.innerText = `${num} 🍌`
+          }
       })
     }, error => {
       console.log(error);
