@@ -134,6 +134,9 @@
       <div>
         <ul style="background-color: grey;" class="sortable-list list-group" data-groupname="userLists" data-ltype="path" data-pathid="<%= path.id %>">
           <h5><%= path.title %></h5>
+          <%= link_to user_users_courses_path_path(@user, path) do %>
+            <i class="far fa-edit" style="color: white"></i>
+          <% end %>
           <% unless path.users_courses_paths[0].nil? %>
             <% path.users_courses_paths.order(:position).each do |course| %>
               <li data-courseid="<%= course.user_course.course_id %>" data-position="<%= course.position %>" class="m-1 list-group-item">
