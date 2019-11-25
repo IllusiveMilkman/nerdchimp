@@ -2,7 +2,7 @@ const courseBananas = document.querySelectorAll('#coursebananas')
 const picker = document.querySelectorAll('#slider');
 picker.forEach(i => {
   i.addEventListener('change', (event) => {
-    fetch(`http://localhost:3000/users/${event.target.dataset.user}/user_courses/${event.target.dataset.course}`, {
+    fetch(`/users/${event.target.dataset.user}/user_courses/${event.target.dataset.course}`, {
       method: "PATCH",
       body: JSON.stringify({
         usercourse: {

@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- HTML Meta Tags -->
-    <title>Nerdchimp | Online Courses Tracking Made Simple</title>
+    <title>Nerdchimp | Course Tracking Made Simple</title>
+     <%= favicon_link_tag 'favicon.ico' %>
     <meta name="description" content="Keep track of all your online courses in one place. Join Nerdchimp for free, start tracking your progress and share it with others.">
 
     <!-- Google / Search Engine Tags -->
@@ -22,9 +23,9 @@
     <%= render 'shared/navbar' %>
     <%= render 'shared/flashes' %>
 
-    <%= yield %>
+  <%= yield %>
 
-    <%= javascript_include_tag 'application' %>
-    <%= javascript_pack_tag 'application' %>
-  </body>
+  <%= javascript_include_tag 'application' %>
+  <%= javascript_pack_tag 'application' %>
+</body>
 </html>
