@@ -1,19 +1,27 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Nerdchimp</title>
-  <%= favicon_link_tag 'favicon.ico' %>
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css">
-  <%= csrf_meta_tags %>
-  <%= action_cable_meta_tag %>
-  <%= stylesheet_link_tag 'application', media: 'all' %>
-  <%= stylesheet_pack_tag 'application', media: 'all' %>
-</head>
-<body>
-  <%= render 'shared/navbar' %>
-  <%= render 'shared/flashes' %>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- HTML Meta Tags -->
+    <title>Nerdchimp | Course Tracking Made Simple</title>
+     <%= favicon_link_tag 'favicon.ico' %>
+    <meta name="description" content="Keep track of all your online courses in one place. Join Nerdchimp for free, start tracking your progress and share it with others.">
+
+    <!-- Google / Search Engine Tags -->
+    <meta itemprop="name" content="Nerdchimp | Online Courses Tracking made Simple">
+    <meta itemprop="description" content="Keep track of all your online courses in one place. Join Nerdchimp for free, start tracking your progress and share it with others.">
+    <meta itemprop="image" content="https://res.cloudinary.com/drdm61dhy/image/upload/v1574675849/nerdchimp/c_logo_lwy1pu.png">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css">
+    <%= csrf_meta_tags %>
+    <%= action_cable_meta_tag %>
+    <%= stylesheet_link_tag 'application', media: 'all' %>
+    <%= stylesheet_pack_tag 'application', media: 'all' %>
+  </head>
+  <body>
+    <%= render 'shared/navbar' %>
+    <%= render 'shared/flashes' %>
 
   <%= yield %>
 

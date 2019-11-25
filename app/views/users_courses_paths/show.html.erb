@@ -1,0 +1,69 @@
+<h1>UsersCoursesPaths#show</h1>
+<p>Find me in app/views/users_courses_paths/show.html.erb</p>
+
+<hr>
+
+<!-- Library -->
+
+  <div class="conatiner mb-4" style="display: flex; justify-content: center;">
+    <div>
+      <ul id="library" class="sortable-list list-group" data-groupname="userLists" data-ltype="library">
+        <h5>Library</h5>
+        <% @usercourses.each do |usercourse| %>
+        <li data-userid="<%= usercourse.user_id %>" data-courseid="<%= usercourse.course_id %>" class="m-1 list-group-item"><%= usercourse.course.title %></li>
+        <% end %>
+      </ul>
+    </div>
+
+
+    <!-- Path -->
+    <div>
+      <ul style="background-color: grey;" class="sortable-list list-group" data-groupname="userLists" data-ltype="path" data-pathid="<%= @path.first.id %>">
+        <h5><%= @path.first.title %></h5>
+        <% unless @path.first.users_courses_paths[0].nil? %>
+          <% @path.first.users_courses_paths.order(:position).each do |course| %>
+            <li data-courseid="<%= course.user_course.course_id %>" data-position="<%= course.position %>" class="m-1 list-group-item">
+              <%= course.user_course.course.title %>
+              <!-- params needs to be passed in order of expected route params, then only additional params may follow -->
+              <%= link_to "🗑", user_users_courses_path_path(user_id: @user.id, id: @path.first.id, course_id: "#{course.user_course.course_id}" ), :confirm => 'Are you sure?', method: :delete, remote: true, class: "path-course" %>
+            </li>
+          <% end %>
+        <% end %>
+      </ul>
+    </div>
+
+  </div>
+
+
+<hr>
+
+<%= link_to 'Back to profile', user_path(@user) %>
+
+<!-- <div id="modal-window" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+    </div>
+  </div>
+</div>
+
+ -->
+
+<!-- Modal -->
+<div class="modal fade" id="ModalCenter" tabindex="-1" role="dialog" aria-labelledby="ModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ModalLongTitle">Oops...</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>test modal body content</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

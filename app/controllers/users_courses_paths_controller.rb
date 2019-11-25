@@ -3,6 +3,12 @@ class UsersCoursesPathsController < ApplicationController
     @path_courses = UsersCoursesPath.all
   end
 
+  def show
+    @user = User.friendly.find(params[:user_id])
+    @path = @user.paths.where(id: params[:id])
+    @usercourses = UserCourse.where(user: current_user)
+  end
+
   def create
   end
 
@@ -16,15 +22,16 @@ class UsersCoursesPathsController < ApplicationController
   end
 
   def destroy
-    # Debug stuff
-    # p params
-    # path_id = params[:id]
-    # puts "path_id: #{path_id}"
-    # course_id = params[:course_id]
-    # puts "course_id: #{course_id}"
+    # need to authenticate user to ensure that only current_user can destroy one of their own courses.
 
-    # comment until event listener is done.
-    # path_course_to_delete = UsersCoursesPath.find_by(path_id: params[:id], user_course_id: params[:course_id])
-    # path_course_to_delete.destroy
+    # Debug stuff
+    p params
+    path_id = params[:id]
+    puts "path_id: #{path_id}"
+    course_id = params[:course_id]
+    puts "course_id: #{course_id}"
+
+    path_course_to_delete = UsersCoursesPath.find_by(path_id: params[:id], user_course_id: params[:course_id])
+    path_course_to_delete.destroy
   end
 end

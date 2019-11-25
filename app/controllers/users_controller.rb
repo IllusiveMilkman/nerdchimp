@@ -4,7 +4,14 @@ class UsersController < ApplicationController
   def show
     authorize @user
     @paths = @user.paths
-    @usercourses = UserCourse.where(user: current_user).order(created_at: :desc)
+    @usercourses = UserCourse.where(user: @user).order(created_at: :desc)
+    @usercourse = UserCourse.new # mo needs for search bar in
+    # @coursebananas = UserCourse.where(user: @user, course_tracker: user.courses.duration)
+    @coursebananas = 0
+    UserCourse.where(user: @user).each do |usercourse|
+      @coursebananas += 1 if usercourse.course.duration == usercourse.course_tracker.to_i
+    end
+
   end
 
   def edit
@@ -34,12 +41,13 @@ class UsersController < ApplicationController
     # Get array from current path
     current_path_array = UsersCoursesPath.where(path_id: path_id).pluck(:user_course_id) # Will return an array of instances
     puts "Array currently on db: #{current_path_array}"
-    p current_path_array.length
-    p current_path_array.class
+    # p current_path_array.length
+    # p current_path_array.class
 
     # If there's a new item, add it and then add the position to that item as well
     new_courses_to_add = new_path_array - current_path_array
     puts "New courses to add: #{new_courses_to_add}"
+
     unless new_courses_to_add.empty?
       new_courses_to_add.each do |course|
         new_course = UsersCoursesPath.new
@@ -49,9 +57,20 @@ class UsersController < ApplicationController
       end
     end
 
+    # Now check if there are deleted items
+    deleted_items_array = current_path_array - new_path_array;
+    puts "Courses to Delete: #{deleted_items_array}"
+
+    unless deleted_items_array.empty?
+      deleted_items_array.each do |course|
+        console.log("course to delete: #{course}")
+        console.log("courses are deleted under the UsersCoursesPathsController\#destory method")
+      end
+    end
+
     # for debugging only:
-    # updated_current_path_array = UsersCoursesPath.where(path_id: path_id).pluck(:user_course_id) # Will return an array of instances
-    # p updated_current_path_array
+    updated_current_path_array = UsersCoursesPath.where(path_id: path_id).pluck(:user_course_id) # Will return an array of instances
+    puts "Now the courses in database are: #{updated_current_path_array}"
 
     # Since all the items are now present, we can compare positions.
     # If there's no change to the other item positions, move on, else update position.
