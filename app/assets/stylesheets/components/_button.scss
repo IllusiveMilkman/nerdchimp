@@ -1,0 +1,39 @@
+.btn-flat {
+  color: $black;
+  padding: 8px 24px;
+  border-radius: 4px;
+  background: $lime-green;
+  transition: background 0.3s ease;
+}
+
+.btn-flat:hover {
+  background: #6CFFA1;
+  color: $black;
+}
+
+
+.btn-ghost {
+  color: white;
+  border: 1px solid white;
+  padding: 8px 24px;
+  border-radius: 4px;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.btn-ghost:hover {
+  opacity: 0.8;
+  color: white;
+}
+
+.btn-wide {
+  padding: 10px 55px;
+  font-size: 18px;
+}
+
+.btn-nav {
+
+  &:hover {
+    color: $light-red;
+  }
+}
