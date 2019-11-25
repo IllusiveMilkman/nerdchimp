@@ -1,7 +1,7 @@
    <div class="navbar navbar-expand-sm navbar-light navbar-lewagon <%= 'navbar-trans' if params[:action] == "home" && params[:controller] == "pages" %>">
 
     <a class="navbar-brand" href="/">
-      <!--  render "/shared/logo" -->
+      <%= image_tag("nc_logo.svg") %>
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -12,7 +12,7 @@
       <ul class="navbar-nav mr-auto">
         <% if current_user.nil? %>
         <li class="nav-item mr-3">
-          <button type="button" class="btn btn-link" data-toggle="modal" data-target=".login-modal">Login</button>
+          <button type="button" class="btn btn-link btn-nav" data-toggle="modal" data-target=".login-modal">Login</button>
 
           <div class="modal fade login-modal" tabindex="-1" role="dialog" aria-labelledby="loginModal" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
@@ -40,7 +40,7 @@
             </div>
           </li>
           <li class="nav-item active">
-            <button type="button" class="btn btn-link" data-toggle="modal" data-target=".signup-modal">Sign Up</button>
+            <button type="button" class="btn btn-link btn-nav" data-toggle="modal" data-target=".signup-modal">Sign Up</button>
             <!-- Sign Up -->
             <div class="modal fade signup-modal" tabindex="-1" role="dialog" aria-labelledby="signupModal" aria-hidden="true">
               <div class="modal-dialog modal-dialog-centered">
