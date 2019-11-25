@@ -37,13 +37,26 @@
           <hr>
           <% @usercourses.each do |usercourse| %>
           <div class="card p-3 mb-3">
-          <!-- <p><%= usercourse.user.first_name + ' ' + usercourse.user.last_name %></p> -->
-          <h5><%= usercourse.course.title %></h5>
-          <p><%= usercourse.course_tracker%></p>
-          <p><%= usercourse.course.description%></p>
+            <div>
+              <h5><%= usercourse.course.title %></h5>
+              <p><%= usercourse.course.description%></p>
+            </div>
+            <!-- progress graph -->
+            <div>
+              <div class="progress" data-percentage="<%= (usercourse.course_tracker / usercourse.course.duration * 100).to_i %>">
+                <span class="progress-left">
+                  <span class="progress-bar"></span>
+                </span>
+                <span class="progress-right">
+                  <span class="progress-bar"></span>
+                </span>
+                <div class="progress-value">
+                  <div><%= (usercourse.course_tracker / usercourse.course.duration * 100).to_i %>%</div>
+                </div>
+              </div>
+            </div>
           </div>
           <% end %>
-          <!-- mo end -->
         </div>
         <!-- Path Tab -->
         <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
@@ -103,13 +116,13 @@
         <ul style="background-color: grey;" class="sortable-list list-group" data-groupname="userLists" data-ltype="path" data-pathid="<%= path.id %>">
           <h5><%= path.title %></h5>
           <% unless path.users_courses_paths[0].nil? %>
-            <% path.users_courses_paths.order(:position).each do |course| %>
-              <li data-courseid="<%= course.user_course.course_id %>" data-position="<%= course.position %>" class="m-1 list-group-item">
-                <%= course.user_course.course.title %>
-                <!-- params needs to be passed in order of expected route params, then only additional params may follow -->
-                <%= link_to "🗑", user_users_courses_path_path(user_id: @user.id, id: path.id, course_id: "#{course.user_course.course_id}" ), :confirm => 'Are you sure?', method: :delete, remote: true, class: "path-course" %>
-              </li>
-            <% end %>
+          <% path.users_courses_paths.order(:position).each do |course| %>
+          <li data-courseid="<%= course.user_course.course_id %>" data-position="<%= course.position %>" class="m-1 list-group-item">
+            <%= course.user_course.course.title %>
+            <!-- params needs to be passed in order of expected route params, then only additional params may follow -->
+            <%= link_to "🗑", user_users_courses_path_path(user_id: @user.id, id: path.id, course_id: "#{course.user_course.course_id}" ), :confirm => 'Are you sure?', method: :delete, remote: true, class: "path-course" %>
+          </li>
+          <% end %>
           <% end %>
         </ul>
       </div>

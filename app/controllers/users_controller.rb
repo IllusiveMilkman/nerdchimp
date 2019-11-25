@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   def show
     authorize @user
     @paths = @user.paths
-    @usercourses = UserCourse.where(user: current_user)
+    @usercourses = UserCourse.where(user: current_user).order(created_at: :desc)
   end
 
   def edit
