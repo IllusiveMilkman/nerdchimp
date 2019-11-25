@@ -1,9 +1,26 @@
 // Import Google fonts
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,300,700|Raleway:400,100,300,700,500");
 
+@font-face {
+   font-family: 'Circular';
+   src: font-url('CircularStd-Book.otf');
+}
+
+@font-face {
+   font-family: 'Circular-Bold';
+   src: font-url('CircularStd-Bold.otf');
+   letter-spacing: -0.1rem
+}
+
+@font-face {
+   font-family: 'Circular-Medium';
+   src: font-url('CircularStd-Medium.otf');
+   letter-spacing: -0.1rem
+}
+
 // Define fonts for body and headers
-$body-font: "Open Sans", "Helvetica", "sans-serif";
-$headers-font: "Raleway", "Helvetica", "sans-serif";
+$body-font: "Circular", "Helvetica", "sans-serif";
+$headers-font: "Circular-Bold", "Helvetica", "sans-serif";
 
 // To use a font file (.woff) uncomment following lines
 // @font-face {

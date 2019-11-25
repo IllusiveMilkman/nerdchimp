@@ -1,7 +1,4 @@
 <div class="container">
-  <h2><%= @user.full_name %>'s Profile</h2>
-
-  <hr>
   <% unless @user.photo == nil %>
   <%= cl_image_tag @user.photo, height: 150, width: 150,crop: :fill, class: "avatar-large" %>
   <% else %>
@@ -11,46 +8,18 @@
 </p>
 <body>
   <div>
-  <button id="url-button" class="btn btn-primary btn-sm"><i class="far fa-copy"></i></button>
-  <span><small id="url-message"></small></span>
+  <h3><%= @user.full_name %></h3>
+  <p>Username: <%= @user.slug %></p>
+  <p>Email: <%= @user.email %></p>
 
 <br>
 <%= link_to "Edit profile", edit_user_path(@user), class: "a-dark-underlined"%> <br>
 <%= link_to "Edit account", edit_user_registration_path(@user), class: "a-dark-underlined"%> <br>
 <h3 id="coursebananas"><%= @coursebananas %> 🍌</h3>
-<hr>
-
-<!-- mo start -->
-<div class="d-flex align-items-center">
-  <h1 class='mr-2'>My Library</h1>
-  <%= link_to 'new course', new_user_user_course_path(@user), class: 'btn btn-primary p-1' %> <br>
-</div>
-
-<!--  -->
-
-<% @usercourses.each do |usercourse| %>
-<p><%= usercourse.user.first_name + ' ' + usercourse.user.last_name %></p>
-<p><%= usercourse.course.title %></p>
-<p><%= usercourse.course_tracker%></p>
-<p><%= usercourse.course.description%></p>
-<hr>
-<% end %>
-<!-- mo end -->
-
-  <h3><%= @user.full_name %></h3>
-  <p>Username: <%= @user.slug %></p>
-  <p>Email: <%= @user.email %></p>
-  <body>
-    <div>
       <button id="url-button" class="btn btn-primary btn-sm"><i class="far fa-copy"></i></button>
       <span><small id="url-message"></small></span>
-
-      <br>
-      <%= link_to "Edit profile", edit_user_path(@user), class: "a-dark-underlined"%><br>
-      <%= link_to "Edit account", edit_user_registration_path(@user), class: "a-dark-underlined"%><br>
-      <hr>
-
-
+<hr>
+    <div>
       <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
         <li class="nav-item">
           <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Your Courses (<%= @usercourses.all.count %>)</a>
@@ -135,71 +104,6 @@
                 <% end %>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <hr>
-
-    <!-- Library -->
-    <div class="conatiner mb-4" style="display: flex; justify-content: space-between;">
-      <div>
-        <ul id="library" class="sortable-list list-group" data-groupname="userLists" data-ltype="library">
-          <h5>Library</h5>
-          <% @usercourses.each do |usercourse| %>
-          <li data-userid="<%= usercourse.user_id %>" data-courseid="<%= usercourse.course_id %>" class="m-1 list-group-item"><%= usercourse.course.title %></li>
-          <% end %>
-        </ul>
-      </div>
-
-      <!-- Path -->
-      <% @paths.each do |path| %>
-      <div>
-        <ul style="background-color: grey;" class="sortable-list list-group" data-groupname="userLists" data-ltype="path" data-pathid="<%= path.id %>">
-          <h5><%= path.title %></h5>
-          <%= link_to user_users_courses_path_path(@user, path) do %>
-            <i class="far fa-edit" style="color: white"></i>
-          <% end %>
-          <% unless path.users_courses_paths[0].nil? %>
-          <% path.users_courses_paths.order(:position).each do |course| %>
-          <li data-courseid="<%= course.user_course.course_id %>" data-position="<%= course.position %>" class="m-1 list-group-item">
-            <%= course.user_course.course.title %>
-            <!-- params needs to be passed in order of expected route params, then only additional params may follow -->
-            <%= link_to "🗑", user_users_courses_path_path(user_id: @user.id, id: path.id, course_id: "#{course.user_course.course_id}" ), :confirm => 'Are you sure?', method: :delete, remote: true, class: "path-course" %>
-          </li>
-          <% end %>
-          <% end %>
-        </ul>
-      </div>
-      <% end %>
-
-    </div>
-
-    <div id="modal-window" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-
-        </div>
-
-      </div>
-    </div>
-
-    <!-- Modal -->
-    <div class="modal fade" id="ModalCenter" tabindex="-1" role="dialog" aria-labelledby="ModalCenterTitle" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="ModalLongTitle">Oops...</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <p>test modal body content</p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
           </div>
         </div>
       </div>
