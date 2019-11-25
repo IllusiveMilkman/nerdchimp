@@ -4,13 +4,14 @@ class UsersController < ApplicationController
   def show
     authorize @user
     @paths = @user.paths
-    @usercourses = UserCourse.where(user: @user)
+    @usercourses = UserCourse.where(user: @user).order(created_at: :desc)
     @usercourse = UserCourse.new # mo needs for search bar in
     # @coursebananas = UserCourse.where(user: @user, course_tracker: user.courses.duration)
     @coursebananas = 0
     UserCourse.where(user: @user).each do |usercourse|
       @coursebananas += 1 if usercourse.course.duration == usercourse.course_tracker.to_i
     end
+
   end
 
   def edit
