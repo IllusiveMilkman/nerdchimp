@@ -14,13 +14,7 @@ function getNotUnique(array) {
 document.addEventListener("DOMContentLoaded", function() {
   // console.log('Your document is ready!');
 
-  // Delete button and event on sortable lists.
-  let pathCourses = document.querySelectorAll('.path-course');
-  pathCourses.forEach( (course) => {
-    course.addEventListener('click', (event) => {
-      console.log(event.currentTarget);
-    });
-  });
+  addEventListenerToPathCourses();
 
   // Sortable Lists from here
   const sortableList = document.querySelectorAll('.sortable-list'); // Select ALL lists on page
@@ -54,21 +48,31 @@ document.addEventListener("DOMContentLoaded", function() {
 
         // Callback to the event of dropping a card into a list
         onAdd: function (evt) {
-          checkIfDuplicateCourse(evt);
-          // Add course to path if not yet present
-          updateOrderOfCourses(evt);
+          console.log("onAdd callback activated")
+
+          if (deleteIfDuplicateCourse(evt)) {
+            console.log("duplicate found... NOT adding a delete button, or updating order.");
+            // Add course to path if not yet present
+          } else {
+            console.log("No duplicate found - Add delete button and update order.")
+            addDeleteButtonToCourse(evt);
+            addEventListenerToPathCourses();
+            updateOrderOfCourses(evt);
+          }
         },
 
         // Callback to the event of changing the position of a course within a path
         onEnd: function (evt) {
+          console.log("onEnd callback activated")
           // console.log('onEnd called')
           updateOrderOfCourses(evt);
         },
 
+        // The onSort function is most likely unecessary, but keeping here in case it comes up later on in designs
         // Called by any change to the list (add / update / remove)
         onSort: function (/**Event*/evt) {
           // same properties as onEnd
-          console.log("onSort callback activated.")
+          console.log("onSort callback activated")
         }
       });
     };
@@ -76,7 +80,11 @@ document.addEventListener("DOMContentLoaded", function() {
   })
 });
 
-function checkIfDuplicateCourse(evt) {
+function deleteIfDuplicateCourse(evt) {
+  // console.log("newly added item:");
+  // console.log(evt);
+  // console.log(evt.item);
+
   let pathElement = evt.to;
 
   let ListItems = pathElement.querySelectorAll("li");;
@@ -96,14 +104,19 @@ function checkIfDuplicateCourse(evt) {
 
   // We can now iterate over each duplicate (there should always only be one either way)
   uniqueDuplicates.forEach ( (duplicateId) => {
-      let toDelete = pathElement.querySelector(`li[data-courseid="${duplicateId}"]`);
-      toDelete.remove();
+      evt.item.remove(); // Removes the item that was dragged into the path (the duplicate)
       document.querySelector('.modal-body').innerHTML = "<p>You already have this course in your path. We've remove it for you.</p>";
       $("#ModalCenter").modal();
     });
+
+  // check if array is empty or does not exist.
+  // If there are items in the array, it translate to duplicates being present, thus true.
+  console.log(uniqueDuplicates.length > 0);
+  return (uniqueDuplicates.length > 0) ? true : false;
 };
 
 function updateOrderOfCourses(evt) {
+  console.log('updateOrder... called');
   let pathElement = evt.to;
   // console.log(pathElement);
   // console.log(pathElement.dataset.pathid);
@@ -124,3 +137,30 @@ function updateOrderOfCourses(evt) {
   fetch(persist_url);
 }
 
+function addDeleteButtonToCourse(event) {
+  // console.log("addDelete... called");
+  // console.log(event);
+  // console.log(event.currentTarget);
+  // console.log(`Course: ${event.clone.dataset.courseid}`);
+  // console.log(`Path: ${event.to.dataset.pathid}`);
+  // console.log(`User: ${event.clone.dataset.userid}`);
+
+  let user_id = event.clone.dataset.userid; // The user id from the cloned course object
+  let course_id = event.clone.dataset.courseid; // The course id of the new element
+  let path_id = event.to.dataset.pathid; // The path id of the destination path
+  let list_item = document.querySelector(`ul[data-pathid="${path_id}"]>li[data-courseid="${course_id}"]`);
+
+  // Insert the delete link into the card
+  let delete_link = `<a confirm="Are you sure?" class="path-course" data-remote="true" rel="nofollow" data-method="delete" href="/users/${user_id}/users_courses_paths/${path_id}?course_id=${course_id}">🗑</a>`;
+  list_item.innerHTML += delete_link;
+}
+
+function addEventListenerToPathCourses() {
+  // Delete button and event on sortable lists.
+  let pathCourses = document.querySelectorAll('.path-course');
+  pathCourses.forEach( (course) => {
+    course.addEventListener('click', (event) => {
+      event.currentTarget.parentElement.remove(); // Remove the list item (parent element)
+    });
+  });
+}
