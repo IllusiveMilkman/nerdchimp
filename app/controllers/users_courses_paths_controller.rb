@@ -7,8 +7,6 @@ class UsersCoursesPathsController < ApplicationController
     @user = User.friendly.find(params[:user_id])
     @path = @user.paths.where(id: params[:id])
     @usercourses = UserCourse.where(user: current_user)
-    # @path = ?
-    # raise
   end
 
   def create
