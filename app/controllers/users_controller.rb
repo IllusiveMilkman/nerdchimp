@@ -4,8 +4,9 @@ class UsersController < ApplicationController
   def show
     authorize @user
     @paths = @user.paths
-    @usercourses = UserCourse.where(user: current_user)
+    @usercourses = UserCourse.where(user: @user)
     @usercourse = UserCourse.new # mo needs for search bar in
+    @coursebananas = UserCourse.where(user: @user, course_tracker: 1.0)
   end
 
   def edit
@@ -65,7 +66,7 @@ class UsersController < ApplicationController
   private
 
   def find_user
-    @user = current_user
+    @user = User.friendly.find(params[:id])
   end
 
   def user_params
