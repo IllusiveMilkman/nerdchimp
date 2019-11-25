@@ -93,11 +93,12 @@
         <ul id="library" class="sortable-list list-group" data-groupname="userLists" data-ltype="library">
           <h5>Library</h5>
           <% @usercourses.each do |usercourse| %>
-          <li data-courseid="<%= usercourse.course_id %>" class="m-1 list-group-item"><%= usercourse.course.title %></li>
+          <li data-userid="<%= usercourse.user_id %>" data-courseid="<%= usercourse.course_id %>" class="m-1 list-group-item"><%= usercourse.course.title %></li>
           <% end %>
         </ul>
       </div>
 
+      <!-- Path -->
       <% @paths.each do |path| %>
       <div>
         <ul style="background-color: grey;" class="sortable-list list-group" data-groupname="userLists" data-ltype="path" data-pathid="<%= path.id %>">
