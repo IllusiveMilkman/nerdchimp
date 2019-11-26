@@ -24,7 +24,7 @@ var mouse = {
   show: function() { return '(' + this.x + ', ' + this.y + ')'; }
 }
 // Track the mouse position relative to the center of the container.
-mouse.setOrigin(container);
+
 
 var onMouseEnterHandler = function(event) {
   update(event);
@@ -37,11 +37,6 @@ var onMouseMoveHandler = function(event) {
     update(event);
   }
 };
-
-container.onmouseenter = onMouseEnterHandler;
-container.onmouseleave = onMouseLeaveHandler;
-container.onmousemove = onMouseMoveHandler;
-
 
 var counter = 0;
 var updateRate = 5;
@@ -67,3 +62,15 @@ var updateTransformStyle = function(x, y) {
   inner.style.msTransform = style;
   inner.style.oTransform = style;
 };
+
+if (container != null) {
+  container.onmouseenter = onMouseEnterHandler;
+  container.onmouseleave = onMouseLeaveHandler;
+  container.onmousemove = onMouseMoveHandler;
+  mouse.setOrigin(container);
+}
+
+
+
+
+
