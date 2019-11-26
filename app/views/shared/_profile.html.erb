@@ -1,0 +1,36 @@
+<hr>
+<div class="container">
+  <div class="profile d-flex align-items-center">
+    <% unless @user.photo == nil %>
+    <%= cl_image_tag @user.photo, height: 150, width: 150,crop: :fill, class: "avatar-large" %>
+    <% else %>
+    <%= image_tag image_url:'https://jbmedicalwellness.com/wp-content/uploads/2018/09/placeholder-male-square.png', height: 150, width: 150,crop: :fill, class: "avatar-large" %>
+    <% end %>
+
+    <div class=" nametag flex-grow-1">
+      <div class=" d-flex ">
+        <h2 id="user-full-name"><%= @user.full_name %></h2>
+        <% if  %>
+          <%= link_to edit_user_path(@user), class: "a-dark-underlined" do %>
+          <i class="fas fa-pen fa-1 ml-1"></i>
+          <% end %>
+          <i id="url-button" class="fas fa-copy fa-1x "></i>
+          <span><small id="url-message"></small></span>
+        <% end %>
+      </div>
+      <h3 id="coursebananas"><%= @coursebananas %> 🍌</h3>
+    </div>
+
+    <div>
+      <div class="d-flex">
+        <%= image_tag('path.svg')  %>
+        <h5>3 Paths (10 Courses) </h5>
+      </div>
+      <div class="d-flex">
+        <%= image_tag('active.svg')  %>
+        <h5><%= @user.paths.count %> active Paths </h5>
+      </div>
+    </div>
+  </div>
+</div>
+
