@@ -16,7 +16,7 @@
 </div>
 <div class="text-center">
   <p id="subtitle">Track all your courses in one place</p>
-  <div class="btn btn-flat btn-wide">Search for courses</div>
+  <%= link_to "Search for courses", courses_path, class: "btn btn-flat btn-wide" %>
 </div>
 <div class="text-center" style="padding: 70px"><%= image_tag("arrow.svg") %></div>
 <div class="container text-center">
@@ -47,5 +47,13 @@
 </div>
     <div class="text-center" style="padding: 70px"></div>
     <div class="container text-center">
-      <h2>Trusted by online learning platforms</h2>
+      <h2 class="pb-3">Trusted by online learning platforms</h2>
+      <div class="d-flex justify-content-between pt-3">
+      <%= image_tag("udemy.svg") %>
+      <%= image_tag("coursera.svg") %>
+      <%= image_tag("edx.svg") %>
+      <%= image_tag("udacity.svg") %>
+      <%= image_tag("lynda.svg") %>
+      </div>
+      <div class="text-center" style="padding: 70px"></div>
     </div>
