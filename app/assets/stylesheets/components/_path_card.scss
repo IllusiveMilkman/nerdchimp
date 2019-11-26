@@ -1,7 +1,9 @@
 .library-item {
   color: #0E2259;
-  border-radius: 5px;
+  border-radius: 5px !important;
   padding: 25px 30px 25px 30px !important;
+  width: 460px;
+  position: relative;
 
   h5 {
     margin-bottom: 5px;
@@ -17,5 +19,15 @@
 
   .library-item-duration {
     color: #3FDEEE;
+  }
+
+  a {
+    color: darken($light-gray, 20%);
+    position: absolute;
+      top: 10px;
+      right: 28px;
+      width: 0px;
+      height: 0px;
+      background-color: red;
   }
 }
