@@ -59,7 +59,7 @@
       </div>
       <!-- Path Tab -->
       <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-        <h1>My Paths</h1>
+        <h3 class="mb-3">My Paths</h3>
 
         <%= link_to 'new path', new_user_path_path(@user) %>
         <div class="row">
@@ -83,7 +83,7 @@
               <div class="path-header " style="border-radius: 5px;">
                 <div class="path-header-container pl-3 pr-3 mb-4 " style="padding">
                   <div class="path-header-item">
-                    <h3 class="mb-0 pt-3 pb-3 path-title"><%= @paths.first.title %></h3>
+                    <h4 class="mb-0 p-3 path-title"><%= @paths.first.title %></h3>
                   </div>
 
 <!--                   <div class="path-header-item-center">
@@ -91,6 +91,7 @@
                       &#8197;<a class="" href="#">Rename</a>
                     </i>
                   </div> -->
+
                   <%= link_to 'Update path', user_users_courses_path_path(@user, @paths.first), class: "btn btn-primary path-header-item-button" %>
                 </div>
               </div>
@@ -117,13 +118,12 @@
             <div class="tab-pane fade show active" id="list-<%= path.id %>" role="tabpanel" aria-labelledby="list-<%= path.id %>-list">
               <% unless path.users_courses_paths.first.nil? %>
               <% path.users_courses_paths.decorate.each do |ucp| %>
-              <div class="card p-3 mb-3">
+              <div class="card p-3 mb-3" id="completed-<%= ucp.user_course.id %>">
                 <div class="d-flex justify-content-between">
                   <div class="p-3 flex-grow-1 border-right"> <!-- rest of card -->
                     <ul class="list-unstyled">
                       <li><a href="<%= ucp.c_item.url %>" target="_blank"><h5><%= ucp.c_item.title %></h5></a></li>
                       <li>via <%= ucp.c_item.provider %></li>
-                      <li id="progress-<%= ucp.user_course.id %>">Progress: <strong><%= (ucp.c_duration - ucp.c_progress).to_i %> hour(s) left</strong></li>
                     </ul>
                     <div>
                       <input type="range" class="custom-range" id="slider" min="0" max="<%= ucp.user_course.course.duration %>" step="1" value="<%= ucp.user_course.course_tracker %>" data-course="<%= ucp.c_item.id %>" data-user="<%= ucp.user_course.user_id %>">
@@ -142,6 +142,7 @@
                           <p><%= (ucp.c_progress / ucp.c_duration * 100).to_i %>%</p>
                         </div>
                       </div>
+                      <div id="progress-<%= ucp.user_course.id %>"><strong><%= (ucp.c_duration - ucp.c_progress).to_i %> hour(s) left</strong></div>
                     </div>
                   </div>
                 </div>

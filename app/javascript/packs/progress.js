@@ -17,23 +17,33 @@ picker.forEach(i => {
     .then(response => {
       response.json()
         .then(data => {
+          // Progress Data
           console.log(data)
           const progress = document.querySelectorAll(`#progress-${data.id}`)
           progress.forEach(i => {
-            i.innerHTML = `Progress: <strong>${parseInt(data.course.duration - data.course_tracker)} hour(s) left</strong>`
+            i.innerHTML = `<strong>${parseInt(data.course.duration - data.course_tracker)} hour(s) left</strong>`
           })
+          // Progress Circle
           const circle = document.querySelectorAll(`#graph-${data.id}`)
           circle.forEach(i => {
             i.setAttribute('data-percentage', `${parseInt(data.course_tracker / data.course.duration * 100)}`)
-
+            const value = i.querySelector('.progress-value p')
+            value.innerText = `${parseInt(data.course_tracker / data.course.duration * 100)}%`
 
           })
+          // Completed Courses - Bananas
           if (data.course_tracker === data.course.duration ){
             console.log('100')
             swal("🍌", "You earned a Banana!", "info", {button: "Cool!", } )
             var num = parseInt(coursebananas.innerText, 10)
             num += 1
             coursebananas.innerText = `${num} 🍌`
+
+            const cards = document.querySelectorAll(`#completed-${data.id}`)
+            cards.forEach(card => {
+                card.style.border = "2px solid #51eba0"
+
+            })
           }
       })
     }, error => {
