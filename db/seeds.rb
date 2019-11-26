@@ -171,7 +171,7 @@ paths_array = [
     user: User.second
   },
   {
-    title: 'Courses for Customer Data',
+    title: 'Courses for Data Analytics',
     user: User.second
   }
 ]
