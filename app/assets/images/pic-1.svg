@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="243px" height="221px" viewBox="0 0 243 221" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 60 (88103) - https://sketch.com -->
+    <title>pic-1</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <filter x="-43.8%" y="-42.2%" width="187.6%" height="184.3%" filterUnits="objectBoundingBox" id="filter-1">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="13.5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.13548951 0" type="matrix" in="shadowBlurOuter1" result="shadowMatrixOuter1"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+            </feMerge>
+        </filter>
+    </defs>
+    <g id="Wireframes" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Home-page" transform="translate(-147.000000, -951.000000)">
+            <g id="pic-1" transform="translate(147.000000, 951.000000)">
+                <rect id="Rectangle" fill="#FFFFFF" x="0" y="0" width="221" height="221"></rect>
+                <g id="Group-14" transform="translate(5.000000, 7.000000)">
+                    <circle id="Oval" fill="#F3F3F3" cx="104" cy="104" r="104"></circle>
+                    <g id="Group-4" filter="url(#filter-1)" transform="translate(83.000000, 37.000000)">
+                        <rect id="Rectangle" fill="#FFFFFF" x="0" y="46.559322" width="128.322034" height="40.8813559" rx="5"></rect>
+                        <rect id="Rectangle" fill="#F95456" x="11.3559322" y="55.6440678" width="87.440678" height="7.94915254"></rect>
+                        <rect id="Rectangle" fill="#FFFFFF" x="0" y="0" width="128.322034" height="40.8813559" rx="5"></rect>
+                        <rect id="Rectangle" fill="#F95456" x="11.3559322" y="9.08474576" width="87.440678" height="7.94915254"></rect>
+                        <rect id="Rectangle" fill="#FFFFFF" x="0" y="93.1186441" width="128.322034" height="40.8813559" rx="5"></rect>
+                        <rect id="Rectangle" fill="#F95456" x="11.3559322" y="102.20339" width="87.440678" height="7.94915254"></rect>
+                    </g>
+                    <path d="M44,79 C30.1875,79 19,90.1875 19,104 C19,117.8125 30.1875,129 44,129 C57.8125,129 69,117.8125 69,104 C69,90.1875 57.8125,79 44,79 Z M56.5,106.5 L46.5,106.5 L46.5,116.5 L41.5,116.5 L41.5,106.5 L31.5,106.5 L31.5,101.5 L41.5,101.5 L41.5,91.5 L46.5,91.5 L46.5,101.5 L56.5,101.5 L56.5,106.5 Z" id="Fill-1" fill="#0E2259"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

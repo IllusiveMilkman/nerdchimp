@@ -1,1 +1,31 @@
 // Specific CSS for your home-page
+#title {
+  position: absolute;
+  left: 39.3%;
+  top: 77%;
+  letter-spacing: -0.19rem;
+  font-size: 62px;
+  font-family: Circular-Bold;
+}
+
+#subtitle {
+  font-family: Circular;
+  font-size: 24px;
+  letter-spacing: -0.05rem;
+  // color: gray;
+
+}
+
+.pic-section {
+  margin-top: 3rem;
+
+  h4 {
+    font-size: 24px;
+    font-family: Circular;
+  }
+
+  p {
+    color: gray;
+    font-size: 18px;
+  }
+}
