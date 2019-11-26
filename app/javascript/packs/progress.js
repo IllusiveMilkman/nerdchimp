@@ -20,7 +20,13 @@ picker.forEach(i => {
           console.log(data)
           const progress = document.querySelectorAll(`#progress-${data.id}`)
           progress.forEach(i => {
-            i.innerHTML = `Progress: <strong>${parseInt(data.course_tracker / data.course.duration * 100)}% - ${parseInt(data.course.duration - data.course_tracker)} hour(s) left</strong>`
+            i.innerHTML = `Progress: <strong>${parseInt(data.course.duration - data.course_tracker)} hour(s) left</strong>`
+          })
+          const circle = document.querySelectorAll(`#graph-${data.id}`)
+          circle.forEach(i => {
+            i.setAttribute('data-percentage', `${parseInt(data.course_tracker / data.course.duration * 100)}`)
+
+
           })
           if (data.course_tracker === data.course.duration ){
             console.log('100')

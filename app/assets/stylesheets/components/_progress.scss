@@ -82,7 +82,9 @@ $howManySteps: 100; //this needs to be even.
     width: 60px;
     //font-family: $work-sans;
     font-weight: 300;
-
+    p {
+      margin-bottom: 0;
+    }
     span {
       font-size: 12px;
       text-transform: uppercase;
