@@ -31,6 +31,17 @@
   background: #f4f4f4;
 }
 
+// global setting for ghosting effects for Sortable.js items
+.sortable-ghost {
+  color: transparent !important;
+  background: transparent !important;
+  border: 1px dashed gray !important;
+
+  .library-item-duration {
+    color: transparent;
+  }
+}
+
 
 // Smallest device
 @media (min-width: 100px) and (max-width: 575px) {

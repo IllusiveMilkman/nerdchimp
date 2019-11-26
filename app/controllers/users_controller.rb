@@ -11,7 +11,6 @@ class UsersController < ApplicationController
     UserCourse.where(user: @user).each do |usercourse|
       @coursebananas += 1 if usercourse.course.duration == usercourse.course_tracker.to_i
     end
-
   end
 
   def edit
