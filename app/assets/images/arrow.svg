@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="26px" height="13px" viewBox="0 0 26 13" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 60 (88103) - https://sketch.com -->
+    <title>Group</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Wireframes" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="square">
+        <g id="Home-page" transform="translate(-708.000000, -755.000000)" stroke="#979797" stroke-width="0.5">
+            <g id="Group" transform="translate(708.000000, 755.000000)">
+                <line x1="0.25" y1="0.25" x2="12.75" y2="12.75" id="Line"></line>
+                <line x1="25.25" y1="0.75" x2="12.75" y2="12.75" id="Line"></line>
+            </g>
+        </g>
+    </g>
+</svg>
