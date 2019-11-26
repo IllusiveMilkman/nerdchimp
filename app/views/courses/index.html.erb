@@ -37,14 +37,27 @@
     <div class="cards">
       <% @courses.each do |course| %>
       <div class="card-category">
-        <h4><%= link_to course.title, course_path(course) %></h4>
-        <% if user_signed_in? %>
-        <h4><%= button_to "Add to my library", add_course_path(course_id: course), remote: true %></h4>
-        <% end %>
-      </div>
-      <% end %>
+        <div class="card-items">
+          <div>
+            <h4><%= link_to course.title.truncate(50, separator: ' '), course_path(course) %></h4>
+              <div class="card-item-provider">via <%= course.provider %>  |
+              <span class="card-item-duration"><%= course.duration %> hours to complete</span>
+              </div>
+            </div>
+          <% if user_signed_in? %>
+          <div class="catalog-button">
+            <h5><%= button_to "+ Add to library", add_course_path(course_id: course), remote: true, class: "btn btn-primary", style: 'font-size: 1.1rem; font-family: Circular;' %></h5>
+          </div>
+          <% end %>
+        </div>
+        <div class="card-item-description"><%= course.description.truncate(150, separator: ' ') %></div>
+        </div>
+       <% end %>
     </div>
   </div>
 </div>
+
+
+
 
 

@@ -22,6 +22,8 @@
   height: 135px;
   padding-top: 25px;
   padding-bottom: 25px;
+  position: sticky;
+  top: 0;
 }
 
 .cards {
@@ -35,14 +37,39 @@
   padding: 20px;
   height: 180px;
   width: auto;
+  overflow: hidden;
 }
 
 .scrolling-box {
   display: block;
   scroll-behavior: smooth;
-  text-align: center;
   padding-top: 30px;
 }
+
+.catalog-button {
+  text-align: right;
+}
+.card-items {
+  display: flex;
+  color: #0E2259;
+  text-align: left;
+  height: 85px;
+  justify-content: space-between;
+}
+
+.card-item-via {
+  font-size: 0.8rem;
+}
+
+.card-item-provider {
+  font-size: 0.9rem;
+}
+
+.card-item-duration {
+  color: #3FDEEE;
+}
+
+// Media:
 
 // Smallest device
 @media (min-width: 100px) and (max-width: 575px) {
@@ -78,4 +105,3 @@
     grid-template-columns: 1fr 1fr;
   }
 }
-
