@@ -47,7 +47,7 @@
   .library {
     flex: 0 0 50%;
 
-    .h5-drag-heading {
+    .h5-library-heading {
       color: #A5A5A5;
     }
   }
@@ -66,40 +66,8 @@
     position: relative;
   }
 
-  .list-group-item {
-      position: relative;
-      display: block;
-      padding: 0.75rem 1.25rem;
-      margin-bottom: -1px;
-      background-color: #fff;
-      border: 1px solid rgba(42, 42, 42, 0.125);
-  }
-
   ul {
     width: 500px;
   }
 }
-
-.library-item {
-  color: #0E2259;
-  border-radius: 5px;
-  padding: 25px 30px 25px 30px !important;
-
-  h5 {
-    margin-bottom: 5px;
-  }
-
-  .library-item-via {
-    font-size: 0.8rem;
-  }
-
-  .library-item-provider {
-    font-size: 0.9rem;
-  }
-
-  .library-item-duration {
-    color: #3FDEEE;
-  }
-}
-
 

@@ -1,0 +1,21 @@
+.library-item {
+  color: #0E2259;
+  border-radius: 5px;
+  padding: 25px 30px 25px 30px !important;
+
+  h5 {
+    margin-bottom: 5px;
+  }
+
+  .library-item-via {
+    font-size: 0.8rem;
+  }
+
+  .library-item-provider {
+    font-size: 0.9rem;
+  }
+
+  .library-item-duration {
+    color: #3FDEEE;
+  }
+}

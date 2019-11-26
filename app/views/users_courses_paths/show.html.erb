@@ -27,7 +27,7 @@
     <!-- Library -->
     <div class="conatiner mb-4" style="display: flex; justify-content: center;">
         <ul id="library" class="sortable-list list-group" data-groupname="userLists" data-ltype="library">
-          <h5 class="h5-drag-heading mt-4">Drag from Library</h5>
+          <h5 class="h5-library-heading mt-4">Drag from Library</h5>
           <% @usercourses.each do |usercourse| %>
             <li data-userid="<%= usercourse.user_id %>" data-courseid="<%= usercourse.course_id %>" class="m-2 list-group-item library-item">
               <h5><%= usercourse.course.title %></h5>
