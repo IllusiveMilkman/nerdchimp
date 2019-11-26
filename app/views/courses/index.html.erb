@@ -1,18 +1,27 @@
-<h1>Courses#index</h1>
-<p>Find me in app/views/courses/index.html.erb</p>
+<!-- <h1>Courses#index</h1>
+<p>Find me in app/views/courses/index.html.erb</p> -->
+
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0),rgba(0,0,0,0), #F9D233">
+  <div class="banner-bubbles">
+  <%= image_tag("yellow-banner.svg") %>
+  </div>
+  <div class="banner-container">
+    <h1>Start learning new things.</h1>
+  </div>
+</div>
 
 
 
-<div class="container">
   <!-- search bar for courses according to user input -->
-  <div class="searchcontainer">
-  <h3 style="font-size: 20px; margin-bottom: 0; margin-top: 10px;">
-    <%if params[:query].present?%>
-      <%= @courses.count %> total results for <strong><em>"<%= params[:query] %>"</em></strong></h3>
-    <%else%>
-      <%= @courses.count %> available Courses</h3>
-    <%end%>
-  <%= form_tag courses_path, method: :get, class: 'd-flex align-items-center justify-content-center mt-3' do %>
+<div class="searchbanner">
+  <div class="container">
+    <h3 style="font-size: 20px;">
+      <%if params[:query].present?%>
+        <%= @courses.count %> total results for <strong><em>"<%= params[:query] %>"</em></strong></h3>
+      <%else%>
+        <%= @courses.count %> available Courses</h3>
+      <%end%>
+    <%= form_tag courses_path, method: :get, class: 'd-flex align-items-center justify-content-center mt-3' do %>
     <%= text_field_tag :query,
       params[:query],
       class: "form-control mr-3", style: 'height: 45px;',
@@ -20,9 +29,11 @@
     %>
     <%= submit_tag "Find a course", class: "btn btn-primary", style: 'font-size: 1.1rem;' %>
     <% end %>
-   </div>
+  </div>
+</div>
 <!-- Display of of overall course list -->
-    <div class="scrolling-box">
+<div class="container">
+  <div class="scrolling-box">
     <div class="cards">
       <% @courses.each do |course| %>
       <div class="card-category">
