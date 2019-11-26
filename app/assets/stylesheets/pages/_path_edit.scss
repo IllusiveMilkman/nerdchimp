@@ -1,5 +1,5 @@
 .path-header {
-  background-color: #0E2259;
+  background-color: $blue;
   color: white;
 
   .path-header-container {
@@ -21,25 +21,26 @@
 
   a {
     color: white;
-    // text-decoration: underline;
+    font-family: 'Circular';
+    text-decoration: underline;
   }
   }
 
   .path-header-item-button {
-    background: #52EBA0;
+    background: $lime-green;
     border-radius: 5px;
-    color: #0E2259;
+    color: $blue;
     border: none;
 
     &:hover {
-      background: darken(#52EBA0, 10%);
+      background: darken($lime-green, 10%);
     }
   }
 }
 
 
 .library-path-wrapper {
-  background: linear-gradient(90deg, rgba(248,248,248,1) 50%, rgba(242,242,242,1) 50%);
+  background: linear-gradient(90deg, $lighter-gray 50%, $light-gray 50%);
   display: flex;
   justify-content: space-between;
   min-height: 100vh;
@@ -48,22 +49,31 @@
     flex: 0 0 50%;
 
     .h5-library-heading {
-      color: #A5A5A5;
+      color: $medium-gray;
+      padding-left: 9px;
     }
   }
 
   .path {
     flex: 0 0 50%;
+
   }
 
   .path-to-edit {
     min-height: 300px;
-    border: 3px dashed #0e2259;
+    border: dashed $medium-gray;
+    border-width: 2px 2px;
+    border-radius: 5px;
     padding: 20px;
-    background-color: rgba(200,200,200,0.2);
+    background-color: darken($light-gray, 10%);;
     box-shadow: 0px 0px 2px rgba(1,1,1,0.6);
     margin: 20px 0;
     position: relative;
+    padding-bottom: 130px;
+
+    .h5-path-heading {
+      padding-left: 8px;
+    }
   }
 
   ul {

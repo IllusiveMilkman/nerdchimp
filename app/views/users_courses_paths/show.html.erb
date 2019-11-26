@@ -9,7 +9,7 @@
 
       <div class="path-header-item-center">
         <i class="fas fa-pen fa-xs">
-          &#8197;<a class="" href="#">Rename</a>
+          &#8197;<a href="#">Rename</a>
         </i>
       </div>
 
@@ -47,10 +47,11 @@
         <% unless @path.first.users_courses_paths[0].nil? %>
           <% @path.first.users_courses_paths.order(:position).each do |course| %>
             <li data-courseid="<%= course.user_course.course_id %>" data-position="<%= course.position %>" class="m-1 list-group-item library-item">
-              <h5><%= course.user_course.course.title %></h5>
+              <h5 class="h5-path-heading"><%= course.user_course.course.title %></h5>
               <span class='library-item-via'>via </span>
               <span class="library-item-provider"><%= course.user_course.course.provider %>  |  </span>
-              <span class="library-item-duration"><%= course.user_course.course.duration %> hours to complete</span><span> | </span>
+              <span class="library-item-duration"><%= course.user_course.course.duration %> hours to complete</span>
+              <span> | </span>
               <!-- params needs to be passed in order of expected route params, then only additional params may follow -->
               <%= link_to user_users_courses_path_path(user_id: @user.id, id: @path.first.id, course_id: "#{course.user_course.course_id}" ), :confirm => 'Are you sure?', method: :delete, remote: true, class: "path-course" do %>
               <i class="fas fa-trash-alt"></i>
