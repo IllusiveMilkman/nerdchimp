@@ -1,8 +1,9 @@
+<hr>
 <div class="container">
-<h1>Paths#new</h1>
-<p>Find me in app/views/paths/new.html.erb</p>
+<h1>Create your individual Path!</h1>
+<br>
   <%= simple_form_for [@user, @path] do |f| %>
-    <%= f.input :title %>
+    <%= f.input :title, label: 'Please enter your a Title for your new Path' %>
     <%= f.submit "Create path", class: "btn btn-primary" %>
   <% end %>
 
