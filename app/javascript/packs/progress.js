@@ -24,7 +24,7 @@ picker.forEach(i => {
           })
           if (data.course_tracker === data.course.duration ){
             console.log('100')
-            swal("🍌", "You earned a Banana!", "warning", {button: "Cool!", } )
+            swal("🍌", "You earned a Banana!", "info", {button: "Cool!", } )
             var num = parseInt(coursebananas.innerText, 10)
             num += 1
             coursebananas.innerText = `${num} 🍌`

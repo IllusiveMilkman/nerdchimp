@@ -7,6 +7,12 @@ class UsersCoursesPathsController < ApplicationController
     @user = User.friendly.find(params[:user_id])
     @path = @user.paths.where(id: params[:id])
     @usercourses = UserCourse.where(user: current_user)
+
+    @coursebananas = 0
+    UserCourse.where(user: @user).each do |usercourse|
+      puts usercourse
+      @coursebananas += 1 if usercourse.course.duration == usercourse.course_tracker.to_i
+    end
   end
 
   def create

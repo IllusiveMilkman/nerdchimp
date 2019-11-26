@@ -1,31 +1,60 @@
-<h1>UsersCoursesPaths#show</h1>
-<p>Find me in app/views/users_courses_paths/show.html.erb</p>
+<%= render 'shared/profile', user: @user, coursebananas: @coursebananas %>
 
-<hr>
+<div class="path-header">
+  <div class="container">
+    <div class="path-header-container">
+      <div class="path-header-item">
+        <h2 class="mb-0 pt-3 pb-3"><%= @path.first.title %></h2>
+      </div>
 
-<!-- Library -->
+      <div class="path-header-item-center">
+        <i class="fas fa-pen fa-xs">
+          &#8197;<a class="" href="#">Rename</a>
+        </i>
+      </div>
 
-  <div class="conatiner mb-4" style="display: flex; justify-content: center;">
-    <div>
-      <ul id="library" class="sortable-list list-group" data-groupname="userLists" data-ltype="library">
-        <h5>Library</h5>
-        <% @usercourses.each do |usercourse| %>
-        <li data-userid="<%= usercourse.user_id %>" data-courseid="<%= usercourse.course_id %>" class="m-1 list-group-item"><%= usercourse.course.title %></li>
-        <% end %>
-      </ul>
+      <div class="path-header-item-button">
+        <%= link_to 'Update path', user_path(@user), class: "btn btn-primary path-header-item-button" %>
+      </div>
     </div>
+  </div>
+</div>
 
 
-    <!-- Path -->
-    <div>
-      <ul style="background-color: grey;" class="sortable-list list-group" data-groupname="userLists" data-ltype="path" data-pathid="<%= @path.first.id %>">
+<div class="library-path-wrapper">
+
+  <div class="library">
+    <!-- Library -->
+    <div class="conatiner mb-4" style="display: flex; justify-content: center;">
+        <ul id="library" class="sortable-list list-group" data-groupname="userLists" data-ltype="library">
+          <h5 class="h5-library-heading mt-4">Drag from Library</h5>
+          <% @usercourses.each do |usercourse| %>
+            <li data-userid="<%= usercourse.user_id %>" data-courseid="<%= usercourse.course_id %>" class="m-2 list-group-item library-item">
+              <h5><%= usercourse.course.title %></h5>
+              <span class='library-item-via'>via </span>
+              <span class="library-item-provider"><%= usercourse.course.provider %>  |  </span>
+              <span class="library-item-duration"><%= usercourse.course.duration %> hours to complete</span>
+            </li>
+          <% end %>
+        </ul>
+    </div>
+  </div>
+
+  <div class="path">
+    <div class="conatiner mb-4" style="display: flex; justify-content: center;">
+      <ul class="sortable-list list-group path-to-edit" data-groupname="userLists" data-ltype="path" data-pathid="<%= @path.first.id %>">
         <h5><%= @path.first.title %></h5>
         <% unless @path.first.users_courses_paths[0].nil? %>
           <% @path.first.users_courses_paths.order(:position).each do |course| %>
-            <li data-courseid="<%= course.user_course.course_id %>" data-position="<%= course.position %>" class="m-1 list-group-item">
-              <%= course.user_course.course.title %>
+            <li data-courseid="<%= course.user_course.course_id %>" data-position="<%= course.position %>" class="m-1 list-group-item library-item">
+              <h5><%= course.user_course.course.title %></h5>
+              <span class='library-item-via'>via </span>
+              <span class="library-item-provider"><%= course.user_course.course.provider %>  |  </span>
+              <span class="library-item-duration"><%= course.user_course.course.duration %> hours to complete</span><span> | </span>
               <!-- params needs to be passed in order of expected route params, then only additional params may follow -->
-              <%= link_to "🗑", user_users_courses_path_path(user_id: @user.id, id: @path.first.id, course_id: "#{course.user_course.course_id}" ), :confirm => 'Are you sure?', method: :delete, remote: true, class: "path-course" %>
+              <%= link_to user_users_courses_path_path(user_id: @user.id, id: @path.first.id, course_id: "#{course.user_course.course_id}" ), :confirm => 'Are you sure?', method: :delete, remote: true, class: "path-course" do %>
+              <i class="fas fa-trash-alt"></i>
+              <% end %>
             </li>
           <% end %>
         <% end %>
@@ -34,19 +63,9 @@
 
   </div>
 
-
-<hr>
-
-<%= link_to 'Back to profile', user_path(@user) %>
-
-<!-- <div id="modal-window" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-    </div>
-  </div>
 </div>
 
- -->
+
 
 <!-- Modal -->
 <div class="modal fade" id="ModalCenter" tabindex="-1" role="dialog" aria-labelledby="ModalCenterTitle" aria-hidden="true">
