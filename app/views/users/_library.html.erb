@@ -1,28 +1,37 @@
 <div class="tab-pane fade" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
   <br>
+  <div class="cards">
   <% @usercourses.each do |usercourse| %>
-    <div class="card p-3 mb-3">
+    <div class="card-category p-3 mb-3" style="border-radius: 6px; background-color: white;">
       <div  class="library_card">
-        <a href="<%= usercourse.course.url %>" target="_blank"><h5><%= usercourse.course.title %></h5></a>
-        <p><%= usercourse.course.description%></p>
-        <%= link_to user_user_course_path(@user, usercourse), method: "delete",class: 'trash' do %>
-          <i class="fas fa-trash-alt"></i>
-        <% end %>
-      <!-- progress graph -->
-        <div>
-          <div class="progress" data-percentage="<%= (usercourse.course_tracker / usercourse.course.duration * 100).to_i %>">
-            <span class="progress-left">
-              <span class="progress-bar"></span>
-            </span>
-            <span class="progress-right">
-              <span class="progress-bar"></span>
-            </span>
-            <div class="progress-value">
-              <div><%= (usercourse.course_tracker / usercourse.course.duration * 100).to_i %>%</div>
+        <div class="d-flex align-items-center">
+         <a href="<%= usercourse.course.url %>" target="_blank"><h5><%= usercourse.course.title %></h5></a>
+          <%= link_to user_user_course_path(@user, usercourse), method: "delete",class: 'trash flex-grow-1' do %>
+            <i class="fas fa-trash-alt "></i>
+          <% end %>
+            <div>
+              <div class="progress" data-percentage="<%= (usercourse.course_tracker / usercourse.course.duration * 100).to_i %>">
+                <span class="progress-left">
+                  <span class="progress-bar"></span>
+                </span>
+                <span class="progress-right">
+                  <span class="progress-bar"></span>
+                </span>
+                <div class="progress-value">
+                  <div><%= (usercourse.course_tracker / usercourse.course.duration * 100).to_i %>%</div>
+                </div>
+              </div>
             </div>
-          </div>
         </div>
+
+        <span class='library-item-via'>via </span>
+        <span class="library-item-provider"><%= usercourse.course.provider %>  |  </span>
+        <span class="library-item-duration"><%= usercourse.course.duration %> hours to complete</span>
+
+        <p><%= usercourse.course.description.truncate(120)%></p>
+      <!-- progress graph -->
       </div>
     </div>
   <% end %>
+  </div>
 </div>
