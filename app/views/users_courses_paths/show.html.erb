@@ -10,7 +10,8 @@
 
       <div class="path-header-item-center">
         <i class="fas fa-pen fa-xs">
-          &#8197;<a href="#">Rename</a>
+          &#8197;
+          <%= link_to 'Rename', edit_user_path_path(@user, @path.first) %>
         </i>
       </div>
 
