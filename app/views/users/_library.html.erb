@@ -1,21 +1,25 @@
-<div class="tab-pane fade" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+<div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+  <br>
   <% @usercourses.each do |usercourse| %>
     <div class="card p-3 mb-3">
-      <div>
+      <div  class="library_card">
         <h5><%= usercourse.course.title %></h5>
         <p><%= usercourse.course.description%></p>
-      </div>
-      <!-- Progress Graph -->
-      <div>
-        <div class="progress" data-percentage="<%= (usercourse.course_tracker / usercourse.course.duration * 100).to_i %>">
-          <span class="progress-left">
-            <span class="progress-bar"></span>
-          </span>
-          <span class="progress-right">
-            <span class="progress-bar"></span>
-          </span>
-          <div class="progress-value">
-            <div><%= (usercourse.course_tracker / usercourse.course.duration * 100).to_i %>%</div>
+        <%= link_to user_user_course_path(@user, usercourse), method: "delete",class: 'trash' do %>
+          <i class="fas fa-trash-alt"></i>
+        <% end %>
+      <!-- progress graph -->
+        <div>
+          <div class="progress" data-percentage="<%= (usercourse.course_tracker / usercourse.course.duration * 100).to_i %>">
+            <span class="progress-left">
+              <span class="progress-bar"></span>
+            </span>
+            <span class="progress-right">
+              <span class="progress-bar"></span>
+            </span>
+            <div class="progress-value">
+              <div><%= (usercourse.course_tracker / usercourse.course.duration * 100).to_i %>%</div>
+            </div>
           </div>
         </div>
       </div>
