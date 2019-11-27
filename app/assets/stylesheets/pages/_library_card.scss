@@ -1,7 +1,27 @@
 .library_card .trash{
     visibility: hidden;
+    margin-left: 10px;
+    position: relative;
+    top: -3px;
 }
 .library_card:hover .trash {
   visibility: visible;
 }
-
+#library-cards {
+  .library-item-via {
+    color: $blue;
+  }
+  .library-item-provider {
+    color: $blue;
+  }
+  .library-item-duration {
+        color: $light-blue;
+  }
+}
+.progress {
+  margin-bottom: 0;
+}
+.card-content {
+  position: relative;
+  bottom: 0.5rem;
+}
