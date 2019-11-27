@@ -7,9 +7,9 @@ const formDescription = document.querySelector('#user_course_description')
 const formUrl = document.querySelector('#user_course_url')
 const form = document.querySelector('#manual-input')
 const courseFound = document.querySelector('#course-found')
+const hideForm = document.querySelector('#hide')
 
-
-
+if (buttonScraper != null) {
 buttonScraper.addEventListener('click', (event) => {
   event.preventDefault();
   // read input value cheeeeck!!
@@ -29,10 +29,14 @@ if (userUrl.value) {
       if(data.id != null) {
         courseFound.classList.remove('d-none')
       } else {
+
         formTitle.value = data.title;
         formDescription.value = data.description;
         formUrl.value = userUrl.value;
         form.style.display = 'block';
+        hideForm.innerHTML = '';
+        courseFound.innerHTML = ''
+
       }
 
     });
@@ -42,19 +46,5 @@ if (userUrl.value) {
 
 }
 
-
-//   params = {user_url:userUrl.value};
-
-// const data = {
-//   message: {
-//     body: "This is a message"}};
-//   // check if ther is an input value
-//   if (userUrl.value ) {
-//     console.log(userUrl.value);
-//     fetch(url);
-//   } else {
-//     return "NOT positive";
-//   }
-//   //if value call api with params
-
 });
+}

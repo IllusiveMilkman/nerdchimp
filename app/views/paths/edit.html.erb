@@ -1,0 +1,8 @@
+<div class="container">
+  <h1>Edit your path name</h1>
+  <br>
+    <%= simple_form_for [@user, @path] do |f| %>
+      <%= f.input :title, label: 'Please enter a new title for your path' %>
+      <%= f.submit "Edit path", class: "btn btn-primary" %>
+    <% end %>
+</div>
