@@ -33,9 +33,15 @@ class UsersController < ApplicationController
     # Find the user based on the current path
     user = User.find(Path.find(path_id).user_id)
 
-    # Create an array of the new posistions
+    # Create an array of the new posistions - based on course id
     new_path_array = id_string.split(",").map! { |e| e.to_i }
     puts "New order array: #{new_path_array}"
+
+    # Create an array of the new posistions - based on library id
+    new_path_array.map! { |course_no|
+      UserCourse.find_by(user_id: current_user, course_id: course_no).id
+    }
+    puts "Updated new order array (in Library id form): #{new_path_array}"
 
     # Get array from current path
     current_path_array = UsersCoursesPath.where(path_id: path_id).pluck(:user_course_id) # Will return an array of instances
