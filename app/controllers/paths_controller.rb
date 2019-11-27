@@ -1,6 +1,6 @@
 class PathsController < ApplicationController
   before_action :find_user
-  before_action :find_path, except: [:create, :new]
+  before_action :find_path, except: [:create, :new, :update]
 
   def index
     @path = Path.all
@@ -20,8 +20,20 @@ class PathsController < ApplicationController
   def show
   end
 
+  def edit
+    @user = User.friendly.find(params[:user_id])
+    @path = Path.find(params[:id])
+  end
+
   def update
-    @path.update
+    @path = Path.find(params[:id])
+    @path.update(path_param)
+
+    if @path.save
+      redirect_to user_path(@user)
+    else
+      render :edit
+    end
   end
 
   def destroy
