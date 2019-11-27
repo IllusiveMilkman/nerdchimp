@@ -6,10 +6,10 @@
   <div class="container d-flex">
     <ul class="nav nav-pills mb-3 flex-grow-1" id="pills-tab" role="tablist">
       <li class="nav-item">
-        <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Your Courses (<%= @usercourses.all.count %>)</a>
+        <a class="nav-link" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Your Courses (<%= @usercourses.all.count %>)</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Your Paths (<%= @paths.all.count %>)</a>
+        <a class="nav-link active" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Your Paths (<%= @paths.all.count %>)</a>
       </li>
     </ul>
     <div class="dropdown" id="add-course">
@@ -27,133 +27,9 @@
   <div class="container">
     <div class="tab-content" id="pills-tabContent">
       <!-- Library Tab -->
-      <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-
-
-        <!-- steph's dropdown button -->
-
-        <br>
-
-        <% @usercourses.each do |usercourse| %>
-        <div class="card p-3 mb-3">
-          <div>
-            <h5><%= usercourse.course.title %></h5>
-            <p><%= usercourse.course.description%></p>
-          </div>
-          <!-- progress graph -->
-          <div>
-            <div class="progress" data-percentage="<%= (usercourse.course_tracker / usercourse.course.duration * 100).to_i %>">
-              <span class="progress-left">
-                <span class="progress-bar"></span>
-              </span>
-              <span class="progress-right">
-                <span class="progress-bar"></span>
-              </span>
-              <div class="progress-value">
-                <div><%= (usercourse.course_tracker / usercourse.course.duration * 100).to_i %>%</div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <% end %>
-      </div>
+      <%= render 'library' %>
       <!-- Path Tab -->
-      <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-        <h3 class="mb-3">My Paths</h3>
-
-        <%= link_to 'new path', new_user_path_path(@user) %>
-        <div class="row">
-          <div class="col-4">
-            <div class="list-group " id="list-tab" role="tablist">
-
-              <% @paths.each_with_index do |path, i| %>
-              <% if i == 0 %>
-              <a class="list-group-item list-group-item-action active" id="list-<%= path.id %>-list" data-toggle="list" href="#list-<%= path.id %>" role="tab" aria-controls="<%= path.id %>"><%= path.title %> (<%= path.user_courses.count %> Courses)</a>
-              <% else %>
-              <a class="list-group-item list-group-item-action" id="list-<%= path.id %>-list" data-toggle="list" href="#list-<%= path.id %>" role="tab" aria-controls="<%= path.id %>"><%= path.title %> (<%= path.user_courses.count %> Courses)</a>
-              <% end %>
-
-
-              <% end %>
-            </div>
-          </div>
-          <div class="col-8">
-            <div class="tab-content" id="nav-tabContent">
-
-              <div class="path-header " style="border-radius: 5px;">
-                <div class="path-header-container pl-3 pr-3 mb-4 " style="padding">
-                  <div class="path-header-item">
-                    <h4 class="mb-0 p-3 path-title"><%= @paths.first.title %></h3>
-                  </div>
-
-<!--                   <div class="path-header-item-center">
-                    <i class="fas fa-pen fa-xs">
-                      &#8197;<a class="" href="#">Rename</a>
-                    </i>
-                  </div> -->
-
-                  <%= link_to 'Update path', user_users_courses_path_path(@user, @paths.first), class: "btn btn-primary path-header-item-button" %>
-                </div>
-              </div>
-
-
-              <% @paths.each do |path| %>
-
-              <!-- javascript (ugly code!) -->
-              <%= javascript_tag do %>
-
-              var section = document.querySelector(`#list-<%= path.id %>-list`)
-
-              section.addEventListener('click', function() {
-              var tag = document.querySelector('.path-title')
-              tag.innerHTML = `<%= path.title %>`
-
-              const button = document.querySelector('.path-header-item-button')
-              button.href = "/users/<%= params[:id] %>/users_courses_paths/<%= path.id %>"
-
-            });
-            <% end %>
-            <!-- javascript (End) -->
-
-            <div class="tab-pane fade show active" id="list-<%= path.id %>" role="tabpanel" aria-labelledby="list-<%= path.id %>-list">
-              <% unless path.users_courses_paths.first.nil? %>
-              <% path.users_courses_paths.decorate.each do |ucp| %>
-              <div class="card p-3 mb-3" id="completed-<%= ucp.user_course.id %>">
-                <div class="d-flex justify-content-between">
-                  <div class="p-3 flex-grow-1 border-right"> <!-- rest of card -->
-                    <ul class="list-unstyled">
-                      <li><a href="<%= ucp.c_item.url %>" target="_blank"><h5><%= ucp.c_item.title %></h5></a></li>
-                      <li>via <%= ucp.c_item.provider %></li>
-                    </ul>
-                    <div>
-                      <input type="range" class="custom-range" id="slider" min="0" max="<%= ucp.user_course.course.duration %>" step="1" value="<%= ucp.user_course.course_tracker %>" data-course="<%= ucp.c_item.id %>" data-user="<%= ucp.user_course.user_id %>">
-                    </div>
-                  </div>
-                  <div class="p-3"> <!-- circle -->
-                    <div>
-                      <div class="progress" id="graph-<%= ucp.user_course.id %>" data-percentage="<%= (ucp.c_progress / ucp.c_duration * 100).to_i %>">
-                        <span class="progress-left">
-                          <span class="progress-bar"></span>
-                        </span>
-                        <span class="progress-right">
-                          <span class="progress-bar"></span>
-                        </span>
-                        <div class="progress-value">
-                          <p><%= (ucp.c_progress / ucp.c_duration * 100).to_i %>%</p>
-                        </div>
-                      </div>
-                      <div id="progress-<%= ucp.user_course.id %>"><strong><%= (ucp.c_duration - ucp.c_progress).to_i %> hour(s) left</strong></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <% end %>
-              <% end %>
-            </div>
-            <% end %>
-          </div>
-        </div>
-      </div>
+      <%= render 'path' %>
     </div>
   </div>
 </div>

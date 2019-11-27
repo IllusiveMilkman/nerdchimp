@@ -1,0 +1,55 @@
+<% @paths.each_with_index do |path, i| %>
+  <%= javascript_tag do %>
+    var section = document.querySelector(`#list-<%= path.id %>-list`)
+
+    section.addEventListener('click', function() {
+    var tag = document.querySelector('.path-title')
+    tag.innerHTML = `<%= path.title %>`
+
+    const button = document.querySelector('.path-header-item-button')
+    button.href = "/users/<%= params[:id] %>/users_courses_paths/<%= path.id %>"
+
+    });
+  <% end %>
+  <% if i == 0 %>
+    <div class="tab-pane fade show active" id="list-<%= path.id %>" role="tabpanel" aria-labelledby="list-<%= path.id %>-list">
+  <% else %>
+    <div class="tab-pane fade show" id="list-<%= path.id %>" role="tabpanel" aria-labelledby="list-<%= path.id %>-list">
+  <% end %>
+    <% unless path.users_courses_paths.empty? %>
+      <% path.users_courses_paths.decorate.each do |ucp| %>
+
+        <div class="card p-3 mb-3" id="completed-<%= ucp.user_course.id %>">
+          <div class="d-flex justify-content-between">
+            <div class="p-3 flex-grow-1 border-right"> <!-- rest of card -->
+              <ul class="list-unstyled">
+                <li><a href="<%= ucp.c_item.url %>" target="_blank"><h5><%= ucp.c_item.title %></h5></a></li>
+                <li>via <%= ucp.c_item.provider %></li>
+                <li><%= ucp.path_id %></li>
+              </ul>
+              <div>
+                <input type="range" class="custom-range" id="slider" min="0" max="<%= ucp.user_course.course.duration %>" step="1" value="<%= ucp.user_course.course_tracker %>" data-course="<%= ucp.c_item.id %>" data-user="<%= ucp.user_course.user_id %>">
+              </div>
+            </div>
+            <div class="p-3"> <!-- circle -->
+              <div>
+                <div class="progress" id="graph-<%= ucp.user_course.id %>" data-percentage="<%= (ucp.c_progress / ucp.c_duration * 100).to_i %>">
+                  <span class="progress-left">
+                    <span class="progress-bar"></span>
+                  </span>
+                  <span class="progress-right">
+                    <span class="progress-bar"></span>
+                  </span>
+                  <div class="progress-value">
+                    <p><%= (ucp.c_progress / ucp.c_duration * 100).to_i %>%</p>
+                  </div>
+                </div>
+                <div id="progress-<%= ucp.user_course.id %>"><strong><%= (ucp.c_duration - ucp.c_progress).to_i %> hour(s) left</strong></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>
