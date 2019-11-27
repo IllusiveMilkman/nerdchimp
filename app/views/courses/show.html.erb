@@ -3,14 +3,14 @@
 <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0),rgba(0,0,0,0), #F9D233">
   <div class="container" style="display: flex; justify-content: space-between; padding-top: 40px;">
     <div>
-    <h1><%=@course.title%></h1>
-  <div class="card-item-provider"><h4>via <%= @course.provider %>  |
-    <span class="card-item-duration"><%= @course.duration %> hours to complete</span></h4>
-  </div>
+      <h1><%=@course.title%></h1>
+      <div class="card-item-provider"><h4>via <%= @course.provider %>  |
+        <span class="card-item-duration"><%= @course.duration %> hours to complete</span></h4>
+      </div>
     </div>
-     <div>
-    <h5><%= button_to "+ Add to library", add_course_path(course_id: @course), remote: true, class: "btn btn-primary", style: 'font-size: 1.1rem; font-family: Circular; margin-top: 10px;' %></h5>
-</div>
+    <div>
+      <h5><%= button_to "+ Add to library", add_course_path(course_id: @course), remote: true, class: "btn btn-primary", style: 'font-size: 1.1rem; font-family: Circular; margin-top: 10px;' %></h5>
+    </div>
   </div>
 </div>
 
