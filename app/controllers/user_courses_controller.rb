@@ -47,6 +47,7 @@ class UserCoursesController < ApplicationController
   end
 
   def destroy
+    @usercourse = UserCourse.find(params[:id])
     if @usercourse.destroy
       redirect_to user_path(current_user)
     end
@@ -55,7 +56,7 @@ class UserCoursesController < ApplicationController
   private
 
   def set_usercourse
-    @usercourse = UserCourse.find(params[:id])
+    @usercourse = UserCourse.find_by(user_id: current_user, course_id: params[:id])
   end
 
   def usercourse_params
