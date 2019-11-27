@@ -49,12 +49,31 @@ class UsersController < ApplicationController
 
     unless new_courses_to_add.empty?
       new_courses_to_add.each do |course|
+        puts "course to add: #{course}"
         new_course = UsersCoursesPath.new
-        new_course.user_course_id = course
+        new_course.user_course = UserCourse.find_by(user_id: current_user, course_id: course)
         new_course.path_id = path_id
-        new_course.save
+
+        # for debugging only
+        puts "new course object: #{new_course}"
+        puts "User: #{current_user}"
+        puts "user_course_id: #{new_course.user_course_id}"
+        puts "path_id: #{new_course.path_id}"
+        puts "created_at: #{new_course.created_at}"
+        puts "updated_at: #{new_course.updated_at}"
+        puts "position: #{new_course.position}"
+
+        if new_course.save
+          puts "Course #{course} saved"
+        else
+          p "Errors: #{new_course.errors.messages}"
+        end
       end
     end
+
+    # for debugging only:
+    updated_current_path_array = UsersCoursesPath.where(path_id: path_id).pluck(:user_course_id) # Will return an array of instances
+    puts "After SAVING - the courses in database are: #{updated_current_path_array}"
 
     # Now check if there are deleted items
     deleted_items_array = current_path_array - new_path_array;
@@ -62,20 +81,21 @@ class UsersController < ApplicationController
 
     unless deleted_items_array.empty?
       deleted_items_array.each do |course|
-        console.log("course to delete: #{course}")
-        console.log("courses are deleted under the UsersCoursesPathsController\#destory method")
+        puts "course to delete: #{course}"
+        puts "courses are deleted under the UsersCoursesPathsController\#destory method"
       end
     end
 
     # for debugging only:
     updated_current_path_array = UsersCoursesPath.where(path_id: path_id).pluck(:user_course_id) # Will return an array of instances
-    puts "Now the courses in database are: #{updated_current_path_array}"
+    puts "After DELETING - the courses in database are: #{updated_current_path_array}"
 
     # Since all the items are now present, we can compare positions.
     # If there's no change to the other item positions, move on, else update position.
     new_path_array.each_with_index { |course, index|
       puts "#{course} => #{index}"
-      update_position(path_id, course, index)
+      user_course_id = UserCourse.find_by(user_id: current_user, course_id: course).id
+      update_position(path_id, user_course_id, index)
     }
   end
 
@@ -90,9 +110,10 @@ class UsersController < ApplicationController
   end
 
   def update_position(path_id, course, position)
-    # puts "path_id: #{path_id}"
-    # puts "course: #{course}"
-    # puts "position: #{position}"
+    puts "Update position method =========="
+    puts "path_id: #{path_id}"
+    puts "course: #{course}"
+    puts "position: #{position}"
     path_item = UsersCoursesPath.find_by(path_id: path_id, user_course_id: course)
     path_item.position = position
     path_item.save
