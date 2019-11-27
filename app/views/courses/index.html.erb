@@ -6,7 +6,7 @@
   <%= image_tag("yellow-banner.svg") %>
   </div>
   <div class="banner-container">
-    <h1>Start learning new things.</h1>
+    <h1 class="text-primary">Start learning new things.</h1>
   </div>
 </div>
 
@@ -36,7 +36,7 @@
   <div class="scrolling-box">
     <div class="cards">
       <% @courses.each do |course| %>
-      <div class="card-category">
+      <div class="card-category p-3" style="border-radius: 6px;">
         <div class="card-items">
           <div>
             <h4><%= link_to course.title.truncate(50, separator: ' '), course_path(course) %></h4>
@@ -46,7 +46,7 @@
             </div>
           <% if user_signed_in? %>
           <div class="catalog-button">
-            <h5><%= button_to "+ Add to library", add_course_path(course_id: course), remote: true, class: "btn btn-primary", style: 'font-size: 1.1rem; font-family: Circular;' %></h5>
+            <h5><%= button_to "+ Add to library", add_course_path(course_id: course), remote: true, class: "btn btn-primary", style: 'font-size: 1.1rem; font-family: Circular; margin-left: 5px;' %></h5>
           </div>
           <% end %>
         </div>
