@@ -151,7 +151,7 @@ function addDeleteButtonToCourse(event) {
   let list_item = document.querySelector(`ul[data-pathid="${path_id}"]>li[data-courseid="${course_id}"]`);
 
   // Insert the delete link into the card
-  let delete_link = `<span> | </span><a confirm="Are you sure?" class="path-course" data-remote="true" rel="nofollow" data-method="delete" href="/users/${user_id}/users_courses_paths/${path_id}?course_id=${course_id}"><i class="fas fa-trash-alt"></i></a>`;
+  let delete_link = `<a confirm="Are you sure?" class="path-course" data-remote="true" rel="nofollow" data-method="delete" href="/users/${user_id}/users_courses_paths/${path_id}?course_id=${course_id}"><i class="fas fa-trash-alt"></i></a>`;
   list_item.innerHTML += delete_link;
 }
 

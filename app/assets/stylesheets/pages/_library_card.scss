@@ -1,0 +1,6 @@
+.library_card .trash{
+    visibility: hidden;
+}
+.library_card:hover .trash {
+  visibility: visible;
+}

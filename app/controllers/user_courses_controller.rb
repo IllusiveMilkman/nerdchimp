@@ -47,7 +47,7 @@ class UserCoursesController < ApplicationController
   end
 
   def destroy
-    if usercourse.destroy
+    if @usercourse.destroy
       redirect_to user_path(current_user)
     end
   end

@@ -2,7 +2,7 @@
   <div class="text-center">
     <h2 >Add a new course to your library</h2>
   </div>
-
+  <div id="hide">
   <span id="warning-message"></span>
   <form action="">
     <div class="form-group">
@@ -13,6 +13,7 @@
       </span>
     </div>
   </form>
+  </div>
 
   <div id="course-found" class="d-none">
     Course was added to your library
@@ -26,9 +27,9 @@
     <%= f.input :provider %>
     <%= f.input :duration %>
     <%= f.input :category %>
-    <div class="d-flex align-item-center">
-    <%= f.submit "Submit", class: 'btn-primary', id: 'course-form-btn' %>
-    <p class="align-center">to add this course to your library</p>
+    <div class="d-flex align-items-center">
+      <%= f.submit "Submit", class: 'btn-primary', id: 'course-form-btn' %>
+      <p class="mb-0 ml-2">to add this course to your library</p>
     </div>
     <% end %>
   </div>

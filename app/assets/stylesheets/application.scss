@@ -12,6 +12,8 @@
 @import "components/index";
 @import "pages/index";
 @import "pages/profile";
+@import "pages/profile_edit";
+@import 'pages/library_card';
 
 
 body {
@@ -27,7 +29,7 @@ h1, h2, h3, h4, h5, h6,
 }
 
 #page-container {
-  position: relative;
-  min-height: 90vh;
+
+  min-height: calc(100vh - 200px);
 }
 
