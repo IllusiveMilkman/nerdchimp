@@ -28,17 +28,32 @@
   width: 100%;
   padding-bottom: 10px;
 }
+
 .toggle {
   background-color: $light-gray;
   #pills-tab {
     margin-top: 1.5rem;
     margin-bottom: 1.5rem;
   }
+
   #add-course {
     margin-top: 1.5rem;
     margin-bottom: 1.5rem;
   }
 }
+
 .toggle-content {
   background-color: $lighter-gray;
+}
+
+.add-path {
+  // padding-left: 1rem;
+  // margin-top: 1.5rem;
+  // margin-bottom: 1.5rem;
+  margin-right: 20px;
+  margin-top: 26px;
+
+  .btn-secondary {
+    // padding: 8px 16px;
+  }
 }

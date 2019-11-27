@@ -1,6 +1,10 @@
 <div class="tab-pane fade show active" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-  <h3 class="mb-3">My Paths</h3>
-  <%= link_to 'new path', new_user_path_path(@user) %>
+  <div class="container col-4 ml-0 p-0" style="display: flex; padding-right: 15px; justify-content: space-between;">
+    <h3 class="mb-3 pt-4">My Paths</h3>
+    <div class="add-path">
+      <%= link_to 'new path', new_user_path_path(@user), class: "btn btn-secondary btn-sm" %>
+    </div>
+  </div>
   <div class="row">
     <div class="col-4">
       <!-- Left courses pane -->
