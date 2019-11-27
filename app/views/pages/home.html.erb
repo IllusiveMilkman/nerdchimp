@@ -10,50 +10,56 @@
     <%= image_tag("8.svg", id: "c-8") %>
     <%= image_tag("9.svg", id: "c-9") %>
   </div>
-  <div class="text-center">
-    <p id="title">Learn smarter</p>
-  </div>
+</div>
+<div class="text-center">
+  <p id="title">Learn smarter</p>
 </div>
 <div class="text-center">
   <p id="subtitle">Track all your courses in one place</p>
   <%= link_to "Search for courses", courses_path, class: "btn btn-flat btn-wide" %>
 </div>
 <div class="text-center" style="padding: 70px"><%= image_tag("arrow.svg") %></div>
+
 <div class="container text-center">
   <h2>How it works</h2>
   <div class="d-flex justify-content-between pic-section">
-    <div class="text-center">
+
+    <div class="text-center" style="width: 28%">
       <%= image_tag("pic-1.svg") %>
-      <div class="text-center pt-3">
+      <div>
         <h4>Add to your library</h4>
-        <p class="text-wrap">You can search for whatever you want in nerdchimp library or by adding directly your course link.</p>
+        <p class="text-wrap">Add any course, whether online or offline, to your library.  You can even browse our catalog for course suggestions.</p>
       </div>
     </div>
-    <div class="text-center">
+
+    <div class="text-center" style="width: 28%">
       <%= image_tag("pic-2.svg") %>
-      <div class="text-center pt-3">
+      <div>
         <h4>Create your path</h4>
-        <p class="text-wrap">You can search for whatever you want in nerdchimp library or by adding directly your course link.</p>
+        <p class="text-wrap">Create a study path, by dragging courses from your library into your path.</p>
       </div>
     </div>
-    <div class="text-center">
+
+    <div class="text-center" style="width: 28%">
       <%= image_tag("pic-3.svg") %>
-      <div class="text-center pt-3">
+      <div>
         <h4>Track your progress</h4>
-        <p class="text-wrap">You can search for whatever you want in nerdchimp library or by adding directly your course link.</p>
+        <p class="text-wrap">Track your course progress.</p>
       </div>
     </div>
+
+  </div>
 </div>
+
+<div class="text-center" style="padding: 70px"></div>
+<div class="container text-center">
+  <h2 class="pb-3">Trusted by online learning platforms</h2>
+  <div class="d-flex justify-content-between pt-3">
+  <%= image_tag("udemy.svg") %>
+  <%= image_tag("coursera.svg") %>
+  <%= image_tag("edx.svg") %>
+  <%= image_tag("udacity.svg") %>
+  <%= image_tag("lynda.svg") %>
+  </div>
+  <div class="text-center" style="padding: 70px"></div>
 </div>
-    <div class="text-center" style="padding: 70px"></div>
-    <div class="container text-center">
-      <h2 class="pb-3">Trusted by online learning platforms</h2>
-      <div class="d-flex justify-content-between pt-3">
-      <%= image_tag("udemy.svg") %>
-      <%= image_tag("coursera.svg") %>
-      <%= image_tag("edx.svg") %>
-      <%= image_tag("udacity.svg") %>
-      <%= image_tag("lynda.svg") %>
-      </div>
-      <div class="text-center" style="padding: 70px"></div>
-    </div>
