@@ -1,6 +1,7 @@
 .path-header {
   background-color: $blue;
   color: white;
+  border-radius: 5px 5px 0px 0px;
 
   .path-header-container {
     display: flex;
@@ -11,8 +12,11 @@
 
   }
 
-  .path-header-item-left {
-
+  .path-header-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
   }
 
   .path-header-item-center {
@@ -85,5 +89,13 @@
   ul {
     width: 520px;
   }
+}
+
+
+.progress-header {
+  background-color: $orange;
+  color: $black;
+  border-radius: 0px 0px 5px 5px;
+  margin-bottom: 10px;
 }
 
