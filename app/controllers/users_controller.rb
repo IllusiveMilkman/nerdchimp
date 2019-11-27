@@ -57,19 +57,19 @@ class UsersController < ApplicationController
       new_courses_to_add.each do |course|
         puts "course to add: #{course}"
         new_course = UsersCoursesPath.new
-        new_course.user_course = UserCourse.find_by(user_id: current_user, course_id: course)
+        new_course.user_course = UserCourse.find(course)
         new_course.path_id = path_id
+
+        # byebug
 
         # for debugging only
         puts "new course object: #{new_course}"
         puts "User: #{current_user}"
-        puts "user_course_id: #{new_course.user_course_id}"
+        puts "user_course: #{new_course.user_course}"
         puts "path_id: #{new_course.path_id}"
-        puts "created_at: #{new_course.created_at}"
-        puts "updated_at: #{new_course.updated_at}"
         puts "position: #{new_course.position}"
 
-        if new_course.save
+        if new_course.save!
           puts "Course #{course} saved"
         else
           p "Errors: #{new_course.errors.messages}"
@@ -100,7 +100,7 @@ class UsersController < ApplicationController
     # If there's no change to the other item positions, move on, else update position.
     new_path_array.each_with_index { |course, index|
       puts "#{course} => #{index}"
-      user_course_id = UserCourse.find_by(user_id: current_user, course_id: course).id
+      user_course_id = UserCourse.find(course).id
       update_position(path_id, user_course_id, index)
     }
   end
