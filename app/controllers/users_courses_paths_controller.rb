@@ -34,10 +34,17 @@ class UsersCoursesPathsController < ApplicationController
     p params
     path_id = params[:id]
     puts "path_id: #{path_id}"
+
+    user_id = User.find(Path.find(path_id).user_id).id
+    puts "user_id: #{user_id}"
+
     course_id = params[:course_id]
     puts "course_id: #{course_id}"
 
-    path_course_to_delete = UsersCoursesPath.find_by(path_id: params[:id], user_course_id: params[:course_id])
+    user_course_id = UserCourse.find_by(user_id: user_id, course_id: course_id).id
+    puts "users_courses_path_id = #{user_course_id}"
+
+    path_course_to_delete = UsersCoursesPath.find_by(path_id: path_id, user_course_id: user_course_id)
     path_course_to_delete.destroy
   end
 end
