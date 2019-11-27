@@ -39,11 +39,11 @@ picker.forEach(i => {
             num += 1
             coursebananas.innerText = `${num} 🍌`
 
-            const cards = document.querySelectorAll(`#completed-${data.id}`)
-            cards.forEach(card => {
-                card.style.border = "2px solid #51eba0"
+            // const cards = document.querySelectorAll(`#completed-${data.id}`)
+            // cards.forEach(card => {
+            //     card.style.border = "2px solid #51eba0"
 
-            })
+            // })
           }
       })
     }, error => {
