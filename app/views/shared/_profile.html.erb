@@ -24,7 +24,7 @@
     <div>
       <div class="d-flex">
         <%= image_tag('path.svg')  %>
-        <h5>3 Paths (10 Courses) </h5>
+        <h5><%= @user.courses.count %> total Courses </h5>
       </div>
       <div class="d-flex">
         <%= image_tag('active.svg')  %>
