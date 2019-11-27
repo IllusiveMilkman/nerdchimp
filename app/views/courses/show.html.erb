@@ -9,13 +9,15 @@
       </div>
     </div>
     <div>
-      <h5><%= button_to "+ Add to library", add_course_path(course_id: @course), remote: true, class: "btn btn-primary", style: 'font-size: 1.1rem; font-family: Circular; margin-top: 10px;' %></h5>
+      <% if user_signed_in? %>
+        <h5><%= button_to "+ Add to library", add_course_path(course_id: @course), remote: true, class: "btn btn-primary", style: 'font-size: 1.1rem; font-family: Circular; margin-top: 10px;' %></h5>
+      <% end %>
     </div>
   </div>
 </div>
 
 <div class="container" style="margin-top: 30px;">
-  <div class="card-item-description"><h5><%= @course.description%></h5></div>
+  <div class="card-item-description"><p><%= @course.description%></p></div>
 </div>
 
 <!-- First version of show page -->
