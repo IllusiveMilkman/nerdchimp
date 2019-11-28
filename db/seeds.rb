@@ -17,7 +17,7 @@ puts 'Cleaning database...'
 #     attr2: ''
 #   }
 # ]
-# Model.create!(models_array)
+# Model.create!(models_array) #bla
 # puts 'Finished creating Model'
 # ============================================================
 
