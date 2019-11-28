@@ -52,7 +52,7 @@
       var cp = document.querySelector('#circle_progress')
       td.innerHTML = `<%= path.total_duration %>  Hours in total`
       tt.innerHTML = `<%= path.total_tracker.to_i %> Hours is completed`
-      tp.innerHTML = `<%= path.progress %> %`
+      tp.innerHTML = `<%= path.progress %>%`
       cp.setAttribute('data-percentage','<%= path.progress %>')
       console.log(tag)
       tag.innerHTML = `<%= path.title %>`

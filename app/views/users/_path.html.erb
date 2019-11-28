@@ -2,7 +2,9 @@
   <div class="container col-4 ml-0 p-0" style="display: flex; padding-right: 15px; justify-content: space-between;">
     <h5 class="mb-3 pt-4">My Paths</h5>
     <div class="add-path">
-      <%= link_to 'New Path', new_user_path_path(@user), class: "btn btn-secondary btn-sm" %>
+      <button type="button" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#exampleModalCenter">
+        New Path
+      </button>
     </div>
   </div>
   <div class="row">
@@ -22,44 +24,69 @@
       <div class="tab-content" id="nav-tabContent">
         <!-- Path Header bar -->
         <% unless @paths.empty? %>
-          <div>
-            <div class="path-header">
-              <div class="path-header-container px-3 d-flex">
-                  <h4 class="mb-0 p-3 flex-grow-1 path-title"><%= @paths.first.title %></h4>
-                  <%= link_to 'Edit path', user_users_courses_path_path(@user, @paths.first), class: "btn btn-secondary path-header-item-button" %>
-              </div>
+        <div>
+          <div class="path-header">
+            <div class="path-header-container px-3 d-flex">
+              <h4 class="mb-0 p-3 flex-grow-1 path-title"><%= @paths.first.title %></h4>
+              <%= link_to 'Edit path', user_users_courses_path_path(@user, @paths.first), class: "btn btn-secondary path-header-item-button" %>
             </div>
+          </div>
 
-            <div class="progress-header d-flex justify-content-between align-items-center">
-              <div class="pl-3">
-                <h5 id="total_tracker" class="text-primary" style="margin-bottom: 0"><%= @paths.first.total_tracker.to_i %> Hours is completed</h5>
-                <p id="total_duration"><%= @paths.first.total_duration %> Hours in total</p>
-              </div>
-              <div style="transform: scale(1.2);">
-                <div class="pr-3">
-                  <div class="progress mb-0" id="circle_progress" data-percentage="<%= @paths.first.progress %>">
-                    <span class="progress-left">
-                      <span class="progress-bar"></span>
-                    </span>
-                    <span class="progress-right">
-                      <span class="progress-bar"></span>
-                    </span>
-                    <div class="progress-value">
-                      <div id="total_progress"><%= "#{@paths.first.progress}%" %></div>
-                    </div>
+          <div class="progress-header d-flex justify-content-between align-items-center">
+            <div class="pl-3">
+              <h5 id="total_tracker" class="text-primary" style="margin-bottom: 0"><%= @paths.first.total_tracker.to_i %> Hours is completed</h5>
+              <p id="total_duration"><%= @paths.first.total_duration %> Hours in total</p>
+            </div>
+            <div style="transform: scale(1.2);">
+              <div class="pr-3">
+                <div class="progress mb-0" id="circle_progress" data-percentage="<%= @paths.first.progress %>">
+                  <span class="progress-left">
+                    <span class="progress-bar"></span>
+                  </span>
+                  <span class="progress-right">
+                    <span class="progress-bar"></span>
+                  </span>
+                  <div class="progress-value">
+                    <div id="total_progress"><%= "#{@paths.first.progress}%"%></div>
                   </div>
                 </div>
               </div>
             </div>
+          </div>
 
-          </div>
-        <% else %>
-          <h4 class="mb-0 p-3 path-title">No Paths Available</h4>
-        <% end %>
-              <!-- Path Header ends -->
-              <%= render 'path_body' %>
-            </div>
-          </div>
         </div>
+        <% else %>
+        <h4 class="mb-0 p-3 text-center path-title text-secondary">No Paths Available</h4>
+        <% end %>
+        <!-- Path Header ends -->
+        <%= render 'path_body' %>
       </div>
+    </div>
+  </div>
+</div>
+
+<!-- New Path Modal -->
+
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Add New Path</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= simple_form_for [@user, @path] do |f| %>
+        <%= f.input :title, label: false, placeholder: "Type your path's title" %>
+      </div>
+      <div class="modal-footer">
+        <%= f.submit "Create Path", class: "btn btn-primary" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 
