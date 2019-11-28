@@ -9,6 +9,7 @@ class Course < ApplicationRecord
   validates :category, presence: true
   validates :duration, presence: true
 
+  has_many :user_courses
   has_many :users, through: :user_courses
 
   pg_search_scope :global_search,

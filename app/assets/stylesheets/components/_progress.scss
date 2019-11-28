@@ -139,3 +139,21 @@ Due to the split circle of progress-left and progress right, we must use the ani
 .progress {
     margin-bottom: 1em;
   }
+
+  .progress-header {
+    .progress:after {
+      border: $borderWidth solid white;
+    }
+    .progress-bar {
+      border-color: $blue;
+    }
+    .progress-value {
+      color: $blue;
+      font-family: Circular-Bold;
+    }
+  }
+
+#total_duration {
+  margin-bottom: 0;
+  color: $blue;
+}

@@ -39,15 +39,15 @@ class UserCoursesController < ApplicationController
   end
 
   def update
+    path = Path.find(params[:path_id])
     if @usercourse.update(usercourse_params)
-      render json: @usercourse.as_json(include: :course), status: :ok
+      render json: @usercourse.as_json(include: :course).merge(progress: path.progress, total_tracker: path.total_tracker, total_duration: path.total_duration), status: :ok
     else
       render json: @usercourse.errors, status: :unprocessable_entity
     end
   end
 
   def destroy
-    @usercourse = UserCourse.find(params[:id])
     if @usercourse.destroy
       redirect_to user_path(current_user)
     end
@@ -56,7 +56,8 @@ class UserCoursesController < ApplicationController
   private
 
   def set_usercourse
-    @usercourse = UserCourse.find_by(user_id: current_user, course_id: params[:id])
+    # @usercourse = UserCourse.find_by(user_id: current_user, course_id: params[:id])
+    @usercourse = UserCourse.find_by(id: params[:id])
   end
 
   def usercourse_params
