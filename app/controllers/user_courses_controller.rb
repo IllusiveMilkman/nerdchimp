@@ -14,6 +14,7 @@ class UserCoursesController < ApplicationController
   end
 
   def create
+
     p = params[:user_course]
     course = Course.new(title: p[:title], url: p[:url], description: p[:description], duration: p[:duration], provider: p[:provider], category: p[:category])
     course.save
@@ -21,7 +22,12 @@ class UserCoursesController < ApplicationController
     authorize usercourse
     if usercourse.save
       redirect_to user_path(current_user)
+    else
+      raise
+      render :new
     end
+
+
   end
 
   # method to add existing course from catalog to user library
