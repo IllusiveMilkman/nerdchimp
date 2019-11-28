@@ -44,7 +44,7 @@ users_array = [
   last_name: 'Jones',
   email: 'sam@nerdchimp.io',
   password: '123123',
-  remote_photo_url: "https://res.cloudinary.com/drdm61dhy/image/upload/v1574940965/nerdchimp/Passport_Photo_izzotn.jpg"
+  remote_photo_url: "https://res.cloudinary.com/drdm61dhy/image/upload/v1574949255/nerdchimp/Profile_Picture_h562wp.jpg"
   },
   {
   first_name: 'James',
