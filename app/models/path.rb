@@ -1,6 +1,6 @@
 class Path < ApplicationRecord
   belongs_to :user
-  has_many :users_courses_paths
+  has_many :users_courses_paths, dependent: :destroy
   has_many :user_courses, through: :users_courses_paths, class_name: 'UserCourse'
   has_many :courses, through: :user_courses
   validates :title, length: { minimum: 1 }

@@ -1,12 +1,14 @@
 .library_card .trash{
-    visibility: hidden;
-    margin-left: 10px;
-    position: relative;
-    top: -3px;
+    // visibility: hidden;
+    // margin-left: 10px;
+    // position: relative;
+    color: $medium-gray;
 }
+
 .library_card:hover .trash {
-  visibility: visible;
+  // visibility: visible;
 }
+
 #library-cards {
   .library-item-via {
     color: $blue;

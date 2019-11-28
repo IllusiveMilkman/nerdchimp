@@ -15,3 +15,12 @@ padding: 3px 10px;
 #user_photo {
   display: none;
 }
+
+.dropdown-menu {
+  padding-top: 10px !important;
+}
+
+.dropdown-item {
+  color: $blue;
+  padding-left: 4px !important;
+}
