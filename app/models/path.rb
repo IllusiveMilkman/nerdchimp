@@ -14,6 +14,6 @@ class Path < ApplicationRecord
   end
 
   def progress
-    ((total_tracker / total_duration) * 100).to_i
+    total_duration.zero? && total_tracker.zero? ? 0 : ((total_tracker / total_duration) * 100).to_i
   end
 end
