@@ -6,9 +6,7 @@
       <div  class="library_card">
         <div class="d-flex align-items-center">
          <a href="<%= usercourse.course.url %>" target="_blank"><h5><%= usercourse.course.title %></h5></a>
-          <%= link_to user_user_course_path(@user, usercourse), method: "delete",class: 'trash flex-grow-1' do %>
-            <i class="fas fa-trash-alt "></i>
-          <% end %>
+         <span class="flex-grow-1"> </span>
             <div>
               <div class="progress" data-percentage="<%= (usercourse.course_tracker / usercourse.course.duration * 100).to_i %>">
                 <span class="progress-left">
@@ -25,9 +23,15 @@
         </div>
         <div class="card-content">
             <div class="mb-2">
-              <span class='library-item-via' ">via </span>
+              <span class='library-item-via'>via </span>
               <span class="library-item-provider"><%= usercourse.course.provider %>  |  </span>
               <span class="library-item-duration "><%= usercourse.course.duration %> hours to complete</span>
+              <span> | </span>
+              <span>
+                <%= link_to user_user_course_path(@user, usercourse), method: "delete",class: 'trash' do %>
+                  <i class="fas fa-trash-alt "></i>
+                <% end %>
+              </span>
             </div>
 
           <p><%= usercourse.course.description.truncate(180)%></p>
