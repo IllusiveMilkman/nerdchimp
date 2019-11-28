@@ -1,6 +1,4 @@
-<!-- Second version of show page -->
-
-<div class="banner">
+<div class="banner-show-course" >
   <div class="container" style="display: flex; justify-content: space-between; padding-top: 40px;">
     <div>
       <h1><%=@course.title%></h1>
@@ -10,7 +8,7 @@
     </div>
     <div>
       <% if user_signed_in? %>
-        <h5><%= button_to "+ Add to library", add_course_path(course_id: @course), remote: true, class: "btn btn-primary", style: 'font-size: 1.1rem; font-family: Circular; margin-top: 10px;' %></h5>
+        <%= button_to "+ Add to library", add_course_path(course_id: @course), remote: true, class: "btn btn-primary ml-4", style: 'font-size: 1.1rem; font-family: Circular; margin-top: 10px;' %>
       <% end %>
     </div>
   </div>

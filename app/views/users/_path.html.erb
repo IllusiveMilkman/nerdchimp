@@ -12,11 +12,11 @@
       <!-- Left courses pane -->
       <div class="list-group " id="list-tab" role="tablist">
         <% @paths.each_with_index do |path, i| %>
-        <% if i == 0 %>
-        <a class="list-group-item list-group-item-action active" id="list-<%= path.id %>-list" data-toggle="list" href="#list-<%= path.id %>" role="tab" aria-controls="<%= path.id %>"><%= path.title %> (<%= path.user_courses.count %> Courses)</a>
-        <% else %>
-        <a class="list-group-item list-group-item-action" id="list-<%= path.id %>-list" data-toggle="list" href="#list-<%= path.id %>" role="tab" aria-controls="<%= path.id %>"><%= path.title %> (<%= path.user_courses.count %> Courses)</a>
-        <% end %>
+          <% if i == 0 %>
+            <a class="list-group-item list-group-item-action active" id="list-<%= path.id %>-list" data-toggle="list" href="#list-<%= path.id %>" role="tab" aria-controls="<%= path.id %>"><%= path.title %> (<%= path.user_courses.count %> Courses)</a>
+          <% else %>
+            <a class="list-group-item list-group-item-action" id="list-<%= path.id %>-list" data-toggle="list" href="#list-<%= path.id %>" role="tab" aria-controls="<%= path.id %>"><%= path.title %> (<%= path.user_courses.count %> Courses)</a>
+          <% end %>
         <% end %>
       </div>
     </div>
@@ -24,11 +24,12 @@
       <div class="tab-content" id="nav-tabContent">
         <!-- Path Header bar -->
         <% unless @paths.empty? %>
-        <div>
-          <div class="path-header">
-            <div class="path-header-container px-3 d-flex">
-              <h4 class="mb-0 p-3 flex-grow-1 path-title"><%= @paths.first.title %></h4>
-              <%= link_to 'Edit path', user_users_courses_path_path(@user, @paths.first), class: "btn btn-secondary path-header-item-button" %>
+          <div>
+            <div class="path-header">
+              <div class="path-header-container px-3 d-flex">
+                  <h4 class="mb-0 p-3 flex-grow-1 path-title"><%= @paths.first.title %></h4>
+                  <%= link_to 'Edit path', user_users_courses_path_path(@user, @paths.first), class: "btn btn-secondary path-header-item-button" %>
+              </div>
             </div>
           </div>
 
