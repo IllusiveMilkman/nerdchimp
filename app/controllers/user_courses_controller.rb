@@ -56,6 +56,7 @@ class UserCoursesController < ApplicationController
   private
 
   def set_usercourse
+    # @usercourse = UserCourse.find_by(user_id: current_user, course_id: params[:id])
     @usercourse = UserCourse.find_by(id: params[:id])
   end
 

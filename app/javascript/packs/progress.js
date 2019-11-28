@@ -28,7 +28,7 @@ picker.forEach(i => {
 
           td.innerHTML = `${data.total_duration} Hours in total`
           tt.innerHTML = `${parseInt(data.total_tracker)} Hours is completed`
-          tp.innerHTML = `${data.progress} %`
+          tp.innerHTML = `${data.progress}%`
           cp.setAttribute('data-percentage',`${data.progress}`)
 
 
