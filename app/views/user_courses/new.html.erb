@@ -21,14 +21,40 @@
 
   <div id="manual-input" style='display: none;'>
     <%= simple_form_for [current_user, @usercourse] do |f| %>
-    <%= f.input :url %>
-    <%= f.input :title%>
-    <%= f.input :description, class: ' w-70' %>
-    <%= f.input :provider %>
-    <%= f.input :duration %>
-    <%= f.input :category %>
-    <div class="d-flex align-items-center">
-      <%= f.submit "Submit", class: 'btn-primary', id: 'course-form-btn' %>
+    <%= f.error_notification %>
+    <%= f.input :url, required: true %>
+    <%= f.input :title, required: true%>
+    <%= f.input :description, required: true, class: ' w-70' %>
+    <%= f.input :provider, required: true %>
+    <%= f.input :duration, required: true, input_html: { type: 'number' }, label: 'Description in hours' %>
+    <%= f.input :category, required: true %>
+    <script>
+      const form = document.querySelectorAll("#manual-input input")
+      form.forEach((input)=> { input.addEventListener('keyup',(event)=> {
+
+        var completed = true
+      var submit = document.querySelector('#course-form-btn')
+        form.forEach((input)=> {
+          console.log(input.value)
+          if (!input.value ){
+            completed = false
+          }
+        })
+        if (completed) {
+
+          submit.removeAttribute('disabled')
+      } else{
+        console.log(submit)
+        submit.setAttribute('disabled', 'disabled');
+      }
+      })
+      })
+
+
+    </script>
+    <div class="d-flex align-items-center mb-4">
+
+      <%= f.submit "Submit", disabled: true , class: 'btn btn-primary ', id: 'course-form-btn' %>
       <p class="mb-0 ml-2">to add this course to your library</p>
     </div>
     <% end %>
