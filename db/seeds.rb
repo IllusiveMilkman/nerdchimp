@@ -17,7 +17,7 @@ puts 'Cleaning database...'
 #     attr2: ''
 #   }
 # ]
-# Model.create!(models_array)
+# Model.create!(models_array) #bla
 # puts 'Finished creating Model'
 # ============================================================
 
@@ -29,7 +29,7 @@ users_array = [
   last_name: 'Ember',
   email: 'john@nerdchimp.io',
   password: '123123',
-  remote_photo_url: "https://res.cloudinary.com/drdm61dhy/image/upload/v1574940874/nerdchimp/User_1_nkzcin.jpg"
+  remote_photo_url: "https://res.cloudinary.com/drdm61dhy/image/upload/c_thumb,g_face,h_200,w_200/v1574940874/nerdchimp/User_1_nkzcin.jpg"
   },
   {
   # testing what happens if same names are appended to database
@@ -37,7 +37,7 @@ users_array = [
   last_name: 'Ember',
   email: 'john2@nerdchimp.io',  # Must be unique email address
   password: '123123',
-  remote_photo_url: "https://res.cloudinary.com/drdm61dhy/image/upload/v1574257753/nerdchimp/Charles_wvep0m.jpg"
+  remote_photo_url: "https://res.cloudinary.com/drdm61dhy/image/upload/c_thumb,g_face,h_200,w_200/v1574257753/nerdchimp/Charles_wvep0m.jpg"
   },
   {
   first_name: 'Sam',
@@ -51,21 +51,21 @@ users_array = [
   last_name: 'Bond',
   email: 'alex@nerdchimp.io',
   password: '123123',
-  remote_photo_url: "https://res.cloudinary.com/drdm61dhy/image/upload/v1574257896/nerdchimp/James_Bond_i5l5og.jpg"
+  remote_photo_url: "https://res.cloudinary.com/drdm61dhy/image/upload/c_thumb,g_face,h_200,w_200/v1574257896/nerdchimp/James_Bond_i5l5og.jpg"
   },
   {
   first_name: 'Haley',
   last_name: 'Summers',
   email: 'haley@nerdchimp.io',
   password: '123123',
-  remote_photo_url: "https://res.cloudinary.com/drdm61dhy/image/upload/v1574257896/nerdchimp/Octocat_itmdrk.png"
+  remote_photo_url: "https://res.cloudinary.com/drdm61dhy/image/upload/c_thumb,g_face,h_200,w_200/v1574257896/nerdchimp/Octocat_itmdrk.png"
   },
   {
   first_name: 'Lara',
   last_name: 'Croft',
   email: 'lara@nerdchimp.io',
   password: '123123',
-  remote_photo_url: "https://res.cloudinary.com/drdm61dhy/image/upload/v1574258088/nerdchimp/Lara_Croft_knq7v7.jpg"
+  remote_photo_url: "https://res.cloudinary.com/drdm61dhy/image/upload/c_thumb,g_face,h_200,w_200/v1574258088/nerdchimp/Lara_Croft_knq7v7.jpg"
   }
 ]
 
