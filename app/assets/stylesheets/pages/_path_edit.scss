@@ -110,3 +110,14 @@
     color: red;
   }
 }
+
+.path-header-item-button {
+    background: $lime-green;
+    border-radius: 5px;
+    color: $blue;
+    border: none;
+
+    &:hover {
+      background: darken($lime-green, 10%);
+    }
+}
