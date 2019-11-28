@@ -1,18 +1,18 @@
 
 <%= render 'shared/profile', user: @user, coursebananas: @coursebananas %>
 
-<div class="path-header">
+<div class="path-header ">
   <div class="container">
     <div class="path-header-container">
       <div class="path-header-item">
         <h2 class="mb-0 pt-3 pb-3"><%= @path.first.title %></h2>
-      </div>
-
-      <div class="path-header-item-center">
         <i class="fas fa-pen fa-xs">
           &#8197;
           <%= link_to 'Rename', edit_user_path_path(@user, @path.first) %>
         </i>
+      </div>
+
+      <div class="path-header-item-center">
       </div>
 
       <div class="path-header-item-button">
