@@ -44,7 +44,14 @@
   <div class="path">
     <div class="container mb-4" style="display: flex; justify-content: center;">
       <ul class="sortable-list list-group path-to-edit" data-groupname="userLists" data-ltype="path" data-pathid="<%= @path.first.id %>">
-        <h5 class="h5-path-heading"><%= @path.first.title %></h5>
+
+        <div class="d-flex">
+          <h5 class="h5-path-heading flex-grow-1"><%= @path.first.title %></h5>
+          <%= link_to user_path_path(current_user, @path.first), method: :delete, data: {confirm: "You are about to delte your entire Path. Are you sure?", disable_with: "Processing..." }, class: "mr-2" do %>
+            <i class="fas fa-trash-alt path-trash"></i>
+          <% end %>
+        </div>
+
         <% unless @path.first.users_courses_paths[0].nil? %>
           <% @path.first.users_courses_paths.order(:position).each do |course| %>
             <li data-courseid="<%= course.user_course.course_id %>" data-position="<%= course.position %>" class="m-2 list-group-item library-item">
