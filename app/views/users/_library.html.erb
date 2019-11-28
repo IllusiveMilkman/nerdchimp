@@ -1,5 +1,8 @@
 <div class="tab-pane fade" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
   <br>
+      <% if @usercourses.empty? %>
+      <div class="container text-center"><h5 class="text-secondary">No Courses Added Yet</h5></div>
+    <% end %>
   <div id="library-cards"class="cards">
   <% @usercourses.each do |usercourse| %>
     <div class="card-category p-3 mb-3" style="border-radius: 6px; background-color: white;">

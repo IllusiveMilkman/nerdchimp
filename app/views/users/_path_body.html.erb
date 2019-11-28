@@ -1,24 +1,4 @@
 <% @paths.each_with_index do |path, i| %>
-  <%= javascript_tag do %>
-    var section = document.querySelector(`#list-<%= path.id %>-list`)
-
-    section.addEventListener('click', function() {
-      var tag = document.querySelector('.path-title')
-      var td = document.querySelector('#total_duration')
-      var tt = document.querySelector('#total_tracker')
-      var tp = document.querySelector('#total_progress')
-      var cp = document.querySelector('#circle_progress')
-      tag.innerHTML = `<%= path.title %>`
-      td.innerHTML = `<%= path.total_duration %>  Hours in total`
-      tt.innerHTML = `<%= path.total_tracker.to_i %> Hours is completed`
-      tp.innerHTML = `<%= path.progress %> %`
-      cp.setAttribute('data-percentage','<%= path.progress %>')
-
-      const button = document.querySelector('.path-header-item-button')
-      button.href = "/users/<%= params[:id] %>/users_courses_paths/<%= path.id %>"
-
-    });
-  <% end %>
   <% if i == 0 %>
     <div class="tab-pane fade show active" id="list-<%= path.id %>" role="tabpanel" aria-labelledby="list-<%= path.id %>-list">
   <% else %>
@@ -61,4 +41,25 @@
       <% end %>
     <% end %>
   </div>
+    <%= javascript_tag do %>
+    var section = document.querySelector(`#list-<%= path.id %>-list`)
+
+    section.addEventListener('click', function() {
+      var tag = document.querySelector('.path-title')
+      var td = document.querySelector('#total_duration')
+      var tt = document.querySelector('#total_tracker')
+      var tp = document.querySelector('#total_progress')
+      var cp = document.querySelector('#circle_progress')
+      td.innerHTML = `<%= path.total_duration %>  Hours in total`
+      tt.innerHTML = `<%= path.total_tracker.to_i %> Hours is completed`
+      tp.innerHTML = `<%= path.progress %>%`
+      cp.setAttribute('data-percentage','<%= path.progress %>')
+      console.log(tag)
+      tag.innerHTML = `<%= path.title %>`
+
+      const button = document.querySelector('.path-header-item-button')
+      button.href = "/users/<%= params[:id] %>/users_courses_paths/<%= path.id %>"
+
+    });
+  <% end %>
 <% end %>

@@ -1,10 +1,10 @@
 <hr>
 <div class="container">
   <div class="profile d-flex align-items-center">
-    <% unless @user.photo == nil %>
-    <%= cl_image_tag @user.photo, height: 150, width: 150,crop: :fill, class: "avatar-large" %>
+    <% if current_user[:photo] %>
+      <%= cl_image_tag @user.photo, height: 150, width: 150,crop: :fill, class: "avatar-large" %>
     <% else %>
-    <%= image_tag image_url:'https://jbmedicalwellness.com/wp-content/uploads/2018/09/placeholder-male-square.png', height: 150, width: 150,crop: :fill, class: "avatar-large" %>
+      <%= image_tag image_url('https://tekrabuilders.com/wp-content/uploads/2018/12/male-placeholder-image.jpeg'), height: 150,crop: :fill, class: "avatar-large" %>
     <% end %>
 
     <div class=" nametag flex-grow-1">
