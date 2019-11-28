@@ -29,7 +29,7 @@ users_array = [
   last_name: 'Ember',
   email: 'john@nerdchimp.io',
   password: '123123',
-  remote_photo_url: "https://res.cloudinary.com/drdm61dhy/image/upload/v1574251221/nerdchimp/john-ember.jpg"
+  remote_photo_url: "https://res.cloudinary.com/drdm61dhy/image/upload/v1574940874/nerdchimp/User_1_nkzcin.jpg"
   },
   {
   # testing what happens if same names are appended to database
@@ -44,7 +44,7 @@ users_array = [
   last_name: 'Jones',
   email: 'sam@nerdchimp.io',
   password: '123123',
-  remote_photo_url: "https://res.cloudinary.com/drdm61dhy/image/upload/v1574257752/nerdchimp/Spongebob_z1tcyp.png"
+  remote_photo_url: "https://res.cloudinary.com/drdm61dhy/image/upload/v1574940965/nerdchimp/Passport_Photo_izzotn.jpg"
   },
   {
   first_name: 'James',

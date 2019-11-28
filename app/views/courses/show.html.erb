@@ -1,11 +1,10 @@
-<!-- Second version of show page -->
 
-<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0),rgba(0,0,0,0), #F9D233">
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0),rgba(0,0,0,0), #51EBA0">
   <div class="container" style="display: flex; justify-content: space-between; padding-top: 40px;">
     <div>
-      <h1><%=@course.title%></h1>
-      <div class="card-item-provider"><h4>via <%= @course.provider %>  |
-        <span class="card-item-duration"><%= @course.duration %> hours to complete</span></h4>
+      <h1 class="text-primary"><%=@course.title%></h1>
+      <div class="card-item-provider text-primary"><h4>via <%= @course.provider %>  |
+        <span class="card-item-duration text-primary"><%= @course.duration %> hours to complete</span></h4>
       </div>
     </div>
     <div>
@@ -19,23 +18,3 @@
 <div class="container" style="margin-top: 30px;">
   <div class="card-item-description"><p><%= @course.description%></p></div>
 </div>
-
-<!-- First version of show page -->
-
-<!-- <div class="container">
-          <div class="show-items" style="display: flex; justify-content: space-between;">
-            <div>
-            <h4><%=@course.title%></h4>
-              <div class="card-item-provider">via <%= @course.provider %>  |
-              <span class="card-item-duration"><%= @course.duration %> hours to complete</span>
-            </div>
-          </div>
-            <% if user_signed_in? %>
-          <div class="catalog-button">
-            <h5><%= button_to "+ Add to library", add_course_path(course_id: @course), remote: true, class: "btn btn-primary", style: 'font-size: 1.1rem; font-family: Circular;' %></h5>
-          </div>
-          <% end %>
-        </div>
-        <div class="card-item-description"><%= @course.description%></div>
-    </div>
-</div> -->
