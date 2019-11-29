@@ -6,7 +6,7 @@ class UsersCoursesPathsController < ApplicationController
   def show
     @user = User.friendly.find(params[:user_id])
     @path = @user.paths.where(id: params[:id])
-    @usercourses = UserCourse.where(user: current_user)
+    @usercourses = UserCourse.where(user: current_user).order(created_at: :desc)
 
     @coursebananas = 0
     UserCourse.where(user: @user).each do |usercourse|
