@@ -11,7 +11,7 @@ gem 'redis'
 gem 'friendly_id', '~> 5.2.4' # Note: You MUST use 5.0.0 or greater for Rails 4.0+
 gem 'pundit'
 gem 'cloudinary', '~> 1.9.1'
-gem 'carrierwave', '~> 1.2'
+gem 'carrierwave', '~> 1.3'
 gem 'pg_search', '~> 2.3.0'
 gem 'acts_as_list'
 gem 'will_paginate', '~> 3.0.5'
